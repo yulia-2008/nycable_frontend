@@ -5,10 +5,10 @@ class Technician extends Component {
     render() {console.log("hey", this.props)
         return (
             <div>
-               <p> {this.props.technician.first_name}</p>
-               <p> {this.props.technician.last_name}</p>
-               <p> {this.props.technician.city}</p>
-                {/* <p> {this.props.technician.company.name}</p>  */}
+               <p> {this.props.technician.first_name}&nbsp;
+                {this.props.technician.last_name}&nbsp;
+                {this.props.technician.city}&nbsp;
+                 {this.props.technician.company_name} </p> 
             </div>
         );
     }

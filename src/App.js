@@ -5,7 +5,7 @@ import TechnicianContainer from './Containers/TechnicianContainer';
 
 
 class App extends React.Component {
-  render(){
+  render(){console.log("app")
     return (
     <div className="App">
       <header >

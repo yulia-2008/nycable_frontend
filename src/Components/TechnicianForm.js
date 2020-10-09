@@ -14,51 +14,33 @@ class TechnicianForm extends Component {
 
     render() {
         return (
-            <div>
+            <div> Add new Technician
                 <form onSubmit = {event => this.props.submitTechnicianHandler(event, this.state)}>
-                <label>First Name:</label>
-                <br/>
-                <input type="text"  name="firstName" onChange={this.changeHandler}></input>
-                <br/>
-                <label>Last Name</label>
-                <br/>
-                <input type="text"  name="lastName" onChange={this.changeHandler}></input>
-                <br/>
-                {/* <label>Company</label>
-                <br/>
-                <input type="text"  name="company" onChange={this.changeHandler}></input>
-                <br/> */}
-
-                
-<label >Company</label> 
-  <select name="company" onChange={this.changeHandler}>
-    <option value="Optimum">Optimum</option>
-     <option value="Dish">Dish</option>
-    <option value="Spectrum">Spectrum</option>
-    <option value="Direct TV">Direct TV</option>
-    <option value="Verizon">Verizon</option> 
- </select> 
- <b></b>
-  
-
-
-
-
-
-
-
-                <label>City/Town</label>
-                <br/>
-                <input type="text"  name="city" onChange={this.changeHandler}></input>
+                <input type="text"  name="firstName" placeholder="First Name" onChange={this.changeHandler}></input>
                 <br/>               
-                <div>
-                  <input type="submit" value="Submit"></input>
-                  <input type="reset" ></input>
-                </div> 
+                <input type="text"  name="lastName" placeholder="Last Name" onChange={this.changeHandler}></input>
+                <br/>               
+                <input type="text"  name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
+                <br/>  
+                {/* <input type="text"  name="company" placeholder="Company" autocomplete="on" onChange={this.changeHandler}></input>
+                <br/> <br></br> */}
+                
+               <label>Company</label> 
+                    <select name="company" onChange={this.changeHandler}>
+                        <option value="Optimum">Optimum</option>
+                        <option value="Dish">Dish</option>
+                        <option value="Spectrum">Spectrum</option>
+                        <option value="Direct TV">Direct TV</option>
+                        <option value="Verizon">Verizon</option> 
+                    </select> 
+                    <br></br> <br></br>  
+                                           
+                <input type="submit" value="Submit"></input> &nbsp;
+                <input type="reset" ></input>
+                 
               </form>
               <br></br>
             
-              <form onSubmit = {event => this.props.signUpHandler(event)}></form>
             </div>
         );
     }
