@@ -46,15 +46,17 @@ class TechnicianContainer extends Component {
     }
 
     changeHandler = event => {this.setState({ [event.target.name]: event.target.value})
-    console.log("onchange", event.target.name)
+    // console.log("onchange", this.state.company)
 }
 
 searchHandler = event => {event.preventDefault()
-  
- let filtered = this.state.technicians.filter(tech =>  tech.company_name === this.state.company)
-  console.log("filtered", this.state.company)
+   console.log("filtered", this.state.company)
+ let filtered = this.state.technicians.filter(tech => tech.city === this.state.city 
+                                                     && tech.company_name === this.state.company 
+                                                     && tech.first_name + " " + tech.last_name === this.state.name)
+
  this.setState({technicians: filtered})
- event.target.reset() 
+ 
 }
 
 
@@ -75,7 +77,7 @@ searchHandler = event => {event.preventDefault()
                 </form>   */}
 <form onSubmit = {event => this.searchHandler(event)}>
 Search Technician <br></br>&nbsp; 
-  <select name="companies" onChange={this.changeHandler}>
+  <select name="company" onChange={this.changeHandler}>
     <option value="">Choose Company</option>
     <option value="Optimum">Optimum</option>
     <option value="Dish">Dish</option>

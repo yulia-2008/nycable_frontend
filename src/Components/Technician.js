@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 class Technician extends Component {
     render() {
-        // console.log("hey", this.props)
+        //   console.log("hey", this.props.technician.first_name + this.props.technician.last_name)
         return (
             <div>
                <p> {this.props.technician.first_name}&nbsp;
