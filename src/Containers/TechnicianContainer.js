@@ -5,7 +5,10 @@ import TechnicianForm from '../Components/TechnicianForm';
 class TechnicianContainer extends Component {
 
     state={
-        technicians: []
+        technicians: [],
+        company: "t",
+        city: "",
+        name: ""
     }
     componentDidMount(){
          fetch(`http://localhost:4000/technicians`)
@@ -40,10 +43,23 @@ class TechnicianContainer extends Component {
                           })
         )
         event.target.reset()       
-
     }
 
-    render() {console.log("Container")
+    changeHandler = event => {this.setState({ [event.target.name]: event.target.value})
+    console.log("onchange", event.target.name)
+}
+
+searchHandler = event => {event.preventDefault()
+  
+ let filtered = this.state.technicians.filter(tech =>  tech.company_name === this.state.company)
+  console.log("filtered", this.state.company)
+ this.setState({technicians: filtered})
+ event.target.reset() 
+}
+
+
+    render() {
+        //  console.log("Container", this.state.company)
         return (
             <div>
             <TechnicianForm submitTechnicianHandler={this.submitTechnicianHandler}/>
@@ -57,21 +73,23 @@ class TechnicianContainer extends Component {
                     />
                     <button type='submit'>search</button>
                 </form>   */}
-<form>
+<form onSubmit = {event => this.searchHandler(event)}>
 Search Technician <br></br>&nbsp; 
-  <select name="companies">
+  <select name="companies" onChange={this.changeHandler}>
+    <option value="">Choose Company</option>
     <option value="Optimum">Optimum</option>
-     <option value="Dish">Dish</option>
+    <option value="Dish">Dish</option>
     <option value="Spectrum">Spectrum</option>
     <option value="Direct TV">Direct TV</option>
     <option value="Verizon">Verizon</option> 
  </select> 
  <br></br>
-<input type="text" name="city" placeholder="City/Town"></input>
+<input type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
 <br></br>
-<input type="text"  name="name" placeholder="First and Last Name"></input>
+<input type="text"  name="name" placeholder="First and Last Name" onChange={this.changeHandler}
+></input>
 <br></br>
-<input type="submit"></input>
+<input type="submit" value="Search"></input>
 </form>
 
                 {this.getTechnicians()}
