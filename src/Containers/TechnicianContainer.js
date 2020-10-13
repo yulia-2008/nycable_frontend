@@ -50,7 +50,7 @@ class TechnicianContainer extends Component {
     }
 
     changeHandler = event => {this.setState({ [event.target.name]: event.target.value})
-    // console.log("onchange", this.state.company)
+     console.log("onchange", this.state.company)
    
 }
 
