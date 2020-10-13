@@ -27,6 +27,7 @@ class TechnicianForm extends Component {
                 
                <label>Company</label> 
                     <select name="company" onChange={this.changeHandler}>
+                        <option value="">Choose Company</option>
                         <option value="Optimum">Optimum</option>
                         <option value="Dish">Dish</option>
                         <option value="Spectrum">Spectrum</option>

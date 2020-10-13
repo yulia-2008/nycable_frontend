@@ -5,13 +5,16 @@ import TechnicianForm from '../Components/TechnicianForm';
 class TechnicianContainer extends Component {
 
     state={
-        technicians: [],
-        company: "t",
-        city: "",
-        name: ""
+        technicians: [],      
+        company: "",
+        city: "" 
     }
-    componentDidMount(){
-         fetch(`http://localhost:4000/technicians`)
+    componentDidMount(){this.fetchTechnicians()       
+        // console.log("did mount")
+    }
+
+    fetchTechnicians = () =>{
+        fetch(`http://localhost:4000/technicians`)
         .then(response => response.json())
         .then(response => this.setState({technicians: response
                           })
@@ -19,6 +22,7 @@ class TechnicianContainer extends Component {
     }
 
     getTechnicians = () => { return this.state.technicians.map(tech => < Technician key={tech.id} technician={tech}/>)
+    
     }
 
     submitTechnicianHandler = (event, technician) => {event.preventDefault()
@@ -47,21 +51,32 @@ class TechnicianContainer extends Component {
 
     changeHandler = event => {this.setState({ [event.target.name]: event.target.value})
     // console.log("onchange", this.state.company)
+   
 }
 
 searchHandler = event => {event.preventDefault()
-   console.log("filtered", this.state.company)
- let filtered = this.state.technicians.filter(tech => tech.city === this.state.city 
-                                                     && tech.company_name === this.state.company 
-                                                     && tech.first_name + " " + tech.last_name === this.state.name)
+   console.log("filtered", this.state)
+    let filtered = [...this.state.technicians]
+    
+ if (this.state.company !=="" && this.state.city ==="") {
+      filtered = filtered.filter(tech => tech.company_name === this.state.company)
+      console.log("oj", filtered)
+ }
+ if (this.state.city !=="" && this.state.company ==="") {
+    filtered = filtered.filter(tech => tech.city === this.state.city)
+}
+if (this.state.city !=="" && this.state.company !=="") {
+    filtered = filtered.filter(tech => tech.city === this.state.city && tech.company_name === this.state.company)
+}
 
  this.setState({technicians: filtered})
- 
+//  event.target.reset() 
+
 }
 
 
     render() {
-        //  console.log("Container", this.state.company)
+          console.log("Container", this.state.technicians)
         return (
             <div>
             <TechnicianForm submitTechnicianHandler={this.submitTechnicianHandler}/>
@@ -85,19 +100,23 @@ Search Technician <br></br>&nbsp;
     <option value="Direct TV">Direct TV</option>
     <option value="Verizon">Verizon</option> 
  </select> 
+
  <br></br>
 <input type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
 <br></br>
-<input type="text"  name="name" placeholder="First and Last Name" onChange={this.changeHandler}
-></input>
-<br></br>
 <input type="submit" value="Search"></input>
+
 </form>
 
                 {this.getTechnicians()}
+               
             </div>
         );
     }
 }
 
 export default TechnicianContainer;
+
+
+
+
