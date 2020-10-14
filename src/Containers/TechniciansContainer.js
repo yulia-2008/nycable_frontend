@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Technician from '../Components/Technician';
 import TechnicianForm from '../Components/TechnicianForm';
 
-class TechnicianContainer extends Component {
+class TechniciansContainer extends Component {
 
     state={
         technicians: [], 
@@ -105,7 +105,7 @@ class TechnicianContainer extends Component {
     }
 }
 
-export default TechnicianContainer;
+export default TechniciansContainer;
 
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import TechnicianContainer from './Containers/TechnicianContainer';
-
+import TechniciansContainer from './Containers/TechniciansContainer';
+import CompaniesContainer from './Containers/CompaniesContainer';
 
 class App extends React.Component {
   render(){
@@ -12,7 +12,8 @@ class App extends React.Component {
       <header >
          
       </header>
-      <TechnicianContainer/>
+      <TechniciansContainer/>
+      <CompaniesContainer/>
     </div>
   );
  }
