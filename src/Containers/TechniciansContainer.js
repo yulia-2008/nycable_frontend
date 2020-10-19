@@ -80,7 +80,7 @@ class TechniciansContainer extends Component {
           console.log("Container", this.state.technicians)
         return (
             <div>
-            <TechnicianForm submitTechnicianHandler={this.submitTechnicianHandler}/>
+           
 
             <form onSubmit = {event => this.searchHandler(event)}>
                 Search Technician <br></br>&nbsp; 
