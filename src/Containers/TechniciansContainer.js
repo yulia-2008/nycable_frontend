@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Technician from '../Components/Technician';
-import TechnicianForm from '../Components/TechnicianForm';
+
 
 class TechniciansContainer extends Component {
 
@@ -14,7 +14,7 @@ class TechniciansContainer extends Component {
     }
 
     fetchTechnicians = () =>{
-        fetch(`http://localhost:4000/technicians`)
+        fetch(`http://localhost:3001/technicians`)
         .then(response => response.json())
         .then(response => this.setState({technicians: response, filtered: response
                           })
@@ -27,29 +27,29 @@ class TechniciansContainer extends Component {
         
     
 
-    submitTechnicianHandler = (event, technician) => {event.preventDefault()
-        let options = { method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    // Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                           technician: {first_name: technician.firstName,                               
-                                 last_name: technician.lastName,
-                                 rating: 0,   
-                                 company_name: technician.company,                                                            
-                                 city: technician.city
-                          }
-                    })
-                   }
-        fetch('http://localhost:4000/technicians', options)
-        .then(response => response.json())
-        .then(response => this.setState({technicians: [...this.state.technicians, response]
-                          })
-        )
-        event.target.reset()       
-    }
+    // submitTechnicianHandler = (event, technician) => {event.preventDefault()
+    //     let options = { method: 'POST',
+    //                 headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Accept: 'application/json',
+    //                 // Authorization: `Bearer ${token}`
+    //                 },
+    //                 body: JSON.stringify({
+    //                        technician: {first_name: technician.firstName,                               
+    //                              last_name: technician.lastName,
+    //                              rating: 0,   
+    //                              company_name: technician.company,                                                            
+    //                              city: technician.city
+    //                       }
+    //                 })
+    //                }
+    //     fetch('http://localhost:3001/technicians', options)
+    //     .then(response => response.json())
+    //     .then(response => this.setState({technicians: [...this.state.technicians, response]
+    //                       })
+    //     )
+    //     event.target.reset()       
+    // }
 
     changeHandler = event => {this.setState({[event.target.name]: event.target.value})
     }
