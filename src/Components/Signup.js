@@ -18,10 +18,29 @@ signUpHandler = event => {
        this.props.signUpHandler(this.state)
        event.target.reset()
 }
+loginHandler = event => {
+       event.preventDefault()
+       this.props.loginHandler(this.state)      
+}
+
     render() {
         return (
               
             <div>
+              <h4>Login</h4>
+              <form onSubmit = {event => this.loginHandler(event)}>
+                <label>User name:</label>
+                <br/>
+                <input type="text"  name="username" onChange = {event=> this.changeHandler(event)}></input>
+                <br/>
+                <label>Password:</label>
+                <br/>
+                <input type="password"  name="password_digest" onChange = {event=> this.changeHandler(event)}></input>
+                <br/><br/>               
+              <input  type="submit" value="Submit"></input>              
+              </form>
+
+
                <h4>Signup</h4>
                <form onSubmit = {event => this.signUpHandler(event)}>
 

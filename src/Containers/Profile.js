@@ -41,7 +41,7 @@ companySubmitHandler = event => {
     render() { console.log( "Profile", this.props.currentUser)  
         return ( 
                        
-        <div > {this.props.currentUser? <><h1>profile</h1> 
+        <div > {this.props.currentUser? <><h1>Profile</h1> 
                                    <p>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</p>
                                    <p>city: {this.props.currentUser.city}</p>
                                    <p>Rating: {this.props.currentUser.rating}</p>
@@ -62,17 +62,10 @@ companySubmitHandler = event => {
                 {/* <input type="reset" ></input> */}
                    </form>
 
- <button onClick={this.clickHandler}> Add photo</button>
- {this.state.clicked ? <photoUploader/> : null }
- 
-
-                                   
-                                 </>
-            
-            
-            
-            : 
-        
+                   <button onClick={this.clickHandler}> Add photo</button>
+                   {this.state.clicked ? <photoUploader/> : null }                                
+                    </>  
+            :        
         <Redirect to="/signup" />
         
         }
