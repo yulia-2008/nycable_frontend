@@ -10,11 +10,11 @@ class NavBar extends Component {
             <div >     
                 <NavLink  to='/' exact>
                   App
-                </NavLink>
+                </NavLink> &nbsp;
 
                 <NavLink  to='/signup' exact>
-                  signup
-                </NavLink>
+                  Signup/Login
+                </NavLink> &nbsp;
 
                 <NavLink  to='/profile' exact > 
                    Profile

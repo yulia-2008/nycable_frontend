@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import TechniciansContainer from './Containers/TechniciansContainer';
 import CompaniesContainer from './Containers/CompaniesContainer';
 import Profile from "./Containers/Profile";
 import NavBar from './Components/NavBar';
 import Signup from './Components/Signup';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch, withRouter} from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -29,13 +28,13 @@ companySubmitHandler = company=>{
                                company_name: company
                         })
                        }
-            fetch(`http://localhost:3001/technicians/${this.state.currentUser.id}`, options)
+            fetch(`http://localhost:3001/Users/${this.state.currentUser.id}`, options)
             .then(response => response.json())
             .then(response => this.setState({currentUser: response})
             )
 }
 
-  signUpHandler = technicianObj => {
+  signUpHandler = userObj => {
     // get token in response
     let options = { method: 'POST',
                     headers: {
@@ -43,18 +42,17 @@ companySubmitHandler = company=>{
                     Accept: 'application/json'
                     },
                     body: JSON.stringify({
-                           technician: technicianObj
+                           user: userObj
                     })
                    }
-        fetch('http://localhost:3001/technicians', options)
+        fetch('http://localhost:3001/users', options)
         .then(response => response.json())
-        .then(resp => { console.log(resp); this.setState({currentUser: resp.technician
-        })}
-        )
+        .then(resp => this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
+        ))
 // localStorage.setItem("token", resp.jwt) 
   }
 
-loginHandler = userInfo =>{console.log(userInfo.username, userInfo.password_digest )
+loginHandler = userInfo =>{console.log("login", this.props )
     let options = { 
     method: 'POST',
     headers: {
@@ -62,19 +60,18 @@ loginHandler = userInfo =>{console.log(userInfo.username, userInfo.password_dige
         Accept: 'application/json'
     },
     body: JSON.stringify({
-        technician: {username: userInfo.username,
-              password: userInfo.password_digest}
+        user: {username: userInfo.username,
+              password: userInfo.password}
         })
     } 
     
 fetch('http://localhost:3001/login', options)  // got toket in response !
 .then(response => response.json())
-.then(resp => console.log(resp)
-)
-
+.then(resp => this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
+))
 }
   render(){
-     console.log("app", this.state.currentUser)
+    //  console.log("app", this.props)
     return (
     <div className="App">
        <NavBar /> 
@@ -94,4 +91,4 @@ fetch('http://localhost:3001/login', options)  // got toket in response !
  }
 }
 
-export default App;
+export default withRouter(App);

@@ -9,7 +9,10 @@ class Technician extends Component {
                <p> {this.props.technician.first_name}&nbsp;
                 {this.props.technician.last_name}&nbsp;
                 {this.props.technician.city}&nbsp;
-                 {this.props.technician.company_name} </p> 
+                 {this.props.technician.company_name}&nbsp;
+                 {this.props.technician.rating}
+                  </p> 
+
             </div>
         );
     }

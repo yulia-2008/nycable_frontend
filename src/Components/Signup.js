@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 class Signup extends Component {
        state={
               username: "",
-              password_digest: "",
+              password: "",
               first_name: "",
               last_name: "",
               city: "",
+              role: ""
 
        }
 
@@ -35,9 +36,9 @@ loginHandler = event => {
                 <br/>
                 <label>Password:</label>
                 <br/>
-                <input type="password"  name="password_digest" onChange = {event=> this.changeHandler(event)}></input>
+                <input type="password"  name="password" onChange = {event=> this.changeHandler(event)}></input>
                 <br/><br/>               
-              <input  type="submit" value="Submit"></input>              
+                <input  type="submit" value="Submit"></input>              
               </form>
 
 
@@ -49,7 +50,11 @@ loginHandler = event => {
                          onChange = {event=> this.changeHandler(event)}>
                   </input>
                   <br/>
-                  
+                  <input type="radio" name="role" value = "technician"  
+                         onChange = {event=> this.changeHandler(event)} required/> Technician
+                  <input type="radio" name="role" value = "customer" 
+                         onChange = {event=> this.changeHandler(event)} required/> Customer
+                  <br/> 
 
                   <label>First Name:</label><br/> 
                   <input type="text"  name="first_name"
@@ -70,13 +75,13 @@ loginHandler = event => {
                   <br/>         
                   
                   <label>Password:</label><br/> 
-                  <input type="password"  name="password_digest"
+                  <input type="password"  name="password"
                          onChange = {event=> this.changeHandler(event)}>
                    </input>
                   <br/>
 
                   
-                  <input id='signup-btn' className="button" type="submit" value="Submit"></input>
+                  <input  type="submit" value="Submit"></input>
                
               </form>  
             </div>
