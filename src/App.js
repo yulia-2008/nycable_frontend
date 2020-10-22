@@ -34,7 +34,7 @@ companySubmitHandler = company=>{
             )
 }
 
-  signUpHandler = userObj => {
+signUpHandler = userObj => {
     // get token in response
     let options = { method: 'POST',
                     headers: {
@@ -47,11 +47,14 @@ companySubmitHandler = company=>{
                    }
         fetch('http://localhost:3001/users', options)
         .then(response => response.json())
-        .then(resp => this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
-        ))
+        .then(resp => {
+           localStorage.setItem("token", resp.jwt) 
+           this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
+           )
+        })
         //collback function run after state is set
-// localStorage.setItem("token", resp.jwt) 
-  }
+ 
+}
 
 loginHandler = userInfo =>{console.log("login", this.props )
     let options = { 
@@ -66,10 +69,13 @@ loginHandler = userInfo =>{console.log("login", this.props )
         })
     } 
     
-fetch('http://localhost:3001/login', options)  // got toket in response !
-.then(response => response.json())
-.then(resp => this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
-))
+    fetch('http://localhost:3001/login', options)  // got toket in response !
+    .then(response => response.json())
+    .then(resp =>{
+        localStorage.setItem("token", resp.jwt) 
+        this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
+        )
+        })
 }
 
 componentDidMount(){  
