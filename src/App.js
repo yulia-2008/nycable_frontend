@@ -49,6 +49,7 @@ companySubmitHandler = company=>{
         .then(response => response.json())
         .then(resp => this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
         ))
+        //collback function run after state is set
 // localStorage.setItem("token", resp.jwt) 
   }
 
@@ -69,6 +70,21 @@ fetch('http://localhost:3001/login', options)  // got toket in response !
 .then(response => response.json())
 .then(resp => this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
 ))
+}
+
+componentDidMount(){  
+  const token = localStorage.getItem("token")  
+  if (token) {
+       fetch(`http://localhost:3001/profile`, {
+           method: "GET", 
+           headers: {Authorization: `Bearer ${token}`},
+            })
+            .then(resp => resp.json())
+            .then(resp => this.setState({currentUser: resp})
+            )} 
+   else {
+     this.props.history.push("/signup")
+   }             
 }
   render(){
     //  console.log("app", this.props)
