@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
+import Profile from '../Containers/Profile';
 
 
 
 class NavBar extends Component {
     render() {
-        return (
-             
+        return (            
             <div >     
-                <NavLink  to='/' exact>
+                <NavLink  to='/' >
                   App
                 </NavLink> &nbsp;
 
-                <NavLink  to='/signup' exact>
-                  Signup/Login
-                </NavLink> &nbsp;
 
-                <NavLink  to='/profile' exact > 
-                   Profile
+                {this.props.currentUser? <p onClick={this.props.logoutHandler}>Logout</p> :
+                    <NavLink  to='/signup'>
+                        Signup/Login
+                    </NavLink> 
+                 }
+
+
+                <NavLink  to='/profile' > 
+                  {this.props.currentUser? 
+                     <p>Profile ({this.props.currentUser.first_name})</p>
+                     :
+                     <p>Profile("You're not logged in")</p>
+                  }
                 </NavLink>                  
             </div> 
         );

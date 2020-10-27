@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
-import photoUploader from '../Components/photoUploader';
+import PhotoUploader from '../Components/PhotoUploader';
 
 
 
@@ -38,18 +38,26 @@ companySubmitHandler = event => {
     this.props.companySubmitHandler(this.state.company)
 }
 
-    render() { console.log( "Profile", this.props.currentUser)  
+    render() { 
+        // console.log( "Profile", this.props.currentUser)  
         return ( 
                        
         <div > {this.props.currentUser? <><h1>Profile</h1> 
-                                   <p>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</p>
-                                   <p>city: {this.props.currentUser.city}</p>
+                    <p>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</p>
+                    <p>city: {this.props.currentUser.city}</p>
+
+                    {this.props.currentUser.role==="technician" ?
+                                   <>
                                    <p>Rating: {this.props.currentUser.rating}</p>
-                                   <p>Company: {this.props.currentUser.company_name}</p>
+                                   <p>Company you work for: {this.props.currentUser.company_name}</p>
+                                   </>
+                                   :
+                                   <p>Company you get a service from: {this.props.currentUser.company_name}</p>
+                    }
                                   
                     <form onSubmit={this.companySubmitHandler}>
                       <select id="select-field" name="company" onChange={this.changeHandler}>
-                        <option value="">Choose Company</option>
+                        <option value="">Add Company</option>
                         <option value="Optimum">Optimum</option>
                         <option value="Dish">Dish</option>
                         <option value="Spectrum">Spectrum</option>
@@ -63,7 +71,7 @@ companySubmitHandler = event => {
                    </form>
 
                    <button onClick={this.clickHandler}> Add photo</button>
-                   {this.state.clicked ? <photoUploader/> : null }                                
+                   {this.state.clicked ? <PhotoUploader currentUser={this.props.currentUser}/> : null }                                
                     </>  
             :        
         <Redirect to="/signup" />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Technician from '../Components/Technician';
-
+import { Redirect} from 'react-router-dom';
 
 class TechniciansContainer extends Component {
 
@@ -14,7 +14,7 @@ class TechniciansContainer extends Component {
     }
 
     fetchTechnicians = () =>{
-        fetch(`http://localhost:3001/technicians`)
+        fetch(`http://localhost:4000/technicians`)
         .then(response => response.json())
         .then(response => this.setState({technicians: response, filtered: response
                           })
@@ -62,26 +62,26 @@ class TechniciansContainer extends Component {
              this.setState({filtered: filtered})
         }
         if (this.state.company !== "" && this.state.city === "") {
-           filtered = filtered.filter(tech => tech.company_name === this.state.company)
-           this.setState({filtered: filtered})
+           let filterByCompany = filtered.filter(tech => tech.company_name === this.state.company)
+           this.setState({filtered: filterByCompany})
         } 
         if (this.state.company === "" && this.state.city !== "") {
-            filtered = filtered.filter(tech => tech.city === this.state.city)
-            this.setState({filtered: filtered})
+            let filterByCity = filtered.filter(tech => tech.city.toLowerCase() === this.state.city.toLowerCase())
+            this.setState({filtered: filterByCity})
          } 
          if (this.state.company !== "" && this.state.city !== "") {
-            filtered = filtered.filter(tech => tech.city === this.state.city && tech.company_name === this.state.company)
-            this.setState({filtered: filtered})
+            let filterByBoth = filtered.filter(tech => tech.city.toLowerCase() === this.state.city.toLowerCase()
+                                                        && tech.company_name === this.state.company)
+            this.setState({filtered: filterByBoth})
          }
     
 } 
 
     render() {
-          console.log("Container", this.state.technicians)
+        //   console.log("Container", this.state.technicians)
         return (
             <div>
-           
-
+           <h2>Technician Container</h2>
             <form onSubmit = {event => this.searchHandler(event)}>
                 Search Technician <br></br>&nbsp; 
                 <select name="company" onChange={this.changeHandler}>
@@ -99,8 +99,7 @@ class TechniciansContainer extends Component {
             </form>
 
             {this.getTechnicians()}
-               
-            </div>
+           </div>
         );
     }
 }

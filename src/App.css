@@ -41,3 +41,15 @@
   border: 2px, black;
   width: 165px;
 }
+
+#phono-preview {
+  height: 50px;
+  width: 50px;
+}
+
+/* hide the name of the file */
+input[type='file'] {
+  color: transparent;
+}
+
+

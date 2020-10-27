@@ -28,9 +28,9 @@ companySubmitHandler = company=>{
                                company_name: company
                         })
                        }
-            fetch(`http://localhost:3001/Users/${this.state.currentUser.id}`, options)
+            fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
             .then(response => response.json())
-            .then(response => this.setState({currentUser: response})
+            .then(response => this.setState({currentUser: response.user})
             )
 }
 
@@ -45,7 +45,7 @@ signUpHandler = userObj => {
                            user: userObj
                     })
                    }
-        fetch('http://localhost:3001/users', options)
+        fetch('http://localhost:4000/users', options)
         .then(response => response.json())
         .then(resp => {
            localStorage.setItem("token", resp.jwt) 
@@ -69,7 +69,7 @@ loginHandler = userInfo =>{console.log("login", this.props )
         })
     } 
     
-    fetch('http://localhost:3001/login', options)  // got toket in response !
+    fetch('http://localhost:4000/login', options)  // got toket in response !
     .then(response => response.json())
     .then(resp =>{
         localStorage.setItem("token", resp.jwt) 
@@ -78,36 +78,46 @@ loginHandler = userInfo =>{console.log("login", this.props )
         })
 }
 
-componentDidMount(){  
+logoutHandler=()=>{
+  localStorage.removeItem("token")
+  this.setState({currentUser: null
+  })
+}
+
+componentDidMount(){ 
   const token = localStorage.getItem("token")  
   if (token) {
-       fetch(`http://localhost:3001/profile`, {
+       fetch(`http://localhost:4000/profile`, {
            method: "GET", 
            headers: {Authorization: `Bearer ${token}`},
             })
             .then(resp => resp.json())
-            .then(resp => this.setState({currentUser: resp})
-            )} 
-   else {
-     this.props.history.push("/signup")
-   }             
+            .then(resp => this.setState({currentUser: resp.user})
+            )
+   } 
+  // if need to redirect to login page :
+  //  else {
+  //    this.props.history.push('/signup')
+  //  }  
+
+
 }
   render(){
-    //  console.log("app", this.props)
-    return (
+      // console.log("app", this.props)
+    return ( 
     <div className="App">
-       <NavBar /> 
+
+       <NavBar currentUser={this.state.currentUser} logoutHandler={this.logoutHandler}/> 
+
        <Switch>
-       <Route exact path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
-                                                              loginHandler={this.loginHandler} />} />
-       <Route exact path = '/profile' render = {() => <Profile  currentUser={this.state.currentUser}
-                                                                companySubmitHandler={this.companySubmitHandler} />} />
-      <Route exact path = '/' render = {() => <div><TechniciansContainer/> 
-                                                     <CompaniesContainer/></div>
+          <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
+                                                            loginHandler={this.loginHandler} />} />
+          <Route  path = '/profile' render = {() => <Profile  currentUser={this.state.currentUser}
+                                                              companySubmitHandler={this.companySubmitHandler} />} />
+          <Route  path = '/' render = {() => <div><TechniciansContainer currentUser={this.state.currentUser} /> 
+                                                  <CompaniesContainer/></div>
                                                            } /> 
-       </Switch>
-      
-      
+       </Switch>      
     </div>
   );
  }
