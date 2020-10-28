@@ -24,9 +24,9 @@ filePreview=()=>{
        event.preventDefault();
        if (this.state.selectedFile) {
         //    console.log("selected", this.state.selectedFile)
-           const formData = new FormData()
+           let formData = new FormData()
            formData.append("photo", this.state.selectedFile) // key is "pic", value is this.state.selectedFile
-            console.log("data", formData)
+            console.log("data", formData.get("photo"))
            
            let options = { method: 'POST',
            
@@ -47,16 +47,13 @@ filePreview=()=>{
     render() {
         // console.dir("uploader", this.props.currentUser)
         return (
-            <div> 
-                {/* <form onSubmit = {event => this.props.submitTechnicianHandler(event, this.state)}> */}
-              
+            <div>            
 
                 <form onSubmit={this.photoUploader}>
                 <input type="file"  name="picture" accept="image/*" multiple= "false" placeholder="Photo" onChange={this.changeHandler}></input>
                 <br/> 
                 <input type="submit" value="Upload" ></input>
                 </form>
-                 {/* {this.uploader()}  */}
                 <br/>
                       
              
