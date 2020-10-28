@@ -84,6 +84,25 @@ logoutHandler=()=>{
   })
 }
 
+submitPhoto = photo => {
+  // optimistic rendering new user picture
+   let picture = {picture: photo.image_url}
+   let updatedCurrentUser=Object.assign(this.state.currentUser, picture)
+   this.setState({currentUser: updatedCurrentUser})
+  
+  // posting to db
+   let options = { method: 'PATCH',
+                   headers: {
+                   'Content-Type': 'application/json',
+                   Accept: 'application/json'
+                   },
+                  body: JSON.stringify({
+                          picture: photo.image_url
+                  })
+                 }
+    fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
+}
+
 componentDidMount(){ 
   const token = localStorage.getItem("token")  
   if (token) {
@@ -113,6 +132,7 @@ componentDidMount(){
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
                                                             loginHandler={this.loginHandler} />} />
           <Route  path = '/profile' render = {() => <Profile  currentUser={this.state.currentUser}
+                                                              submitPhoto={this.submitPhoto}
                                                               companySubmitHandler={this.companySubmitHandler} />} />
           <Route  path = '/' render = {() => <div><TechniciansContainer currentUser={this.state.currentUser} /> 
                                                   <CompaniesContainer/></div>

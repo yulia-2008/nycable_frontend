@@ -23,22 +23,21 @@ filePreview=()=>{
     photoUploader = event =>{
        event.preventDefault();
        if (this.state.selectedFile) {
-        //    console.log("selected", this.state.selectedFile)
+       
            let formData = new FormData()
            formData.append("photo", this.state.selectedFile) // key is "pic", value is this.state.selectedFile
-            console.log("data", formData.get("photo"))
+            // console.log("data", formData.get("photo"))
            
-           let options = { method: 'POST',
-           
-                        headers: {
-                        // Dont need to include 'Content-Type': 'application/json', it will couse a bug !!!!
-                        Accept: 'application/json'
-                        },
-                        body: formData
-                       }
+           let options = { method: 'POST',          
+                           headers: {
+                              // Dont need to include 'Content-Type': 'application/json', it will couse a bug !!!!
+                               Accept: 'application/json'
+                               },
+                           body: formData
+                        }
            fetch(`http://localhost:4000/users/${this.props.currentUser.id}/upload_photo`, options)
            .then(response => response.json())
-           .then(response => console.log("upload", response)
+           .then(response => { this.props.submitPhoto(response)}
            )
           
        }   

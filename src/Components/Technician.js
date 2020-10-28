@@ -7,10 +7,11 @@ class Technician extends Component {
         return (
             <div>
                <p> {this.props.technician.first_name}&nbsp;
-                {this.props.technician.last_name}&nbsp;
-                {this.props.technician.city}&nbsp;
-                 {this.props.technician.company_name}&nbsp;
-                 {this.props.technician.rating}
+                   {this.props.technician.last_name}&nbsp;
+                   {this.props.technician.city}&nbsp;
+                   {this.props.technician.company_name}&nbsp;
+                   {this.props.technician.rating}
+                   {this.props.technician.picture ? <img id="phono-preview" src={this.props.technician.picture}></img> : null}
                   </p> 
 
             </div>

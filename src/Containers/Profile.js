@@ -7,7 +7,7 @@ import PhotoUploader from '../Components/PhotoUploader';
 class Profile extends Component {
     state={
         company: "",
-        clicked: false        
+        clicked: false             
     }
  
 //     componentDidMount(){ 
@@ -38,13 +38,17 @@ companySubmitHandler = event => {
     this.props.companySubmitHandler(this.state.company)
 }
 
+
+
     render() { 
-        // console.log( "Profile", this.props.currentUser)  
+         console.log( "Profile", this.props.currentUser)  
         return ( 
                        
-        <div > {this.props.currentUser? <><h1>Profile</h1> 
+        <div > {this.props.currentUser  ? <><h1>Profile</h1> 
                     <p>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</p>
                     <p>city: {this.props.currentUser.city}</p>
+                    {this.props.currentUser.picture ? <img id="phono-preview" src={this.props.currentUser.picture}></img> : null}
+
 
                     {this.props.currentUser.role==="technician" ?
                                    <>
@@ -71,11 +75,13 @@ companySubmitHandler = event => {
                    </form>
 
                    <button onClick={this.clickHandler}> Add photo</button>
-                   {this.state.clicked ? <PhotoUploader currentUser={this.props.currentUser}/> : null }                                
+                   {this.state.clicked ? <PhotoUploader currentUser={this.props.currentUser}
+                                                        submitPhoto={this.props.submitPhoto} />
+                                         : null }                                
                     </>  
             :        
-        <Redirect to="/signup" />
-        
+        <><Redirect to="/signup" />
+        {console.log("hey", localStorage.getItem("token"))}</>
         }
                
         </div> 
