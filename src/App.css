@@ -42,7 +42,7 @@
   width: 165px;
 }
 
-#phono-preview {
+#photo-preview {
   height: 50px;
   width: 50px;
 }
@@ -51,5 +51,9 @@
 input[type='file'] {
   color: transparent;
 }
+
+/* #nav-bar {
+  display: inline;
+} */
 
 

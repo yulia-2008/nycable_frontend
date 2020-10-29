@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
+import Avatar from "../Avatar.jpg";
 
 
 
@@ -47,8 +48,14 @@ companySubmitHandler = event => {
         <div > {this.props.currentUser  ? <><h1>Profile</h1> 
                     <p>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</p>
                     <p>city: {this.props.currentUser.city}</p>
-                    {this.props.currentUser.picture ? <img id="phono-preview" src={this.props.currentUser.picture}></img> : null}
+                    {this.props.currentUser.picture ? 
+                       <img id="photo-preview" src={this.props.currentUser.picture}></img> 
+                       :
+                       <img id="photo-preview" src={Avatar}></img>                    
+                     }
 
+                     <PhotoUploader currentUser={this.props.currentUser}
+                                    submitPhoto={this.props.submitPhoto} /> 
 
                     {this.props.currentUser.role==="technician" ?
                                    <>
@@ -74,14 +81,11 @@ companySubmitHandler = event => {
                 {/* <input type="reset" ></input> */}
                    </form>
 
-                   <button onClick={this.clickHandler}> Add photo</button>
-                   {this.state.clicked ? <PhotoUploader currentUser={this.props.currentUser}
-                                                        submitPhoto={this.props.submitPhoto} />
-                                         : null }                                
+                                                  
                     </>  
             :        
-        <><Redirect to="/signup" />
-        {console.log("hey", localStorage.getItem("token"))}</>
+        <Redirect to="/signup" /> // a bag here, redirecting even when sighed in but refresh the page
+       
         }
                
         </div> 
