@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   height: 40vmin;
@@ -47,13 +47,32 @@
   width: 50px;
 }
 
-/* hide the name of the file */
+#photo-profile {
+  height: 200px;
+  width: 200px;
+}
+
+/* hide the name of the selected file */
 input[type='file'] {
   color: transparent;
 }
 
-/* #nav-bar {
-  display: inline;
-} */
+ #nav-bar {
+  text-decoration: none;
+} 
+
+#flex-container {
+  display: flex;
+  padding: 40px;
+  text-align: left;
+}
+
+#app-container {
+  margin: 40px;
+}
+
+#review-container {
+  padding-top: 0px;
+}
 
 

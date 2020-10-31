@@ -6,7 +6,7 @@ class PhotoUploader extends Component {
         selectedFile: null,
     }
 
-changeHandler = event => {   
+changeHandler = event => {  
       this.setState({ 
           selectedFile: event.target.files[0]
       })
@@ -22,10 +22,9 @@ filePreview=()=>{
 photoUploader = event =>{
        event.preventDefault();
        if (this.state.selectedFile) {
-       
            let formData = new FormData()
            formData.append("photo", this.state.selectedFile) // key is "pic", value is this.state.selectedFile
-            console.log("data", formData.get("photo"))
+            // console.log("data", formData.get("photo"))
            
            let options = { method: 'POST',          
                            headers: {
@@ -36,9 +35,9 @@ photoUploader = event =>{
                         }
            fetch(`http://localhost:4000/users/${this.props.currentUser.id}/upload_photo`, options)
            .then(response => response.json())
-           .then(response => {console.log("uploadre", response); this.props.submitPhoto(response); this.setState({selectedFile: null})}
+           .then(response => {this.props.submitPhoto(response); this.setState({selectedFile: null})}
             )         
-       }   
+        }   
    }
 
     render() {
@@ -47,7 +46,7 @@ photoUploader = event =>{
             <div>            
 
                 <form onSubmit={this.photoUploader}>
-                 Add of change picture:      
+                 Add or change picture:      
                 <input id="file" type="file"  name="picture" accept="image/*" multiple= "false" placeholder="Photo" onChange={this.changeHandler}></input>
                 <br/> 
                       {this.state.selectedFile ?     

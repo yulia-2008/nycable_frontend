@@ -80,10 +80,9 @@ class TechniciansContainer extends Component {
     render() {
         //   console.log("Container", this.state.technicians)
         return (
-            <div>
-           <h2>Technician Container</h2>
-            <form onSubmit = {event => this.searchHandler(event)}>
-                Search Technician <br></br>&nbsp; 
+            <div id="app-container">
+                <h2>Technicians </h2>
+                 <form onSubmit = {event => this.searchHandler(event)}>
                 <select name="company" onChange={this.changeHandler}>
                     <option value=""> All Companies </option>
                     <option value="Optimum">Optimum</option>
@@ -92,14 +91,15 @@ class TechniciansContainer extends Component {
                     <option value="Direct TV">Direct TV</option>
                     <option value="Verizon">Verizon</option> 
                 </select> 
-                <br></br>
+                &nbsp; &nbsp;
                 <input type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
-                <br></br>
+                &nbsp; &nbsp;
                 <input type="submit" value="Search"></input>
-            </form>
-
-            {this.getTechnicians()}
+                </form>
+                <br></br>
+                 {this.getTechnicians()}
            </div>
+
         );
     }
 }

@@ -101,6 +101,8 @@ submitPhoto = photo => {
                   })
                  }
     fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
+    .then(response => response.json())
+    .then(resp =>{console.log("in upload app", resp)})
 }
 
 componentDidMount(){ 
@@ -131,11 +133,15 @@ componentDidMount(){
        <Switch>
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
                                                             loginHandler={this.loginHandler} />} />
-          <Route  path = '/profile' render = {() => <Profile  currentUser={this.state.currentUser}
-                                                              submitPhoto={this.submitPhoto}
-                                                              companySubmitHandler={this.companySubmitHandler} />} />
-          <Route  path = '/' render = {() => <div><TechniciansContainer currentUser={this.state.currentUser} /> 
-                                                  <CompaniesContainer/></div>
+          <Route  path = '/profile' render = {() => this.state.currentUser ? 
+                                                      <Profile  currentUser={this.state.currentUser}
+                                                                submitPhoto={this.submitPhoto}
+                                                                companySubmitHandler={this.companySubmitHandler} />
+                                                      : null} />
+          <Route  path = '/' render = {() => <div id="flex-container"> 
+                                                    <CompaniesContainer/>
+                                                    <TechniciansContainer currentUser={this.state.currentUser} /> 
+                                              </div>
                                                            } /> 
        </Switch>      
     </div>

@@ -8,22 +8,20 @@ class NavBar extends Component {
     render() {
         return (            
             <span>     
-                <NavLink id="nav-bar" to='/' > App  </NavLink> &nbsp;
-
-
-                {this.props.currentUser? <p onClick={this.props.logoutHandler}>Logout</p> :
-                    <NavLink id="nav-bar" to='/signup'> Signup/Login </NavLink> 
-                 }
-
+                <NavLink id="nav-bar" to='/' > App  </NavLink> &nbsp;  &nbsp;
+                
+                {this.props.currentUser? <span onClick={this.props.logoutHandler}>Logout</span> :
+                    <NavLink id="nav-bar" to='/signup'> Signup/Login </NavLink>  
+                 }&nbsp;  &nbsp;
 
                 <NavLink id="nav-bar" to='/profile' > 
                   {this.props.currentUser? 
-                     <p>Profile ({this.props.currentUser.first_name})</p>
+                     <span>Profile ({this.props.currentUser.first_name})</span>
                      :
-                     <p>Profile("You're not logged in")</p>
+                     null
                   }
                 </NavLink>                  
-            </span> 
+             </span> 
         );
     }
 }
