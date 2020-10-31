@@ -5,7 +5,7 @@ import Avatar from "../Avatar.jpg";
 
 
 
-class Profile extends Component {
+class CurrentUserProfile extends Component {
     state={
         company: "",
         clicked: false             
@@ -92,4 +92,4 @@ companySubmitHandler = event => {
     }
 }
 
-export default Profile;
+export default CurrentUserProfile;

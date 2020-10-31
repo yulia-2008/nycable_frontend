@@ -2,21 +2,26 @@ import React from 'react';
 import './App.css';
 import TechniciansContainer from './Containers/TechniciansContainer';
 import CompaniesContainer from './Containers/CompaniesContainer';
-import Profile from "./Containers/Profile";
+import CurrentUserProfile from "./Containers/CurrentUserProfile";
 import NavBar from './Components/NavBar';
+import Profile from './Components/Profile';
 import Signup from './Components/Signup';
 import { Route, Switch, withRouter} from 'react-router-dom';
 
 class App extends React.Component {
 
   state={
-    currentUser: null
+    currentUser: null,
+    technician: null
   }
   // componentDidMount(){
   // fetch(`https://www.cabletv.com/ny/brooklyn?zip=11223#internet`)
   // // .then(response => response.json())
   // .then(response => console.log(response))
   // }
+clickHandler = technicianObj =>{
+  this.setState({technician: technicianObj})
+}
   
 companySubmitHandler = company=>{
   let options = { method: 'PATCH',
@@ -134,15 +139,26 @@ componentDidMount(){
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
                                                             loginHandler={this.loginHandler} />} />
           <Route  path = '/profile' render = {() => this.state.currentUser ? 
-                                                      <Profile  currentUser={this.state.currentUser}
+                                                      <CurrentUserProfile  currentUser={this.state.currentUser}
                                                                 submitPhoto={this.submitPhoto}
                                                                 companySubmitHandler={this.companySubmitHandler} />
-                                                      : null} />
+                                                      : null 
+                                                      } />
+
+          <Route  path = '/technician/:id' render = {() => this.state.technician? 
+                                                              <Profile technician={this.state.technician}/>
+                                                              : null
+                                                             } />
+
           <Route  path = '/' render = {() => <div id="flex-container"> 
                                                     <CompaniesContainer/>
-                                                    <TechniciansContainer currentUser={this.state.currentUser} /> 
+                                                    <TechniciansContainer currentUser={this.state.currentUser} 
+                                                                          clickHandler={this.clickHandler}
+                                                    /> 
                                               </div>
                                                            } /> 
+          
+
        </Switch>      
     </div>
   );

@@ -22,7 +22,7 @@ class TechniciansContainer extends Component {
     }
 
     getTechnicians = () => {    
-        return this.state.filtered.map(tech => < Technician key={tech.id} technician={tech}/>)
+        return this.state.filtered.map(tech => < Technician id={tech.id} technician={tech} clickHandler={this.props.clickHandler}/>)
     }
         
     
@@ -78,7 +78,7 @@ class TechniciansContainer extends Component {
 } 
 
     render() {
-        //   console.log("Container", this.state.technicians)
+        //    console.log("Container")
         return (
             <div id="app-container">
                 <h2>Technicians </h2>
