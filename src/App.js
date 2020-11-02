@@ -89,25 +89,25 @@ logoutHandler=()=>{
   })
 }
 
-submitPhoto = photo => {
+submitPhoto = user => {
   // optimistic rendering new user picture
-   let picture = {picture: photo.image_url}
-   let updatedCurrentUser=Object.assign(this.state.currentUser, picture)
+   let photo = {photo: user.photo}
+   let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
    this.setState({currentUser: updatedCurrentUser})
   
-  // posting to db
-   let options = { method: 'PATCH',
-                   headers: {
-                   'Content-Type': 'application/json',
-                   Accept: 'application/json'
-                   },
-                  body: JSON.stringify({
-                          picture: photo.image_url
-                  })
-                 }
-    fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
-    .then(response => response.json())
-    .then(resp =>{console.log("in upload app", resp)})
+  //posting to db
+  //  let options = { method: 'PATCH',
+  //                  headers: {
+  //                  'Content-Type': 'application/json',
+  //                  Accept: 'application/json'
+  //                  },
+  //                 body: JSON.stringify({
+  //                         photo: user.photo
+  //                 })
+  //                }
+  //   fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
+  //   .then(response => response.json())
+  //   .then(resp =>{console.log("in upload app", resp)})
 }
 
 componentDidMount(){ 
