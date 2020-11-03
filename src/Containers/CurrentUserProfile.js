@@ -3,7 +3,7 @@ import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
-
+import ReviewContainer from "./ReviewContainer";
 
 
 class CurrentUserProfile extends Component {
@@ -12,21 +12,13 @@ class CurrentUserProfile extends Component {
         clicked: false             
     }
  
-//     componentDidMount(){ 
-//         const token = localStorage.getItem("token")
-//          fetch(`http://localhost:4000/api/v1/helpers/${this.props.currentUser.user.id}`, {
-//              method: "GET",
-//              headers: {
-//                 'Content-Type': 'application/json',
-//                  Accept: 'application/json',
-//                  Authorization: `Bearer ${token}`
-                                         
-//                  }
-//          })
-//         .then(response => response.json())
-//         .then(resp =>this.setState({helpedPosts: resp}))
-//          console.log("profile did mount")
-// }
+
+// submitPhoto = user => {
+//         // optimistic rendering new user picture
+//          let photo = {photo: user.photo}
+//          let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
+//          this.setState({currentUser: updatedCurrentUser})
+//       }
 
 changeHandler = event => {this.setState({ [event.target.name]: event.target.value})
 }
@@ -43,7 +35,7 @@ companySubmitHandler = event => {
 
 
     render() { 
-         console.log( "Profile", this.props.currentUser)  
+        //  console.log( "Profile", this.props.currentUser)  
         return (                     
             <div id="flex-container"> 
               <div>
@@ -59,8 +51,6 @@ companySubmitHandler = event => {
                                 submitPhoto={this.props.submitPhoto} />
                 <p>City: {this.props.currentUser.city}</p>
                    
-
-                 
 
                 {this.props.currentUser.role==="technician" ?
                     <>
@@ -85,11 +75,8 @@ companySubmitHandler = event => {
                       <input type="submit" value="Submit"></input> &nbsp;
                      {/* <input type="reset" ></input> */}
                    </form>              
-        </div> 
-
-        <div id="review-container">  
-        <h3>Reviews</h3>
-        </div>
+          </div>  
+            <ReviewContainer user={this.props.currentUser}/>
         </div>
         );
     }

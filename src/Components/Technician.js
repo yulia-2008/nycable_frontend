@@ -8,16 +8,16 @@ import { NavLink } from 'react-router-dom';
 class Technician extends Component {
 
 
-findImageName =()=>{
+// findImageName =()=>{
    
- let url = this.props.technician.picture.split("/")
- let fileName = url.slice(-1)
- let fileNameString = fileName[0]
+//  let url = this.props.technician.picture.split("/")
+//  let fileName = url.slice(-1)
+//  let fileNameString = fileName[0]
 
- return fileNameString
-}
+//  return fileNameString
+// }
     render() {
-          console.log("technician", this.props.technician.photo)
+        //   console.log("technician", this.props.technician.photo)
         return (
             <div>
                   

@@ -56,7 +56,6 @@ photoUploader = event =>{
                      : null} 
 
                 </form>
-              <br/>
             </div>
         );
     }

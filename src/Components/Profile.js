@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
+import ReviewContainer from "../Containers/ReviewContainer";
 
 
 class Profile extends Component {
 
-    // submitPhoto = user => {
-    //     // optimistic rendering new user picture
-    //      let photo = {photo: user.photo}
-    //      let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
-    //      this.setState({currentUser: updatedCurrentUser})
-    //   }
+    
     render() { 
         // console.log(this.props.technician)
         return (
-            <div>
+          <div id="flex-container">
+              <div>
                 {this.props.technician.photo ? 
 
 <Image cloudName="dytr9lvlc" publicId={this.props.technician.photo} width="300" height= "300" crop="pad"   radius="20" />
@@ -29,6 +26,9 @@ class Profile extends Component {
 
                   <p>Works for: {this.props.technician.company_name}</p>
             </div>
+            <ReviewContainer user={this.props.technician}
+                             submitReview={this.props.submitReview} />
+        </div>
         );
     }
 }

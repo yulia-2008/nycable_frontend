@@ -87,11 +87,12 @@ logoutHandler=()=>{
   localStorage.removeItem("token")
   this.setState({currentUser: null
   })
+  this.props.history.push('/signup')  //redirecting to sign up 
 }
 
 submitPhoto = user => {
   // optimistic rendering new user picture
-   let photo = {photo: user.photo}
+   let photo = {photo: user.user.photo}
    let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
    this.setState({currentUser: updatedCurrentUser})
   
@@ -121,7 +122,7 @@ componentDidMount(){
             .then(resp => this.setState({currentUser: resp.user})
             )
    } 
-  // if need to redirect to login page :
+  // if needed to redirect to login page :
   //  else {
   //    this.props.history.push('/signup')
   //  }  
@@ -145,10 +146,16 @@ componentDidMount(){
                                                       : null 
                                                       } />
 
-          <Route  path = '/technician/:id' render = {() => this.state.technician? 
-                                                              <Profile technician={this.state.technician}/>
-                                                              : null
-                                                             } />
+          <Route  path = '/technician/:id' render = {() => 
+              this.state.technician? 
+                this.state.currentUser.id === this.state.technician.id?
+                    <CurrentUserProfile currentUser={this.state.currentUser}
+                                        submitPhoto={this.submitPhoto}
+                                        companySubmitHandler={this.companySubmitHandler} />
+                    :
+                    <Profile technician={this.state.technician}/>
+                : null
+          } />
 
           <Route  path = '/' render = {() => <div id="flex-container"> 
                                                     <CompaniesContainer/>
