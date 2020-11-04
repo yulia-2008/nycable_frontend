@@ -11,7 +11,9 @@ class Profile extends Component {
         // console.log(this.props.technician)
         return (
           <div id="flex-container">
-              <div>
+              <div id="user-card">
+              <h1>{this.props.technician.first_name} {this.props.technician.last_name}</h1>
+                   
                 {this.props.technician.photo ? 
 
 <Image cloudName="dytr9lvlc" publicId={this.props.technician.photo} width="300" height= "300" crop="pad"   radius="20" />
@@ -20,7 +22,7 @@ class Profile extends Component {
                     <img id="photo-profile" src={Avatar}></img>                    
                 }
                 <br></br>
-                  {this.props.technician.first_name} {this.props.technician.last_name}
+                 
 
                   <p>Rating: {this.props.technician.rating}</p>
 

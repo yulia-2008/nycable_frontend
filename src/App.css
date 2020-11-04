@@ -89,9 +89,18 @@ input[type='file'] {
   padding-top: 0px;
 }
 
+#user-card {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
 textarea {
   border: 2px solid black;
   border-radius: 5px;
+}
+
+#form{
+  width: 100%;
 }
 
 

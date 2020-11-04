@@ -38,7 +38,7 @@ companySubmitHandler = event => {
         //  console.log( "Profile", this.props.currentUser)  
         return (                     
             <div id="flex-container"> 
-              <div>
+              <div id="user-card">
                 <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
                 {this.props.currentUser.photo ? 
 
