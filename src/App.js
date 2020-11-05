@@ -130,7 +130,7 @@ componentDidMount(){
 
 }
   render(){
-      // console.log("app", this.props)
+      console.log("app", this.state.technician)
     return ( 
     <div className="App">
 
@@ -138,34 +138,35 @@ componentDidMount(){
 
        <Switch>
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
-                                                            loginHandler={this.loginHandler} />} />
-          <Route  path = '/profile' render = {() => this.state.currentUser ? 
-                                                      <CurrentUserProfile  currentUser={this.state.currentUser}
-                                                                submitPhoto={this.submitPhoto}
-                                                                companySubmitHandler={this.companySubmitHandler} />
-                                                      : null 
-                                                      } />
+                                                            loginHandler={this.loginHandler} />
+          } />
+          <Route  path = '/profile' render = {() => 
+               this.state.currentUser ? 
+                  <CurrentUserProfile  currentUser={this.state.currentUser}
+                                       submitPhoto={this.submitPhoto}
+                                       companySubmitHandler={this.companySubmitHandler} />
+                 : null 
+          } />
 
           <Route  path = '/technician/:id' render = {() => 
-              this.state.technician? 
+              this.state.currentUser ?             
                 this.state.currentUser.id === this.state.technician.id?
                     <CurrentUserProfile currentUser={this.state.currentUser}
                                         submitPhoto={this.submitPhoto}
                                         companySubmitHandler={this.companySubmitHandler} />
                     :
-                    <Profile technician={this.state.technician}/>
-                : null
+                    <Profile technician={this.state.technician}
+                             currentUser={this.state.currentUser}/>
+                : <Profile technician={this.state.technician}/>
           } />
 
-          <Route  path = '/' render = {() => <div id="flex-container"> 
-                                                    <CompaniesContainer/>
-                                                    <TechniciansContainer currentUser={this.state.currentUser} 
-                                                                          clickHandler={this.clickHandler}
-                                                    /> 
-                                              </div>
-                                                           } /> 
-          
-
+          <Route  path = '/' render = {() => 
+                <div id="flex-container"> 
+                    <CompaniesContainer/>
+                    <TechniciansContainer currentUser={this.state.currentUser} 
+                                          clickHandler={this.clickHandler} /> 
+                </div>
+           } /> 
        </Switch>      
     </div>
   );

@@ -10,47 +10,18 @@ class TechniciansContainer extends Component {
         city: "" , 
         company: ""
     }
-    componentDidMount(){this.fetchTechnicians()       
-    }
-
-    fetchTechnicians = () =>{
+    componentDidMount(){      
         fetch(`http://localhost:4000/technicians`)
         .then(response => response.json())
         .then(response => this.setState({technicians: response, filtered: response
                           })
         )
-    }
-
+    }   
+      
     getTechnicians = () => {    
         return this.state.filtered.map(tech => < Technician id={tech.id} technician={tech} clickHandler={this.props.clickHandler}/>)
     }
         
-    
-
-    // submitTechnicianHandler = (event, technician) => {event.preventDefault()
-    //     let options = { method: 'POST',
-    //                 headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Accept: 'application/json',
-    //                 // Authorization: `Bearer ${token}`
-    //                 },
-    //                 body: JSON.stringify({
-    //                        technician: {first_name: technician.firstName,                               
-    //                              last_name: technician.lastName,
-    //                              rating: 0,   
-    //                              company_name: technician.company,                                                            
-    //                              city: technician.city
-    //                       }
-    //                 })
-    //                }
-    //     fetch('http://localhost:3001/technicians', options)
-    //     .then(response => response.json())
-    //     .then(response => this.setState({technicians: [...this.state.technicians, response]
-    //                       })
-    //     )
-    //     event.target.reset()       
-    // }
-
     changeHandler = event => {this.setState({[event.target.name]: event.target.value})
     }
 
@@ -78,7 +49,7 @@ class TechniciansContainer extends Component {
 } 
 
     render() {
-        //    console.log("Container")
+          console.log("Container technicians", this.state.technicians)
         return (
             <div id="app-container">
                 <h2>Technicians </h2>

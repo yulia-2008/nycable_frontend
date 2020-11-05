@@ -4,7 +4,9 @@ class Review extends Component {
     render() {
         return (
             <div>
-                {this.props.review.text} <br></br>
+               <h5> {this.props.review.user.first_name} &nbsp;  {this.props.review.user.last_name} : &nbsp; 
+                  <span> {this.props.review.text}</span>
+               </h5>
             </div>
         );
     }

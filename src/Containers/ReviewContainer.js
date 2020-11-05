@@ -30,14 +30,15 @@ class ReviewContainer extends Component {
                         },
                          body: JSON.stringify({
                            review: { text: this.state.review,
-                                    object_id: this.props.user.id,
-                                    object_type: "User",
+                                     object_id: this.props.user.id,
+                                     object_type: "User",
+                                     user_id: this.props.currentUser.id
                                    }
                          })
                        }
         fetch('http://localhost:4000/reviews', options)
         .then(response => response.json())
-        .then(response => { this.setState({
+        .then(response => {console.log("resp", response); this.setState({
                                 clicked: !this.state.clicked, 
                                 reviews: [...this.state.reviews, response]
                             })
@@ -62,19 +63,29 @@ class ReviewContainer extends Component {
     }
         
 
-    render() {console.log("rev", this.state.reviews)
+    render() {
+        // console.log("rev", this.state.reviews)
         return (
             <div id="review-container">
-                {this.state.clicked?
-                    <>
-                    <textarea type="text"  name="review" rows="4"
-                              placeholder = "Enter your text"
-                              onChange={this.changeHandler}>                           
-                    </textarea>
-                    <button onClick={this.submitHandler}>Submit</button> 
-                    </>
-                    :
-                    <button onClick={this.clickHandler}>Leave a review</button> 
+                {this.props.currentUser ? 
+                   this.state.clicked ?
+                       <>
+                       <textarea type="text"  name="review" rows="4"
+                                 placeholder = "Enter your text"
+                                 onChange={this.changeHandler}>                           
+                       </textarea>
+                       <button onClick={this.submitHandler}>Submit</button> 
+                       </>
+                       :
+                       <button onClick={this.clickHandler}>Leave a review</button> 
+                   : 
+                   <>
+                       <textarea type="text"  rows="4"
+                                 placeholder = "Login to leave a review"
+                                 value = "Login to leave a review">                           
+                       </textarea>
+                       <button>Submit</button> 
+                       </>   
                 }
                       {this.renderReviews()}  
             </div>

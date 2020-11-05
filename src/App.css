@@ -81,6 +81,11 @@ input[type='file'] {
   text-align: left;
 }
 
+#rating-flex {
+  display: flex;
+  text-align: left;
+}
+
 #app-container {
   margin: 40px;
 }
@@ -99,8 +104,12 @@ textarea {
   border-radius: 5px;
 }
 
-#form{
+/* #form{
   width: 100%;
-}
+} */
 
+.star {
+  width: 30px;
+  height: 30px;
+}
 
