@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
 import { NavLink } from 'react-router-dom';
-import Star1 from "../Star1.jpg"
-import Star2 from "../Star2.jpg"
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+import Icon from '@material-ui/core/Icon';
 
 
 
@@ -20,23 +20,7 @@ class Technician extends Component {
 
 
 starRating = () => { 
-    
-
-      // find a sum of all rating stars
-    let sum = 0      
-    for (let i = 0; i < this.props.technician.ratings.length; i++) {
-    sum += this.props.technician.ratings[i].num
-    }
-    
-      // find average and return appropriate amount of yellow and white star-icons
-    let average = (sum / this.props.technician.ratings.length).toFixed()   
-    //let whiteStarsAmount = 5-average
-    // let count=0; while(count < average) {}
-     //for (let i=0; i < average; i++) {this.setState({i: Star2})}
-    //   function whiteStars(){
-    //      for (let i=0; i < whiteStarsAmount; i++) {
-    //         return  <img id="star" src={Star1} />
-    //      }  
+   
        }  
 
 
@@ -68,12 +52,9 @@ starRating = () => {
                    {this.props.technician.company_name}&nbsp;
 
 
-                 <p> <img className="star" src={Star1}></img>
-                 <img className="star" src={Star1}></img>
-                 <img className="star" src={Star1}></img>
-                 <img className="star" src={Star1}></img>
-                 <img className="star" src={Star1}></img>
+                 <p> Space for rating
                  </p>
+                 <Icon>star</Icon>
                    
                   </p> 
 

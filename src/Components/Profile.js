@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
 import ReviewContainer from "../Containers/ReviewContainer";
-import Star1 from "../Star1.jpg"
-import Star2 from "../Star2.jpg"
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 
 
 class Profile extends Component {
@@ -15,21 +14,7 @@ class Profile extends Component {
 //     )
 // }
 clickHandler = event => {
-  if (event.target.matches("#1")){
-
-   }
-   if (event.target.matches("#2")){
-
-  } 
-  if (event.target.matches("#3")){
-
-  }
-  if (event.target.matches("#4")){
-
-  }
-  if (event.target.matches("#5")){
-
-  }
+  
 }
 
     
@@ -56,11 +41,7 @@ clickHandler = event => {
                   <p>Works for: {this.props.technician.company_name}</p>
                   <p id="rating-flex"><div>Rating</div>&nbsp; &nbsp; 
                     <div>
-                    <img className="star" id="1" src={Star1} onClick = {this.clickHandler}></img>
-                    <img className="star" id="2" src={Star1} onClick = {this.clickHandler}></img>
-                    <img className="star" id="3" src={Star1} onClick = {this.clickHandler}></img>
-                    <img className="star" id="4" src={Star1} onClick = {this.clickHandler}></img>
-                    <img className="star" id="5" src={Star1} onClick = {this.clickHandler}></img>
+                    space for rating
                     </div>
                   </p>
             </div>

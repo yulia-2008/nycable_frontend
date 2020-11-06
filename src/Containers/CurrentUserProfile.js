@@ -4,6 +4,7 @@ import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
 import ReviewContainer from "./ReviewContainer";
+import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 
 
 class CurrentUserProfile extends Component {
@@ -57,7 +58,7 @@ companySubmitHandler = event => {
 
                 {this.props.currentUser.role==="technician" ?
                     <>
-                        <p>Rating: {this.props.currentUser.rating}</p>
+                        <p>Rating:</p>
                         <p>Company you work for: {this.props.currentUser.company_name}</p>
                     </>
                     :
