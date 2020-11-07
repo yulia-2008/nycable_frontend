@@ -80,7 +80,7 @@ companySubmitHandler = event => {
                      {/* <input type="reset" ></input> */}
                    </form>              
           </div>  
-            <ReviewContainer user={this.props.currentUser}/>
+            <ReviewContainer currentUser={this.props.currentUser}/>
         </div>
         );
     }

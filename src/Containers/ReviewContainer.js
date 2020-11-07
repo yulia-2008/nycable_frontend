@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Review from "../Components/Review";
+import Rating from 'material-ui-rating'
 
 class ReviewContainer extends Component {
     state = {
         reviews: [],
         review: null,
-        clicked: false
+        clicked: false, 
+        ratingValue: 0
     }
 
     // getReviews = () => {  
@@ -48,8 +50,10 @@ class ReviewContainer extends Component {
      }
 
 
-    componentDidMount(){         
-            fetch(`http://localhost:4000/technicians/${this.props.user.id}/reviews`)
+    componentDidMount(){ 
+        let id;
+        this.props.user?   id = this.props.user.id :  id=this.props.currentUser.id    
+            fetch(`http://localhost:4000/technicians/${id}/reviews`)
             .then(response => response.json())
             .then(response => this.setState({reviews: response
                           })
@@ -61,33 +65,63 @@ class ReviewContainer extends Component {
         {return this.state.reviews.map(rev => <Review  review={rev} />)}
 
     }
-        
+    
+    ratingChangeHandler = val => {
+        this.setState({ratingValue: val})
+    }
+
+    submitRating = () => {
+        this.props.submitRating(this.state.ratingValue)
+    }
+
 
     render() {
-        // console.log("rev", this.state.reviews)
+        //  console.log("rev- current user id",this.props.currentUser.id )
+        
         return (
             <div id="review-container">
-                {this.props.currentUser ? 
-                   this.state.clicked ?
-                       <>
-                       <textarea type="text"  name="review" rows="4"
-                                 placeholder = "Enter your text"
-                                 onChange={this.changeHandler}>                           
-                       </textarea>
-                       <button onClick={this.submitHandler}>Submit</button> 
-                       </>
-                       :
-                       <button onClick={this.clickHandler}>Leave a review</button> 
-                   : 
-                   <>
-                       <textarea type="text"  rows="4"
-                                 placeholder = "Login to leave a review"
-                                 value = "Login to leave a review">                           
-                       </textarea>
-                       <button>Submit</button> 
-                       </>   
+                {this.props.currentUser?  
+                    this.props.user?  // current user is not on his profile page 
+                        <>
+                        <p id="no-margin">Rate:</p>
+                        <div id="rating-flex">                           
+                            <Rating value={this.state.ratingValue}  
+                                precision={0.5}  size="large"
+                                onChange = { (value) => this.ratingChangeHandler(value)}/> 
+                            <button id="small-button" onClick={this.submitRating}>Submit</button>
+                        </div> 
+                        <br/> 
+                        <button onClick={this.clickHandler}>Leave a review</button>  <br></br>                                                                                  
+                            {this.state.clicked ?
+                                <>
+                                <textarea type="text"  name="review" rows="4"
+                                          placeholder = "Enter your text"
+                                          onChange={this.changeHandler}>                           
+                                </textarea>
+                                <button onClick={this.submitHandler}>Submit</button> 
+                                </>
+                                :
+                                null
+                            }
+                        </>
+                    :null  //current user is on his profile page                                                     
+                :          // you are not logged in
+                    <>
+                    <button onClick={this.clickHandler}>Leave a review</button><br></br>
+                        {this.state.clicked ?
+                                <>
+                                <textarea type="text"  rows="4"
+                                          placeholder = "Login to leave a review"
+                                          value = "Login to leave a review">                           
+                                </textarea>
+                                <button>Submit</button> 
+                                 </> 
+                                 :
+                                 null
+                        }                             
+                        </>
                 }
-                      {this.renderReviews()}  
+                {this.renderReviews()}  
             </div>
         );
     }

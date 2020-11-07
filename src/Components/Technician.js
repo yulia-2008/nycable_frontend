@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
 import { NavLink } from 'react-router-dom';
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
-import Icon from '@material-ui/core/Icon';
+// import Icon from '@material-ui/core/Icon';
+import Button from '@material-ui/core/Button';
+import Rating from 'material-ui-rating'
 
 
 
@@ -19,13 +20,8 @@ class Technician extends Component {
 // }
 
 
-starRating = () => { 
-   
-       }  
-
-
     render() {
-        //   console.log("technician", )
+           console.log("technician", this.props)
         return (
             <div>
 
@@ -43,9 +39,10 @@ starRating = () => {
                        <img id="photo-preview" src={Avatar}></img> 
                     } &nbsp;
                     </span>
-                   <NavLink to={`/technician/${this.props.id}`}> 
-                   <span onClick={()=>this.props.clickHandler(this.props.technician)}>{this.props.technician.first_name}&nbsp;
-                   {this.props.technician.last_name}
+                   <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
+                      '/profile' :`/technician/${this.props.id}` }> 
+                   <span onClick={()=>this.props.clickHandler(this.props.technician)}>
+                       {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
                    </span> 
                    </NavLink>&nbsp; &nbsp;
                    {this.props.technician.city}&nbsp;
@@ -54,7 +51,9 @@ starRating = () => {
 
                  <p> Space for rating
                  </p>
-                 <Icon>star</Icon>
+                 {/* <Icon color="secondary">star</Icon>  */}
+                 <Rating name="half-rating" value={3} readOnly="true" precision={0.5}  size="large"/>   
+                 {/* <Button variant="contained">Hey</Button> */}
                    
                   </p> 
 

@@ -19,7 +19,9 @@ class TechniciansContainer extends Component {
     }   
       
     getTechnicians = () => {    
-        return this.state.filtered.map(tech => < Technician id={tech.id} technician={tech} clickHandler={this.props.clickHandler}/>)
+        return this.state.filtered.map(tech => < Technician id={tech.id} technician={tech}
+                                                            currentUser={this.props.currentUser} 
+                                                            clickHandler={this.props.clickHandler}/>)
     }
         
     changeHandler = event => {this.setState({[event.target.name]: event.target.value})

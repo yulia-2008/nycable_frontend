@@ -20,6 +20,8 @@ class App extends React.Component {
   // .then(response => console.log(response))
   // }
 clickHandler = technicianObj =>{
+  localStorage.setItem("technician", JSON.stringify(technicianObj)) 
+ 
   this.setState({technician: technicianObj})
 }
   
@@ -61,7 +63,7 @@ signUpHandler = userObj => {
  
 }
 
-loginHandler = userInfo =>{console.log("login", this.props )
+loginHandler = userInfo =>{
     let options = { 
     method: 'POST',
     headers: {
@@ -130,7 +132,7 @@ componentDidMount(){
 
 }
   render(){
-      console.log("app", this.state.technician)
+       console.log("app", this.state.technician)
     return ( 
     <div className="App">
 
@@ -149,15 +151,15 @@ componentDidMount(){
           } />
 
           <Route  path = '/technician/:id' render = {() => 
-              this.state.currentUser ?             
-                this.state.currentUser.id === this.state.technician.id?
+              this.state.currentUser  &&  this.state.currentUser.id === this.state.technician.id ?             
+               
                     <CurrentUserProfile currentUser={this.state.currentUser}
                                         submitPhoto={this.submitPhoto}
                                         companySubmitHandler={this.companySubmitHandler} />
                     :
                     <Profile technician={this.state.technician}
                              currentUser={this.state.currentUser}/>
-                : <Profile technician={this.state.technician}/>
+                
           } />
 
           <Route  path = '/' render = {() => 

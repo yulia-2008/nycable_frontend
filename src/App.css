@@ -112,4 +112,20 @@ textarea {
   width: 30px;
   height: 30px;
 }
+#rating-flex{
+  display: flex;
+}
+
+#small-button{
+  font-size: small;
+  margin: 10px;
+}
+
+#no-margin{
+  margin: 0;
+}
+
+#small-margin-top{
+  margin-top: 5px;
+}
 
