@@ -12,7 +12,7 @@ class App extends React.Component {
 
   state={
     currentUser: null,
-    technician: null
+    technician: null  
   }
   // componentDidMount(){
   // fetch(`https://www.cabletv.com/ny/brooklyn?zip=11223#internet`)
@@ -112,6 +112,29 @@ submitPhoto = user => {
   //   .then(response => response.json())
   //   .then(resp =>{console.log("in upload app", resp)})
 }
+// submitRating = (ratingNumber, technician) => {
+//   let options = { method: 'POST',
+//                         headers: {
+//                         'Content-Type': 'application/json',
+//                          Accept: 'application/json'
+//                         },
+//                          body: JSON.stringify({
+//                            rating: { user_id: this.state.currentUser.id,
+//                                      num: ratingNumber,
+//                                      subject_id: technician.id,
+//                                      subject_type: "User",                                    
+//                                    }
+//                          })
+//                        }
+//         fetch('http://localhost:4000/ratings', options)
+//         .then(response => response.json())
+//         .then(response => {console.log("rating resp", response)}) 
+//         // let ratings = [...this.state.technician.ratings, response]
+// console.log("s", this.state.technician)
+//         // let newTechnicianObj = Object.assign(this.state.techician, ratings)
+//         // this.setState({technician: newTechnicianObj}) })
+// }
+
 
 componentDidMount(){ 
   const token = localStorage.getItem("token")  
@@ -158,7 +181,8 @@ componentDidMount(){
                                         companySubmitHandler={this.companySubmitHandler} />
                     :
                     <Profile technician={this.state.technician}
-                             currentUser={this.state.currentUser}/>
+                             currentUser={this.state.currentUser}
+                             />
                 
           } />
 

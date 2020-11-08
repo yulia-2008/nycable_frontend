@@ -40,18 +40,16 @@ class Technician extends Component {
                     } &nbsp;
                     </span>
                    <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
-                      '/profile' :`/technician/${this.props.id}` }> 
+                      '/profile' :
+                      `/technician/${this.props.id}` }> 
                    <span onClick={()=>this.props.clickHandler(this.props.technician)}>
                        {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
                    </span> 
                    </NavLink>&nbsp; &nbsp;
                    {this.props.technician.city}&nbsp;
                    {this.props.technician.company_name}&nbsp;
+                   {/* <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>&nbsp;  */}
 
-
-                 <p> Space for rating
-                 </p>
-                 {/* <Icon color="secondary">star</Icon>  */}
                  <Rating name="half-rating" value={3} readOnly="true" precision={0.5}  size="large"/>   
                  {/* <Button variant="contained">Hey</Button> */}
                    

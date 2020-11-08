@@ -6,6 +6,9 @@ import Rating from 'material-ui-rating'
 
 
 class Profile extends Component {
+ state={
+   averageRating: this.averageRating
+ } 
 
 //   componentDidMount(){      
 //     fetch(`http://localhost:4000/technicians/${this.props.technician.id}/ratings`)
@@ -13,9 +16,6 @@ class Profile extends Component {
 //     .then(response =>  this.setState({ratings: response}, this.findAveregeRating())
 //     )
 // }
-clickHandler = event => {
-  
-}
 
 submitRating = ratingNumber => {
   let options = { method: 'POST',
@@ -33,20 +33,31 @@ submitRating = ratingNumber => {
                        }
         fetch('http://localhost:4000/ratings', options)
         .then(response => response.json())
-        .then(response => console.log("rating resp", response))
-}
+        .then(response => {console.log("rating resp", response); 
+        
+        let ratingsQuantity = this.props.technician.ratings.length +1;
+        let sum = response.num;
+        console.log(this.props.technician.ratings) 
+        for ( let i = 0; i < ratingsQuantity; i++)
+            {sum += this.props.technician.ratings[i].num }
+        let average =  sum / ratingsQuantity 
+        console.log(average)  
+      //  this.setState({averageRating: average}) 
+    })
+ }
 
-averageRating = () => {
+averageRating = () =>{
  let ratingsQuantity = this.props.technician.ratings.length;
  let sum = 0;
  for ( let i = 0; i < ratingsQuantity; i++)
      { sum += this.props.technician.ratings[i].num }
- return sum / ratingsQuantity
-}
+ let average =  sum / ratingsQuantity   
+     return average
+ }
 
     
     render() { 
-         console.log("profile now", this.averageRating())
+        //  console.log("profile now", this.averageRating())
         return (
           <div id="flex-container">
               <div id="user-card">
@@ -59,7 +70,6 @@ averageRating = () => {
                      publicId={this.props.technician.photo} 
                      width="300" height= "300" 
                      crop="pad"   radius="20" />
-                      // <img id="photo-profile" src={this.props.technician.picture}></img> 
                     :
                     <img id="photo-profile" src={Avatar}></img>                    
                 }
@@ -67,8 +77,8 @@ averageRating = () => {
 
                   <p>Works for: {this.props.technician.company_name}</p>
                   <div id="rating-flex">
-                      <p id="small-margin-top">Rating</p>&nbsp; 
-                      <Rating name="half-rating" readOnly="true" value={this.averageRating()}  precision={0.5}  size="small"/>   
+                      {/* <p id="rating-centered">Rating {this.state.averageRating.toFixed(1)}</p>&nbsp; 
+                      <Rating name="half-rating" readOnly="true" value={this.state.averageRating}  precision={0.5}  size="small"/>    */}
                   </div>
             </div>
             {this.props.currentUser ?

@@ -71,7 +71,7 @@ class ReviewContainer extends Component {
     }
 
     submitRating = () => {
-        this.props.submitRating(this.state.ratingValue)
+        this.props.submitRating(this.state.ratingValue, this.props.user)
     }
 
 
