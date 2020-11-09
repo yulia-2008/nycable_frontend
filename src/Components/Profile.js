@@ -33,18 +33,23 @@ submitRating = ratingNumber => {
                        }
         fetch('http://localhost:4000/ratings', options)
         .then(response => response.json())
-        .then(response => {console.log("rating resp", response); 
-        
-        let ratingsQuantity = this.props.technician.ratings.length +1;
-        let sum = response.num;
-        console.log(this.props.technician.ratings) 
-        for ( let i = 0; i < ratingsQuantity; i++)
-            {sum += this.props.technician.ratings[i].num }
-        let average =  sum / ratingsQuantity 
-        console.log(average)  
-      //  this.setState({averageRating: average}) 
-    })
- }
+        .then(response => {this.increaseRating(response)
+        })
+}
+                     
+  increaseRating = (argument) => {
+    console.log("length",this.props.technician.ratings.length)
+        let ratingsQuantity = this.props.technician.ratings.length;
+        let sum = argument.num;
+               
+        for( let i = 0; i < ratingsQuantity; i++)
+            { sum += this.props.technician.ratings[i].num } 
+
+        let average =  sum / (ratingsQuantity+1) 
+        // this.setState({averageRating: average})
+
+  }      
+
 
 averageRating = () =>{
  let ratingsQuantity = this.props.technician.ratings.length;
@@ -57,7 +62,7 @@ averageRating = () =>{
 
     
     render() { 
-        //  console.log("profile now", this.averageRating())
+          console.log("profile now", this.props.technician.ratings)
         return (
           <div id="flex-container">
               <div id="user-card">
