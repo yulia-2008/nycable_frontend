@@ -7,7 +7,7 @@ import Rating from 'material-ui-rating'
 
 class Profile extends Component {
  state={
-   averageRating: this.averageRating
+   averageRating: 0
  } 
 
 //   componentDidMount(){      
@@ -33,36 +33,36 @@ submitRating = ratingNumber => {
                        }
         fetch('http://localhost:4000/ratings', options)
         .then(response => response.json())
-        .then(response => {this.increaseRating(response)
+        .then(response => {this.increaseRating(response.num)
         })
 }
                      
-  increaseRating = (argument) => {
-    console.log("length",this.props.technician.ratings.length)
+  increaseRating = value => {
+   
         let ratingsQuantity = this.props.technician.ratings.length;
-        let sum = argument.num;
+        let sum = value;
                
         for( let i = 0; i < ratingsQuantity; i++)
             { sum += this.props.technician.ratings[i].num } 
 
-        let average =  sum / (ratingsQuantity+1) 
-        // this.setState({averageRating: average})
+        let increased =  sum / (ratingsQuantity+1) 
+       this.setState({averageRating: increased})
 
   }      
 
 
-averageRating = () =>{
+componentDidMount(){
  let ratingsQuantity = this.props.technician.ratings.length;
  let sum = 0;
  for ( let i = 0; i < ratingsQuantity; i++)
      { sum += this.props.technician.ratings[i].num }
- let average =  sum / ratingsQuantity   
-     return average
+ let average =  sum / ratingsQuantity  
+    this.setState({averageRating: average})
  }
 
     
     render() { 
-          console.log("profile now", this.props.technician.ratings)
+          console.log("profile now", typeof this.state.averageRating)
         return (
           <div id="flex-container">
               <div id="user-card">
@@ -82,8 +82,8 @@ averageRating = () =>{
 
                   <p>Works for: {this.props.technician.company_name}</p>
                   <div id="rating-flex">
-                      {/* <p id="rating-centered">Rating {this.state.averageRating.toFixed(1)}</p>&nbsp; 
-                      <Rating name="half-rating" readOnly="true" value={this.state.averageRating}  precision={0.5}  size="small"/>    */}
+                       <p id="rating-centered">Rating {this.state.averageRating.toFixed(1)}</p>&nbsp; 
+                      <Rating name="half-rating" readOnly="true" value={this.state.averageRating}  precision={0.5}  size="small"/>    
                   </div>
             </div>
             {this.props.currentUser ?
