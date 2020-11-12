@@ -155,7 +155,7 @@ componentDidMount(){
 
 }
   render(){
-       console.log("app", this.state.technician)
+      //  console.log("app", this.state.technician)
     return ( 
     <div className="App">
 
@@ -188,7 +188,7 @@ componentDidMount(){
 
           <Route  path = '/' render = {() => 
                 <div id="flex-container"> 
-                    <CompaniesContainer/>
+                    <CompaniesContainer currentUser={this.state.currentUser}/>
                     <TechniciansContainer currentUser={this.state.currentUser} 
                                           clickHandler={this.clickHandler} /> 
                 </div>

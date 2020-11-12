@@ -123,9 +123,17 @@ textarea {
 
 #no-margin{
   margin: 0;
+  /* do I need it? */
 }
 
 #rating-centered{
   margin-top: 9px;
+}
+
+#company {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 20px;
 }
 

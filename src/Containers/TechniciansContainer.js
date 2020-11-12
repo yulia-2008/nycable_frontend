@@ -17,24 +17,6 @@ class TechniciansContainer extends Component {
                           })
         )
     } 
-    submitRating = (ratingNumber, technician) => {
-  let options = { method: 'POST',
-                        headers: {
-                        'Content-Type': 'application/json',
-                         Accept: 'application/json'
-                        },
-                         body: JSON.stringify({
-                           rating: { user_id: this.props.currentUser.id,
-                                     num: ratingNumber,
-                                     subject_id: technician.id,
-                                     subject_type: "User",                                    
-                                   }
-                         })
-                       }
-        fetch('http://localhost:4000/ratings', options)
-        .then(response => response.json())
-        .then(response => console.log("rating resp", response))
-}  
       
     getTechnicians = () => {    
         return this.state.filtered.map(tech => < Technician id={tech.id} technician={tech}
@@ -69,7 +51,7 @@ class TechniciansContainer extends Component {
 } 
 
     render() {
-          console.log("Container technicians", this.state.technicians)
+        //   console.log("Container technicians", this.state.technicians)
         return (
             <div id="app-container">
                 <h2>Technicians </h2>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
-import {Image, Transformation} from 'cloudinary-react';
+import {Image} from 'cloudinary-react';
 import { NavLink } from 'react-router-dom';
 // import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
@@ -10,52 +10,48 @@ import Rating from 'material-ui-rating'
 
 class Technician extends Component {
  
-// findImageName =()=>{
-   
-//  let url = this.props.technician.picture.split("/")
-//  let fileName = url.slice(-1)
-//  let fileNameString = fileName[0]
-
-//  return fileNameString
-// }
+    averageRating = () => {
+        let ratingsQuantity = this.props.technician.ratings.length;
+        let sum = 0;
+        for ( let i = 0; i < ratingsQuantity; i++)
+            { sum += this.props.technician.ratings[i].num }
+        let average =  sum / ratingsQuantity  
+        return average
+        }
 
 
     render() {
-           console.log("technician", this.props)
+        //    console.log("technician", this.props)
         return (
-            <div>
-
-               <p> 
-                   <span className="rounded"> {this.props.technician.photo ?
+            <div>                
+                <span className="rounded">
+                    {this.props.technician.photo ?
                         <Image cloudName="dytr9lvlc"
-                         publicId={this.props.technician.photo} 
-                         width="100" height= "100" 
-                         crop="thumb" gravity="face" 
-                          radius="max" />  
-
-                    //   css images
-                    //    <img id="photo-preview" src={this.props.technician.picture}></img>
+                               publicId={this.props.technician.photo} 
+                               width="100" height= "100" 
+                               crop="thumb" gravity="face" 
+                               radius="max" />  
                         :                   
                        <img id="photo-preview" src={Avatar}></img> 
                     } &nbsp;
-                    </span>
+                </span>
                    <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                       '/profile' :
                       `/technician/${this.props.id}` }> 
-                   <span onClick={()=>this.props.clickHandler(this.props.technician)}>
-                       {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
-                   </span> 
+                        <span onClick={()=>this.props.clickHandler(this.props.technician)}>
+                        {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
+                        </span> 
                    </NavLink>&nbsp; &nbsp;
+
                    {this.props.technician.city}&nbsp;
                    {this.props.technician.company_name}&nbsp;
-                   {/* <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>&nbsp;  */}
 
-                 <Rating name="half-rating" value={3} readOnly="true" precision={0.5}  size="large"/>   
-                 {/* <Button variant="contained">Hey</Button> */}
-                   
-                  </p> 
-
+                <div id="rating-flex">  
+                    <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>
+                    <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
+                </div> <br/><br/>
             </div>
+            
         );
     }
 }

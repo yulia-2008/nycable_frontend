@@ -7,7 +7,8 @@ class ReviewContainer extends Component {
         reviews: [],
         review: null,
         clicked: false, 
-        ratingValue: 0
+        ratingValue: 0,
+        ratingSubmited: false
     }
 
     // getReviews = () => {  
@@ -72,27 +73,40 @@ class ReviewContainer extends Component {
 
     submitRating = () => {
         this.props.submitRating(this.state.ratingValue, this.props.user)
+        this.setState({ratingSubmited: true})
+    }
+
+    alreadyRated = () => {
+        let boollean = null
+        let ratingObject =  this.props.user.ratings.find((ratingObj) => ratingObj.user_id === this.props.currentUser.id)
+        typeof ratingObject === 'object' ?   boollean = true : boollean =  false 
+        return boollean
     }
 
 
     render() {
-        //  console.log("rev- current user id",this.props.currentUser.id )
+        //   console.log("rev-  user ",this.props.user )
         
         return (
             <div id="review-container">
                 {this.props.currentUser?  
                     this.props.user?  // current user is not on his profile page 
                         <>
-                        <p id="no-margin">Rate:</p>
-                        <div id="rating-flex">                           
-                            <Rating value={this.state.ratingValue}  
-                                precision={0.5}  size="large"
-                                onChange = { (value) => this.ratingChangeHandler(value)}/> 
-                            <button id="small-button" onClick={this.submitRating}>Submit</button>
-                        </div> 
+                        { this.alreadyRated() ? null:    // check if current user already rated this technician     
+                            this.state.ratingSubmited ? 
+                                <p>Thank you for submitthing</p> 
+                                :                                                                   
+                                <div id="rating-flex"> 
+                                <p id="rating-centered">Rate:</p>                                           
+                                <Rating value={this.state.ratingValue}  
+                                         size="large"
+                                        onChange = { (value) => this.ratingChangeHandler(value)}/> 
+                                <button id="small-button" onClick={this.submitRating}>Submit</button>
+                                </div>                              
+                        }
                         <br/> 
                         <button onClick={this.clickHandler}>Leave a review</button>  <br></br>                                                                                  
-                            {this.state.clicked ?
+                        {this.state.clicked ?
                                 <>
                                 <textarea type="text"  name="review" rows="4"
                                           placeholder = "Enter your text"
@@ -102,7 +116,7 @@ class ReviewContainer extends Component {
                                 </>
                                 :
                                 null
-                            }
+                        }
                         </>
                     :null  //current user is on his profile page                                                     
                 :          // you are not logged in
@@ -119,7 +133,7 @@ class ReviewContainer extends Component {
                                  :
                                  null
                         }                             
-                        </>
+                    </>
                 }
                 {this.renderReviews()}  
             </div>

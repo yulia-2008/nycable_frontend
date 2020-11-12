@@ -37,8 +37,7 @@ submitRating = ratingNumber => {
         })
 }
                      
-  increaseRating = value => {
-   
+  increaseRating = value => {  
         let ratingsQuantity = this.props.technician.ratings.length;
         let sum = value;
                
@@ -52,13 +51,15 @@ submitRating = ratingNumber => {
 
 
 componentDidMount(){
- let ratingsQuantity = this.props.technician.ratings.length;
- let sum = 0;
- for ( let i = 0; i < ratingsQuantity; i++)
-     { sum += this.props.technician.ratings[i].num }
- let average =  sum / ratingsQuantity  
+  if (this.this.props.technician.ratings.length >=1) {
+    let ratingsQuantity = this.props.technician.ratings.length;
+    let sum = 0;    
+    for ( let i = 0; i < ratingsQuantity; i++)
+        { sum += this.props.technician.ratings[i].num }
+    let average =  sum / ratingsQuantity  
     this.setState({averageRating: average})
- }
+    }
+}
 
     
     render() { 
