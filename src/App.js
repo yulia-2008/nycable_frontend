@@ -12,17 +12,17 @@ class App extends React.Component {
 
   state={
     currentUser: null,
-    technician: null  
+    user: null  
   }
   // componentDidMount(){
   // fetch(`https://www.cabletv.com/ny/brooklyn?zip=11223#internet`)
   // // .then(response => response.json())
   // .then(response => console.log(response))
   // }
-clickHandler = technicianObj =>{
-  localStorage.setItem("technician", JSON.stringify(technicianObj)) 
+clickHandler = customerOrTechnician =>{
+  // localStorage.setItem("technician", JSON.stringify(technicianObj)) 
  
-  this.setState({technician: technicianObj})
+  this.setState({user: customerOrTechnician})
 }
   
 companySubmitHandler = company=>{
@@ -97,44 +97,7 @@ submitPhoto = user => {
    let photo = {photo: user.user.photo}
    let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
    this.setState({currentUser: updatedCurrentUser})
-  
-  //posting to db
-  //  let options = { method: 'PATCH',
-  //                  headers: {
-  //                  'Content-Type': 'application/json',
-  //                  Accept: 'application/json'
-  //                  },
-  //                 body: JSON.stringify({
-  //                         photo: user.photo
-  //                 })
-  //                }
-  //   fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
-  //   .then(response => response.json())
-  //   .then(resp =>{console.log("in upload app", resp)})
 }
-// submitRating = (ratingNumber, technician) => {
-//   let options = { method: 'POST',
-//                         headers: {
-//                         'Content-Type': 'application/json',
-//                          Accept: 'application/json'
-//                         },
-//                          body: JSON.stringify({
-//                            rating: { user_id: this.state.currentUser.id,
-//                                      num: ratingNumber,
-//                                      subject_id: technician.id,
-//                                      subject_type: "User",                                    
-//                                    }
-//                          })
-//                        }
-//         fetch('http://localhost:4000/ratings', options)
-//         .then(response => response.json())
-//         .then(response => {console.log("rating resp", response)}) 
-//         // let ratings = [...this.state.technician.ratings, response]
-// console.log("s", this.state.technician)
-//         // let newTechnicianObj = Object.assign(this.state.techician, ratings)
-//         // this.setState({technician: newTechnicianObj}) })
-// }
-
 
 componentDidMount(){ 
   const token = localStorage.getItem("token")  
@@ -155,7 +118,7 @@ componentDidMount(){
 
 }
   render(){
-      //  console.log("app", this.state.technician)
+        // console.log("app", this.state.user)
     return ( 
     <div className="App">
 
@@ -168,23 +131,32 @@ componentDidMount(){
           <Route  path = '/profile' render = {() => 
                this.state.currentUser ? 
                   <CurrentUserProfile  currentUser={this.state.currentUser}
+                                       user={this.state.user}
+                                       clickHandler={this.clickHandler}
                                        submitPhoto={this.submitPhoto}
                                        companySubmitHandler={this.companySubmitHandler} />
                  : null 
           } />
 
-          <Route  path = '/technician/:id' render = {() => 
-              this.state.currentUser  &&  this.state.currentUser.id === this.state.technician.id ?             
+          <Route  path = '/user/:id' render = {() => 
+              // this.state.currentUser  &&  this.state.currentUser.id === this.state.user.id ?             
                
-                    <CurrentUserProfile currentUser={this.state.currentUser}
-                                        submitPhoto={this.submitPhoto}
-                                        companySubmitHandler={this.companySubmitHandler} />
-                    :
-                    <Profile technician={this.state.technician}
+              //       <CurrentUserProfile currentUser={this.state.currentUser}
+              //                           clickHandler={this.clickHandler}
+              //                           submitPhoto={this.submitPhoto}
+              //                           companySubmitHandler={this.companySubmitHandler} />
+              //       :
+                    <Profile user={this.state.user}
+                             clickHandler={this.clickHandler}
                              currentUser={this.state.currentUser}
                              />
                 
           } />
+
+          {/* <Route  path = '/user/:id' render = {() => <Profile user ={this.state.user}
+                                                              currentUser={this.state.currentUser}/>}/> */}
+
+
 
           <Route  path = '/' render = {() => 
                 <div id="flex-container"> 

@@ -21,10 +21,10 @@ class Technician extends Component {
 
 
     render() {
-        //    console.log("technician", this.props)
+            //console.log("technician", this.props)
         return (
             <div>                
-                <span className="rounded">
+                <span >
                     {this.props.technician.photo ?
                         <Image cloudName="dytr9lvlc"
                                publicId={this.props.technician.photo} 
@@ -37,7 +37,7 @@ class Technician extends Component {
                 </span>
                    <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                       '/profile' :
-                      `/technician/${this.props.id}` }> 
+                      `/user/${this.props.technician.id}` }> 
                         <span onClick={()=>this.props.clickHandler(this.props.technician)}>
                         {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
                         </span> 

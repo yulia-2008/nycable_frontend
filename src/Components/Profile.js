@@ -26,7 +26,7 @@ submitRating = ratingNumber => {
                          body: JSON.stringify({
                            rating: { user_id: this.props.currentUser.id,
                                      num: ratingNumber,
-                                     subject_id: this.props.technician.id,
+                                     subject_id: this.props.user.id,
                                      subject_type: "User",                                    
                                    }
                          })
@@ -38,11 +38,11 @@ submitRating = ratingNumber => {
 }
                      
   increaseRating = value => {  
-        let ratingsQuantity = this.props.technician.ratings.length;
+        let ratingsQuantity = this.props.user.ratings.length;
         let sum = value;
                
         for( let i = 0; i < ratingsQuantity; i++)
-            { sum += this.props.technician.ratings[i].num } 
+            { sum += this.props.user.ratings[i].num } 
 
         let increased =  sum / (ratingsQuantity+1) 
        this.setState({averageRating: increased})
@@ -51,29 +51,40 @@ submitRating = ratingNumber => {
 
 
 componentDidMount(){
-  if (this.this.props.technician.ratings.length >=1) {
-    let ratingsQuantity = this.props.technician.ratings.length;
+
+  if (this.props.user.ratings.length >=1) {
+    let ratingsQuantity = this.props.user.ratings.length;
     let sum = 0;    
     for ( let i = 0; i < ratingsQuantity; i++)
-        { sum += this.props.technician.ratings[i].num }
+        { sum += this.props.user.ratings[i].num }
     let average =  sum / ratingsQuantity  
     this.setState({averageRating: average})
     }
 }
 
+// getCustomerInfo = () =>{
+//   fetch(`http://localhost:4000/users/${this.props.customerId}`)
+//   .then(response => response.json())
+//   .then(response => this.setState.name({cusomer: response})
+//   )
+// }
+
     
     render() { 
-          console.log("profile now", typeof this.state.averageRating)
+          //  console.log("profile now", this.props)
         return (
+          //  this.props.customer ? <p>{this.props.customer.id}</p> : 
+           <>
           <div id="flex-container">
               <div id="user-card">
+               
 
-              <h1>{this.props.technician.first_name} {this.props.technician.last_name}</h1>
+              <h1>{this.props.user.first_name} {this.props.user.last_name}</h1>
                    
-                {this.props.technician.photo ? 
+                {this.props.user.photo ? 
 
               <Image cloudName="dytr9lvlc" 
-                     publicId={this.props.technician.photo} 
+                     publicId={this.props.user.photo} 
                      width="300" height= "300" 
                      crop="pad"   radius="20" />
                     :
@@ -81,21 +92,25 @@ componentDidMount(){
                 }
                 <br></br>
 
-                  <p>Works for: {this.props.technician.company_name}</p>
+                  <p>Works for: {this.props.user.company_name}</p>
                   <div id="rating-flex">
                        <p id="rating-centered">Rating {this.state.averageRating.toFixed(1)}</p>&nbsp; 
                       <Rating name="half-rating" readOnly="true" value={this.state.averageRating}  precision={0.5}  size="small"/>    
                   </div>
             </div>
-            {this.props.currentUser ?
-            <ReviewContainer user={this.props.technician}
+            {/* {this.props.currentUser ? */}
+            <ReviewContainer user={this.props.user}
                              currentUser={this.props.currentUser}
                              submitReview={this.props.submitReview}
+                             clickHandler={this.props.clickHandler}
                              submitRating={this.submitRating} />
-             : 
-             <ReviewContainer user={this.props.technician}/>  
-            }             
+             {/* : 
+             <ReviewContainer user={this.props.user}
+                              clickHandler={this.props.clickHandler} />  
+            }  */}
+
         </div>
+</>
         );
     }
 }

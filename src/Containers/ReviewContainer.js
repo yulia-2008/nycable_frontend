@@ -4,8 +4,9 @@ import Rating from 'material-ui-rating'
 
 class ReviewContainer extends Component {
     state = {
-        reviews: [],
-        review: null,
+        // reviews: [],
+        // review: null,
+        technicianReviews: [],
         clicked: false, 
         ratingValue: 0,
         ratingSubmited: false
@@ -25,7 +26,7 @@ class ReviewContainer extends Component {
     clickHandler = () => { this.setState({clicked: !this.state.clicked})
     }
 
-     submitHandler = () => { 
+    submitHandler = () => { 
         let options = { method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -41,30 +42,50 @@ class ReviewContainer extends Component {
                        }
         fetch('http://localhost:4000/reviews', options)
         .then(response => response.json())
-        .then(response => {console.log("resp", response); this.setState({
+        .then(response => { this.setState({
                                 clicked: !this.state.clicked, 
-                                reviews: [...this.state.reviews, response]
+                                reviews: [...this.state.technicianReviews, response]
                             })
                           }
 
         )        
-     }
-
-
-    componentDidMount(){ 
-        let id;
-        this.props.user?   id = this.props.user.id :  id=this.props.currentUser.id    
-            fetch(`http://localhost:4000/technicians/${id}/reviews`)
-            .then(response => response.json())
-            .then(response => this.setState({reviews: response
-                          })
-            )
     }
 
-    renderReviews = () => { 
-        if(this.state.reviews !==[])  
-        {return this.state.reviews.map(rev => <Review  review={rev} />)}
 
+    // componentDidMount(){ 
+    //     let id;
+    //     this.props.user?   id = this.props.user.id :  id=this.props.currentUser.id    
+    //         fetch(`http://localhost:4000/technicians/${id}/reviews`)
+    //         .then(response => response.json())
+    //         .then(response => this.setState({reviews: response
+    //                       })
+    //         )
+    // }
+    componentDidMount(){   
+            fetch(`http://localhost:4000/reviews`)
+            .then(response => response.json())
+            .then(response => {console.log("did mount", response); let filtered = response.filter(rev => this.props.user.id === rev.user.id)                 
+                                this.setState({
+                                    technicianReviews: filtered
+                                })
+            })
+    }
+
+    // renderReviews = () => { 
+    //     if(this.state.reviews !==[])  
+    //     {return this.state.reviews.map(rev => <Review  review={rev}  clickHandler={this.props.clickHandler}/>)}
+
+    // }
+    renderReviews = () => { 
+        if (this.props.user.role === "technician")
+        { if(this.state.technicianReviews !==[])  
+            { 
+                return this.state.technicianReviews.map(rev => <Review key={rev.id} review={rev}  
+                                                           clickHandler={this.props.clickHandler} 
+                                                           currentUser={this.props.currentUser}/>)}
+        }
+        if (this.props.user.role === "company"){console.log("company")}
+        if (this.props.user.role === "customer"){console.log("customer")}
     }
     
     ratingChangeHandler = val => {
@@ -77,24 +98,27 @@ class ReviewContainer extends Component {
     }
 
     alreadyRated = () => {
-        let boollean = null
+        let rated = null
         let ratingObject =  this.props.user.ratings.find((ratingObj) => ratingObj.user_id === this.props.currentUser.id)
-        typeof ratingObject === 'object' ?   boollean = true : boollean =  false 
-        return boollean
+        typeof ratingObject === 'object' ?   rated = ratingObject.num : rated =  false 
+        return rated
     }
 
 
     render() {
-        //   console.log("rev-  user ",this.props.user )
+           console.log("rev-cont",this.state.technicianReviews )
         
-        return (
-            <div id="review-container">
+    return (
+        this.props.user.role === "customer" ? null:
+            <div id="review-container">             
                 {this.props.currentUser?  
                     this.props.user?  // current user is not on his profile page 
                         <>
-                        { this.alreadyRated() ? null:    // check if current user already rated this technician     
+                        { this.alreadyRated() ?           // check if current user already rated this technician 
+                            <p>You have rated this technitian as  {this.alreadyRated()}</p>
+                            :        
                             this.state.ratingSubmited ? 
-                                <p>Thank you for submitthing</p> 
+                                <p>Thank you for rating</p> 
                                 :                                                                   
                                 <div id="rating-flex"> 
                                 <p id="rating-centered">Rate:</p>                                           
