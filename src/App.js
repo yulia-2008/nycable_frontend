@@ -80,7 +80,8 @@ loginHandler = userInfo =>{
     .then(response => response.json())
     .then(resp =>{
         localStorage.setItem("token", resp.jwt) 
-        this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
+        this.setState({currentUser: resp.user}
+          // , ()=> this.props.history.push('/profile')
         )
         })
 }

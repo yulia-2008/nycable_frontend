@@ -4,7 +4,7 @@ import Rating from 'material-ui-rating'
 
 class ReviewContainer extends Component {
     state = {
-        // reviews: [],
+         reviews: [],
         // review: null,
         technicianReviews: [],
         clicked: false, 
@@ -44,7 +44,7 @@ class ReviewContainer extends Component {
         .then(response => response.json())
         .then(response => { this.setState({
                                 clicked: !this.state.clicked, 
-                                reviews: [...this.state.technicianReviews, response]
+                                technicianReviews: [...this.state.technicianReviews, response]
                             })
                           }
 
@@ -64,7 +64,7 @@ class ReviewContainer extends Component {
     componentDidMount(){   
             fetch(`http://localhost:4000/reviews`)
             .then(response => response.json())
-            .then(response => {console.log("did mount", response); let filtered = response.filter(rev => this.props.user.id === rev.user.id)                 
+            .then(response => { let filtered = response.filter(rev => this.props.user.id === rev.review_object.id)                 
                                 this.setState({
                                     technicianReviews: filtered
                                 })
@@ -77,13 +77,14 @@ class ReviewContainer extends Component {
 
     // }
     renderReviews = () => { 
-        if (this.props.user.role === "technician")
-        { if(this.state.technicianReviews !==[])  
+        // if (this.props.user.role === "technician")
+        // { 
+            if(this.state.technicianReviews !==[])  
             { 
                 return this.state.technicianReviews.map(rev => <Review key={rev.id} review={rev}  
                                                            clickHandler={this.props.clickHandler} 
                                                            currentUser={this.props.currentUser}/>)}
-        }
+        // }
         if (this.props.user.role === "company"){console.log("company")}
         if (this.props.user.role === "customer"){console.log("customer")}
     }
@@ -106,13 +107,13 @@ class ReviewContainer extends Component {
 
 
     render() {
-           console.log("rev-cont",this.state.technicianReviews )
+           console.log("rev-cont",this.props.user )
         
     return (
         this.props.user.role === "customer" ? null:
             <div id="review-container">             
                 {this.props.currentUser?  
-                    this.props.user?  // current user is not on his profile page 
+                    this.props.currentUser.id !== this.props.user.id?  // current user is not on his profile page 
                         <>
                         { this.alreadyRated() ?           // check if current user already rated this technician 
                             <p>You have rated this technitian as  {this.alreadyRated()}</p>
@@ -152,7 +153,7 @@ class ReviewContainer extends Component {
                                           placeholder = "Login to leave a review"
                                           value = "Login to leave a review">                           
                                 </textarea>
-                                <button>Submit</button> 
+                                {/* <button>Submit</button>  */}
                                  </> 
                                  :
                                  null

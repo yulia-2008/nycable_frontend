@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 class Review extends Component {
     render() {
-         console.log(this.props.review)
+        //  console.log(this.props.review)
         return (
             <div>
              <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.review.user_id ?
