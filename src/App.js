@@ -80,8 +80,11 @@ loginHandler = userInfo =>{
     .then(response => response.json())
     .then(resp =>{
         localStorage.setItem("token", resp.jwt) 
-        this.setState({currentUser: resp.user}
-          // , ()=> this.props.history.push('/profile')
+        this.setState({currentUser: resp.user},
+          this.state.user?                              
+          ()=> this.props.history.push(`/user/${this.state.user.id}`) //if current user came to login form from other user profile he will go back to it after loging in
+          :
+          ()=> this.props.history.push('/profile')
         )
         })
 }
@@ -130,13 +133,13 @@ componentDidMount(){
                                                             loginHandler={this.loginHandler} />
           } />
           <Route  path = '/profile' render = {() => 
-               this.state.currentUser ? 
+              //  this.state.currentUser ? 
                   <CurrentUserProfile  currentUser={this.state.currentUser}
-                                       user={this.state.user}
+                                      //  user={this.state.user}
                                        clickHandler={this.clickHandler}
                                        submitPhoto={this.submitPhoto}
                                        companySubmitHandler={this.companySubmitHandler} />
-                 : null 
+                //  : null 
           } />
 
           <Route  path = '/user/:id' render = {() => 

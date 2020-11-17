@@ -4,7 +4,8 @@ import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
 import {Image, Transformation} from 'cloudinary-react';
 import ReviewContainer from "./ReviewContainer";
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+import Rating from 'material-ui-rating'
+
 
 
 class CurrentUserProfile extends Component {
@@ -33,10 +34,21 @@ companySubmitHandler = event => {
     this.props.companySubmitHandler(this.state.company)
 }
 
+averageRating = () => {
+    let ratingsQuantity = this.props.currentUser.ratings.length;
+    
+    let sum = 0;
+    for ( let i = 0; i < ratingsQuantity; i++)
+        { sum += this.props.currentUser.ratings[i].num }
+    let average =  sum / ratingsQuantity  
+    console.log( "Profile", average) 
+    return average
+    }
+
 
 
     render() { 
-        //  console.log( "Profile", this.props.currentUser)  
+        //   console.log( "Profile", this.props.currentUser)  
         return (                     
             <div id="flex-container"> 
               <div id="user-card">
@@ -57,8 +69,11 @@ companySubmitHandler = event => {
                    
 
                 {this.props.currentUser.role==="technician" ?
-                    <>
-                        <p>Rating:</p>
+                    <>                       
+                        <div id="rating-flex">  
+                           <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>
+                           <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
+                        </div> <br/>
                         <p>Company you work for: {this.props.currentUser.company_name}</p>
                     </>
                     :

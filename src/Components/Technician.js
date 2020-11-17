@@ -21,7 +21,7 @@ class Technician extends Component {
 
 
     render() {
-            //console.log("technician", this.props)
+            // console.log("technician", this.props.technician)
         return (
             <div>                
                 <span >

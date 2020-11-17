@@ -64,10 +64,19 @@ class ReviewContainer extends Component {
     componentDidMount(){   
             fetch(`http://localhost:4000/reviews`)
             .then(response => response.json())
-            .then(response => { let filtered = response.filter(rev => this.props.user.id === rev.review_object.id)                 
-                                this.setState({
-                                    technicianReviews: filtered
-                                })
+            .then(response => { 
+                if (this.props.user){                
+                    let filtered = response.filter(rev => this.props.user.id === rev.review_object.id)                 
+                    this.setState({
+                        technicianReviews: filtered
+                    })
+                }                   
+                else {
+                    let filtered = response.filter(rev => this.props.currentUser.id === rev.review_object.id)                 
+                    this.setState({
+                        technicianReviews: filtered
+                    })
+                }  
             })
     }
 
@@ -107,13 +116,14 @@ class ReviewContainer extends Component {
 
 
     render() {
-           console.log("rev-cont",this.props.user )
+            // console.log("rev-cont",this.state.technicianReviews )
         
     return (
+        
+    this.props.user ?  // current user is not on his profile page
         this.props.user.role === "customer" ? null:
             <div id="review-container">             
-                {this.props.currentUser?  
-                    this.props.currentUser.id !== this.props.user.id?  // current user is not on his profile page 
+                {this.props.currentUser?                  
                         <>
                         { this.alreadyRated() ?           // check if current user already rated this technician 
                             <p>You have rated this technitian as  {this.alreadyRated()}</p>
@@ -142,8 +152,7 @@ class ReviewContainer extends Component {
                                 :
                                 null
                         }
-                        </>
-                    :null  //current user is on his profile page                                                     
+                        </>                                                  
                 :          // you are not logged in
                     <>
                     <button onClick={this.clickHandler}>Leave a review</button><br></br>
@@ -160,8 +169,11 @@ class ReviewContainer extends Component {
                         }                             
                     </>
                 }
-                {this.renderReviews()}  
-            </div>
+                {this.renderReviews()} 
+                 </div>
+    : 
+<>{this.renderReviews()}  </>        
+           
         );
     }
 }
