@@ -149,7 +149,7 @@ componentDidMount(){
               //                           clickHandler={this.clickHandler}
               //                           submitPhoto={this.submitPhoto}
               //                           companySubmitHandler={this.companySubmitHandler} />
-              //       :
+              //       :hey
                     <Profile user={this.state.user}
                              clickHandler={this.clickHandler}
                              currentUser={this.state.currentUser}
