@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Technician from '../Components/Technician';
 import { Redirect} from 'react-router-dom';
+import { Route, Switch, withRouter} from 'react-router-dom';
+import Profile from '../Components/Profile';
 
 class TechniciansContainer extends Component {
 
@@ -8,7 +10,8 @@ class TechniciansContainer extends Component {
         technicians: [], 
         filtered:[],  
         city: "" , 
-        company: ""
+        company: "",
+        user: null
     }
     componentDidMount(){      
         fetch(`http://localhost:4000/technicians`)
@@ -21,7 +24,7 @@ class TechniciansContainer extends Component {
     getTechnicians = () => {    
         return this.state.filtered.map(tech => < Technician key={tech.id} technician={tech}
                                                             currentUser={this.props.currentUser} 
-                                                            clickHandler={this.props.clickHandler} />)
+                                                            clickHandler={this.clickHandler} />)
     }
         
     changeHandler = event => {this.setState({[event.target.name]: event.target.value})
@@ -49,30 +52,48 @@ class TechniciansContainer extends Component {
          }
     
 } 
+clickHandler = user => {
+    this.setState({user: user})
+}
 
     render() {
-           console.log("technicians container ", this.state.technicians)
+        //    console.log("technicians container ", this.state.technicians)
         return (
-            <div id="app-container">
-                <h2>Technicians </h2>
-                 <form onSubmit = {event => this.searchHandler(event)}>
-                <select name="company" onChange={this.changeHandler}>
-                    <option value=""> All Companies </option>
-                    <option value="Optimum">Optimum</option>
-                    <option value="Dish">Dish</option>
-                    <option value="Spectrum">Spectrum</option>
-                    <option value="Direct TV">Direct TV</option>
-                    <option value="Verizon">Verizon</option> 
-                </select> 
-                &nbsp; &nbsp;
-                <input type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
-                &nbsp; &nbsp;
-                <input type="submit" value="Search"></input>
-                </form>
-                <br></br>
-                 {this.getTechnicians()}
-           </div>
-
+            this.state.technicians.length === 0 ? <h1>LOADING</h1>:
+            <>
+            <Switch>       
+                <Route  path = '/user/:id' render = {({match}) => {
+                    let id = parseInt(match.params.id)   // id from params is a string
+                    let foundTechnician = this.state.technicians.find((technician) => technician.id === id )         
+                    return   <Profile user={foundTechnician}
+                                     clickHandler={this.clickHandler}
+                                     currentUser={this.props.currentUser}/>  
+                }                                                     
+                } />
+                <Route path = '/' render ={() => 
+                    <div id="app-container">
+                        <h2>Technicians </h2>
+                        <form onSubmit = {event => this.searchHandler(event)}>
+                        <select name="company" onChange={this.changeHandler}>
+                            <option value=""> All Companies </option>
+                            <option value="Optimum">Optimum</option>
+                            <option value="Dish">Dish</option>
+                            <option value="Spectrum">Spectrum</option>
+                            <option value="Direct TV">Direct TV</option>
+                            <option value="Verizon">Verizon</option> 
+                        </select> 
+                        &nbsp; &nbsp;
+                        <input type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
+                        &nbsp; &nbsp;
+                        <input type="submit" value="Search"></input>
+                        </form>
+                        <br></br>
+                        {this.getTechnicians()}
+                        </div>       
+                 }/>            
+            </Switch>
+            </>
+           
         );
     }
 }

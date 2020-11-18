@@ -4,7 +4,7 @@ import TechniciansContainer from './Containers/TechniciansContainer';
 import CompaniesContainer from './Containers/CompaniesContainer';
 import CurrentUserProfile from "./Containers/CurrentUserProfile";
 import NavBar from './Components/NavBar';
-import Profile from './Components/Profile';
+
 import Signup from './Components/Signup';
 import { Route, Switch, withRouter} from 'react-router-dom';
 
@@ -142,20 +142,7 @@ componentDidMount(){
                 //  : null 
           } />
 
-          <Route  path = '/user/:id' render = {() => 
-              // this.state.currentUser  &&  this.state.currentUser.id === this.state.user.id ?             
-               
-              //       <CurrentUserProfile currentUser={this.state.currentUser}
-              //                           clickHandler={this.clickHandler}
-              //                           submitPhoto={this.submitPhoto}
-              //                           companySubmitHandler={this.companySubmitHandler} />
-              //       :hey
-                    <Profile user={this.state.user}
-                             clickHandler={this.clickHandler}
-                             currentUser={this.state.currentUser}
-                             />
-                
-          } />
+          
 
           {/* <Route  path = '/user/:id' render = {() => <Profile user ={this.state.user}
                                                               currentUser={this.state.currentUser}/>}/> */}
@@ -165,8 +152,9 @@ componentDidMount(){
           <Route  path = '/' render = {() => 
                 <div id="flex-container"> 
                     <CompaniesContainer currentUser={this.state.currentUser}/>
-                    <TechniciansContainer currentUser={this.state.currentUser} 
-                                          clickHandler={this.clickHandler} /> 
+                    <TechniciansContainer currentUser={this.state.currentUser}
+                                          //  user={this.state.user} 
+                                          /> 
                 </div>
            } /> 
        </Switch>      

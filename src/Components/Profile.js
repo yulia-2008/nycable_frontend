@@ -71,7 +71,7 @@ componentDidMount(){
 
     
     render() { 
-          //  console.log("profile now", this.props)
+            console.log("profile now", this.props.user)
         return (
           //  this.props.customer ? <p>{this.props.customer.id}</p> : 
            <>
