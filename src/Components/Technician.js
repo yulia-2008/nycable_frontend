@@ -38,9 +38,7 @@ class Technician extends Component {
                    <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                       '/profile' :
                       `/user/${this.props.technician.id}` }> 
-                        <span onClick={()=>this.props.clickHandler(this.props.technician)}>
                         {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
-                        </span> 
                    </NavLink>&nbsp; &nbsp;
 
                    {this.props.technician.city}&nbsp;

@@ -7,24 +7,37 @@ import Profile from '../Components/Profile';
 class TechniciansContainer extends Component {
 
     state={
-        technicians: [], 
-        filtered:[],  
+        allUsers: [], 
+        technicians:[], 
+        fitered:[], 
         city: "" , 
         company: "",
         user: null
     }
-    componentDidMount(){      
-        fetch(`http://localhost:4000/technicians`)
+    componentDidMount(){  
+        fetch(`http://localhost:4000/users`)
         .then(response => response.json())
-        .then(response => this.setState({technicians: response, filtered: response
-                          })
-        )
-    } 
+        .then(response => {let technicians = response.filter((t)=> t.role === "technician");
+                           this.setState({ allUsers: response, 
+                                           technicians: technicians, 
+                                           filtered: technicians
+                           })
+    })
+}
+            
+                  
+        
+        // fetch(`http://localhost:4000/technicians`)
+        // .then(response => response.json())
+        // .then(response => this.setState({ technicians: response, filtered: response
+        //                   })
+        // )
+
       
     getTechnicians = () => {    
         return this.state.filtered.map(tech => < Technician key={tech.id} technician={tech}
                                                             currentUser={this.props.currentUser} 
-                                                            clickHandler={this.clickHandler} />)
+                                                            />)
     }
         
     changeHandler = event => {this.setState({[event.target.name]: event.target.value})
@@ -59,14 +72,14 @@ clickHandler = user => {
     render() {
         //    console.log("technicians container ", this.state.technicians)
         return (
-            this.state.technicians.length === 0 ? <h1>LOADING</h1>:
+            this.state.allUsers.length === 0 ? <h1>LOADING</h1>:
             <>
             <Switch>       
                 <Route  path = '/user/:id' render = {({match}) => {
                     let id = parseInt(match.params.id)   // id from params is a string
-                    let foundTechnician = this.state.technicians.find((technician) => technician.id === id )         
-                    return   <Profile user={foundTechnician}
-                                     clickHandler={this.clickHandler}
+                    let foundUser = this.state.allUsers.find((user) => user.id === id )         
+                    return   <Profile user={foundUser}
+                                     clickHandler={this.props.clickHandler}
                                      currentUser={this.props.currentUser}/>  
                 }                                                     
                 } />

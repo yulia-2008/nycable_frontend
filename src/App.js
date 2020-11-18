@@ -19,10 +19,8 @@ class App extends React.Component {
   // // .then(response => response.json())
   // .then(response => console.log(response))
   // }
-clickHandler = customerOrTechnician =>{
-  // localStorage.setItem("technician", JSON.stringify(technicianObj)) 
- 
-  this.setState({user: customerOrTechnician})
+clickHandler = customer =>{
+  this.setState({user: customer}, console.log("app, click", this.state.user))
 }
   
 companySubmitHandler = company=>{
@@ -133,27 +131,20 @@ componentDidMount(){
                                                             loginHandler={this.loginHandler} />
           } />
           <Route  path = '/profile' render = {() => 
-              //  this.state.currentUser ? 
                   <CurrentUserProfile  currentUser={this.state.currentUser}
                                       //  user={this.state.user}
                                        clickHandler={this.clickHandler}
                                        submitPhoto={this.submitPhoto}
                                        companySubmitHandler={this.companySubmitHandler} />
-                //  : null 
+
           } />
-
-          
-
-          {/* <Route  path = '/user/:id' render = {() => <Profile user ={this.state.user}
-                                                              currentUser={this.state.currentUser}/>}/> */}
-
-
 
           <Route  path = '/' render = {() => 
                 <div id="flex-container"> 
                     <CompaniesContainer currentUser={this.state.currentUser}/>
                     <TechniciansContainer currentUser={this.state.currentUser}
-                                          //  user={this.state.user} 
+                                          clickHandler = {this. clickHandler}
+                                          // user={this.state.user} 
                                           /> 
                 </div>
            } /> 
