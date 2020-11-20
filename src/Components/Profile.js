@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
-import {Image, Transformation} from 'cloudinary-react';
+import {Image} from 'cloudinary-react';
 import ReviewContainer from "../Containers/ReviewContainer";
-import Rating from 'material-ui-rating'
+import Rating from 'material-ui-rating';
+import {NavLink} from 'react-router-dom';
+import ArrowIcon from "../ArrowIcon.png";
 
 
 class Profile extends Component {
@@ -71,15 +73,17 @@ componentDidMount(){
 
     
     render() { 
-            console.log("profile now", this.props.user)
+            // console.log("profile now", this.props.user)
         return (
           //  this.props.customer ? <p>{this.props.customer.id}</p> : 
            
-          <div id="right-container" >
+          <div id="right-container">
+
+              <NavLink  to='/' ><span> <img id ="arrow" src={ArrowIcon}></img> Back to technicians</span> </NavLink>
               <div id="user-card">
                
 
-              <h1>{this.props.user.first_name} {this.props.user.last_name}</h1>
+              <h1 id ="no-margin">{this.props.user.first_name} {this.props.user.last_name}</h1>
                    
                 {this.props.user.photo ? 
 

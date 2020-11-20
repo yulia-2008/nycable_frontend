@@ -29,9 +29,7 @@ a {
   text-decoration: none;
 }
 
-#nav-bar {
-  float: center;
-}
+
 
 @keyframes App-logo-spin {
   from {
@@ -81,9 +79,10 @@ input[type='file'] {
   height: 13px;
 }
 
- /* #nav-bar {
-  text-decoration: none;
-}  */
+ #nav-bar {
+  margin: auto;
+  text-align: center;
+} 
 
 #flex-container {
   /* display: flex; */
@@ -102,12 +101,12 @@ input[type='file'] {
 
 #left-container {
   float: left;
-  margin: 40px;
+  margin-left: 40px;
 }
 
 #right-container {
   float: right;
-  margin: 40px;
+  margin-right: 40px;
   
 }
 
@@ -116,9 +115,8 @@ input[type='file'] {
 }
 
 #user-card {
-  padding-left: 20px;
-  padding-right: 4px;
-  /* do I need this? */
+  padding-left: 0px;
+  padding-right: 20px;
 }
 
 textarea {
@@ -159,5 +157,15 @@ textarea {
 
 #left-margin {
   margin-left: 50px;
+  margin-top: 50px;
+}
+
+#margin-top {
+  margin-top: 70px;
+}
+
+#arrow {
+  width: 20px;
+  height: 20px;
 }
 

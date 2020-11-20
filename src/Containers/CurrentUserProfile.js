@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
-import {Image, Transformation} from 'cloudinary-react';
+import {Image} from 'cloudinary-react';
 import ReviewContainer from "./ReviewContainer";
 import Rating from 'material-ui-rating'
 
@@ -74,7 +74,7 @@ averageRating = () => {
                         <div id="flex">  
                            <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
                            <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
-                        </div> <br/>
+                        </div>
                         <p>Company you work for: {this.props.currentUser.company_name}</p>
                     </>
                     :
@@ -94,13 +94,16 @@ averageRating = () => {
                                              
                       <input type="submit" value="Submit"></input> &nbsp;
                      {/* <input type="reset" ></input> */}
-                   </form>  
-                               
-          </div>  
-            <ReviewContainer  currentUser={this.props.currentUser}
+                   </form>                                
+              </div> 
+              <div id="margin-top">
+                <ReviewContainer  currentUser={this.props.currentUser}
                              user={this.props.user}
                              clickHandler={this.props.clickHandler}
-            />
+                />
+              </div> 
+
+              
         </div>
         );
     }

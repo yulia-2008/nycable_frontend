@@ -4,7 +4,6 @@ import TechniciansContainer from './Containers/TechniciansContainer';
 import CompaniesContainer from './Containers/CompaniesContainer';
 import CurrentUserProfile from "./Containers/CurrentUserProfile";
 import NavBar from './Components/NavBar';
-
 import Signup from './Components/Signup';
 import { Route, Switch, withRouter} from 'react-router-dom';
 
@@ -122,10 +121,10 @@ componentDidMount(){
   render(){
         // console.log("app", this.state.user)
     return ( 
-    <div className="App">
-
+    <div>
+        <div id="nav-bar">
        <NavBar currentUser={this.state.currentUser} logoutHandler={this.logoutHandler}/> 
-
+      </div>
        <Switch>
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
                                                             loginHandler={this.loginHandler} />

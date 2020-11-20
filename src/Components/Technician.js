@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
 import {Image} from 'cloudinary-react';
 import { NavLink } from 'react-router-dom';
-// import Icon from '@material-ui/core/Icon';
-import Button from '@material-ui/core/Button';
 import Rating from 'material-ui-rating'
 
 

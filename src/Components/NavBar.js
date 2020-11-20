@@ -7,7 +7,7 @@ import {NavLink} from 'react-router-dom';
 class NavBar extends Component {
     render() {
         return (            
-            <span id="nav-bar">     
+            <span>     
                 <NavLink  to='/' > App  </NavLink> &nbsp;  &nbsp;
                 
                 {this.props.currentUser? <span onClick={this.props.logoutHandler}>Logout</span> :

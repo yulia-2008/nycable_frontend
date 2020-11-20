@@ -84,10 +84,6 @@ clickHandler = user => {
                                      currentUser={this.props.currentUser}/>  
                 }                                                     
                 } />
-                
-
-
-
 
                 <Route path = '/' render ={() => 
                     <div id="right-container">
