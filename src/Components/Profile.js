@@ -74,8 +74,8 @@ componentDidMount(){
             console.log("profile now", this.props.user)
         return (
           //  this.props.customer ? <p>{this.props.customer.id}</p> : 
-           <>
-          <div id="flex-container">
+           
+          <div id="right-container" >
               <div id="user-card">
                
 
@@ -93,8 +93,8 @@ componentDidMount(){
                 <br></br>
 
                   <p>Works for: {this.props.user.company_name}</p>
-                  <div id="rating-flex">
-                       <p id="rating-centered">Rating {this.state.averageRating.toFixed(1)}</p>&nbsp; 
+                  <div id="flex">
+                       <p id="rating-centered">{this.state.averageRating.toFixed(1)}</p>&nbsp; 
                       <Rating name="half-rating" readOnly="true" value={this.state.averageRating}  precision={0.5}  size="small"/>    
                   </div>
             </div>
@@ -110,7 +110,7 @@ componentDidMount(){
             }  */}
 
         </div>
-</>
+
         );
     }
 }

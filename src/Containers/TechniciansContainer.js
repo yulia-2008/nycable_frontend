@@ -3,6 +3,7 @@ import Technician from '../Components/Technician';
 import { Redirect} from 'react-router-dom';
 import { Route, Switch, withRouter} from 'react-router-dom';
 import Profile from '../Components/Profile';
+import CurrentUserProfile from './CurrentUserProfile'
 
 class TechniciansContainer extends Component {
 
@@ -83,8 +84,13 @@ clickHandler = user => {
                                      currentUser={this.props.currentUser}/>  
                 }                                                     
                 } />
+                
+
+
+
+
                 <Route path = '/' render ={() => 
-                    <div id="app-container">
+                    <div id="right-container">
                         <h2>Technicians </h2>
                         <form onSubmit = {event => this.searchHandler(event)}>
                         <select name="company" onChange={this.changeHandler}>
@@ -96,7 +102,7 @@ clickHandler = user => {
                             <option value="Verizon">Verizon</option> 
                         </select> 
                         &nbsp; &nbsp;
-                        <input type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
+                        <input id="search" type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
                         &nbsp; &nbsp;
                         <input type="submit" value="Search"></input>
                         </form>

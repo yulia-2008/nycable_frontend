@@ -130,23 +130,39 @@ componentDidMount(){
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
                                                             loginHandler={this.loginHandler} />
           } />
-          <Route  path = '/profile' render = {() => 
+
+         
+          <Route  path = '/profile' render = {() =>  this.state.currentUser ? 
                   <CurrentUserProfile  currentUser={this.state.currentUser}
                                       //  user={this.state.user}
                                        clickHandler={this.clickHandler}
                                        submitPhoto={this.submitPhoto}
                                        companySubmitHandler={this.companySubmitHandler} />
+                  : <h1>LOADING</h1>                     
 
           } />
 
+
+              {/* <Route  path = '/profile' render = {({match}) => 
+                {let id = parseInt(match.params.id)   // id from params is a string
+                    let foundUser = this.state.allUsers.find((user) => user.id === id ) 
+                 return <CurrentUserProfile  currentUser={this.state.currentUser}
+                                      //  user={this.state.user}
+                                       clickHandler={this.clickHandler}
+                                       submitPhoto={this.submitPhoto}
+                                       companySubmitHandler={this.companySubmitHandler} />
+
+                 } } /> */}
+
+
           <Route  path = '/' render = {() => 
-                <div id="flex-container"> 
+                <> 
                     <CompaniesContainer currentUser={this.state.currentUser}/>
                     <TechniciansContainer currentUser={this.state.currentUser}
                                           clickHandler = {this. clickHandler}
                                           // user={this.state.user} 
                                           /> 
-                </div>
+                </>
            } /> 
        </Switch>      
     </div>

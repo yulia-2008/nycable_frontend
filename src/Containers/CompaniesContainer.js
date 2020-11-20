@@ -23,7 +23,7 @@ class CompaniesContainer extends Component {
     render() {
         // console.log(this.state.companiesArray)
         return (
-            <div id="app-container">
+            <div id="left-container">
                 <h2> Companies</h2>
                 {this.renderCompanies()}
             </div>

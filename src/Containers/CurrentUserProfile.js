@@ -35,13 +35,14 @@ companySubmitHandler = event => {
 }
 
 averageRating = () => {
-    let ratingsQuantity = this.props.currentUser.ratings.length;
-    
+    let average = 0.0
+    if (this.props.currentUser.ratings.length >=1) {
+    let ratingsQuantity = this.props.currentUser.ratings.length;   
     let sum = 0;
     for ( let i = 0; i < ratingsQuantity; i++)
         { sum += this.props.currentUser.ratings[i].num }
-    let average =  sum / ratingsQuantity  
-    console.log( "Profile", average) 
+    average =  sum / ratingsQuantity 
+    }
     return average
     }
 
@@ -50,8 +51,8 @@ averageRating = () => {
     render() { 
         //   console.log( "Profile", this.props.currentUser)  
         return (                     
-            <div id="flex-container"> 
-              <div id="user-card">
+            <div id="flex"> 
+              <div id="left-margin">
                 <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
                 {this.props.currentUser.photo ? 
 
@@ -70,8 +71,8 @@ averageRating = () => {
 
                 {this.props.currentUser.role==="technician" ?
                     <>                       
-                        <div id="rating-flex">  
-                           <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>
+                        <div id="flex">  
+                           <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
                            <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
                         </div> <br/>
                         <p>Company you work for: {this.props.currentUser.company_name}</p>
@@ -93,9 +94,10 @@ averageRating = () => {
                                              
                       <input type="submit" value="Submit"></input> &nbsp;
                      {/* <input type="reset" ></input> */}
-                   </form>              
+                   </form>  
+                               
           </div>  
-            <ReviewContainer currentUser={this.props.currentUser}
+            <ReviewContainer  currentUser={this.props.currentUser}
                              user={this.props.user}
                              clickHandler={this.props.clickHandler}
             />

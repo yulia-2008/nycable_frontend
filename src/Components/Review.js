@@ -10,12 +10,11 @@ class Review extends Component {
                  '/profile' :
                  `/user/${this.props.review.user_id}`} >
                 <span onClick={() => this.props.clickHandler(this.props.review.user)}> 
-                       {this.props.review.user.first_name} &nbsp; {this.props.review.user.last_name} 
+                       {this.props.review.user.first_name} {this.props.review.user.last_name} &nbsp;
                 </span>
                </NavLink>
                 &nbsp; 
-                   {this.props.review.text}
-               
+                   {this.props.review.text}               
             </div>
         );
     }

@@ -126,12 +126,12 @@ class ReviewContainer extends Component {
                 {this.props.currentUser?                  
                         <>
                         { this.alreadyRated() ?           // check if current user already rated this technician 
-                            <p>You have rated this technitian as  {this.alreadyRated()}</p>
+                            <p id ="no-margin">You have rated this technitian as  {this.alreadyRated()}</p>
                             :        
                             this.state.ratingSubmited ? 
                                 <p>Thank you for rating</p> 
                                 :                                                                   
-                                <div id="rating-flex"> 
+                                <div id="flex"> 
                                 <p id="rating-centered">Rate:</p>                                           
                                 <Rating value={this.state.ratingValue}  
                                          size="large"
@@ -169,6 +169,7 @@ class ReviewContainer extends Component {
                         }                             
                     </>
                 }
+                <br/>
                 {this.renderReviews()} 
                  </div>
     : 
