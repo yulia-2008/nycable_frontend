@@ -11,16 +11,17 @@ class App extends React.Component {
 
   state={
     currentUser: null,
-    user: null  
+    // user: null  
   }
   // componentDidMount(){
   // fetch(`https://www.cabletv.com/ny/brooklyn?zip=11223#internet`)
   // // .then(response => response.json())
   // .then(response => console.log(response))
   // }
-clickHandler = customer =>{
-  this.setState({user: customer}, console.log("app, click", this.state.user))
-}
+
+// clickHandler = customer =>{
+//   this.setState({user: customer})
+// }
   
 companySubmitHandler = company=>{
   let options = { method: 'PATCH',
@@ -133,7 +134,6 @@ componentDidMount(){
          
           <Route  path = '/profile' render = {() =>  this.state.currentUser ? 
                   <CurrentUserProfile  currentUser={this.state.currentUser}
-                                      //  user={this.state.user}
                                        clickHandler={this.clickHandler}
                                        submitPhoto={this.submitPhoto}
                                        companySubmitHandler={this.companySubmitHandler} />
@@ -158,8 +158,7 @@ componentDidMount(){
                 <> 
                     <CompaniesContainer currentUser={this.state.currentUser}/>
                     <TechniciansContainer currentUser={this.state.currentUser}
-                                          clickHandler = {this. clickHandler}
-                                          // user={this.state.user} 
+                                          clickHandler = {this.clickHandler}
                                           /> 
                 </>
            } /> 

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Technician from '../Components/Technician';
 import { Redirect} from 'react-router-dom';
-import { Route, Switch, withRouter} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Profile from '../Components/Profile';
-import CurrentUserProfile from './CurrentUserProfile'
 
 class TechniciansContainer extends Component {
 
@@ -13,7 +12,7 @@ class TechniciansContainer extends Component {
         fitered:[], 
         city: "" , 
         company: "",
-        user: null
+        // user: null
     }
     componentDidMount(){  
         fetch(`http://localhost:4000/users`)
@@ -66,24 +65,26 @@ class TechniciansContainer extends Component {
          }
     
 } 
-clickHandler = user => {
-    this.setState({user: user})
-}
+// clickHandler = user => {
+//     this.setState({user: user})
+// }
 
     render() {
         //    console.log("technicians container ", this.state.technicians)
         return (
-            this.state.allUsers.length === 0 ? <h1>LOADING</h1>:
-            <>
-            <Switch>       
-                <Route  path = '/user/:id' render = {({match}) => {
-                    let id = parseInt(match.params.id)   // id from params is a string
-                    let foundUser = this.state.allUsers.find((user) => user.id === id )         
-                    return   <Profile user={foundUser}
-                                     clickHandler={this.props.clickHandler}
-                                     currentUser={this.props.currentUser}/>  
-                }                                                     
-                } />
+
+            <Switch> 
+                {this.state.allUsers.length === 0 ? 
+                    <h1>LOADING</h1>
+                    :
+                    <Route  path = '/user/:id' render = {({match}) => {
+                        let id = parseInt(match.params.id)   // id from params is a string
+                        let foundUser = this.state.allUsers.find((user) => user.id === id )         
+                        return   <Profile user={foundUser}
+                                    //  clickHandler={this.props.clickHandler}
+                                        currentUser={this.props.currentUser}/>  
+                    }} />
+                }
 
                 <Route path = '/' render ={() => 
                     <div id="right-container">
@@ -98,7 +99,7 @@ clickHandler = user => {
                             <option value="Verizon">Verizon</option> 
                         </select> 
                         &nbsp; &nbsp;
-                        <input id="search" type="text" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
+                        <input  type="search" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
                         &nbsp; &nbsp;
                         <input type="submit" value="Search"></input>
                         </form>
@@ -106,9 +107,7 @@ clickHandler = user => {
                         {this.getTechnicians()}
                         </div>       
                  }/>            
-            </Switch>
-            </>
-           
+            </Switch>           
         );
     }
 }

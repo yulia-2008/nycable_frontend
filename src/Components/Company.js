@@ -21,16 +21,15 @@ class Company extends Component {
             <div id="company">
                 <h3> {this.props.company.name} </h3>
 
-                <div id="rating-flex">
+                <div id="flex">
                     <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>
                     <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>
-                </div>  
+                </div> 
 
-                {/* <NavLink to=`/technician/${this.props.id}`> 
-                        <span onClick={()=>this.props.clickHandler(this.props.technician)}>
-                        {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
-                        </span> 
-                   </NavLink>&nbsp; &nbsp; */}
+
+                 <NavLink to={`/${this.props.company.name}`}> 
+                       {this.props.company.reviews.length} reviews
+                   </NavLink>&nbsp; &nbsp;
             </div>
 
         );

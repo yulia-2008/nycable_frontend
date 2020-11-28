@@ -45,17 +45,13 @@ a {
   width: 165px;
 }
 
-.rounded {
-  width: 50px;
-  margin: auto
-}
-
-/* .rounded img {
+ 
+/* #rounded{
+  border: 2px black solid;
   border-radius: 50%;
+  width: 50px;
   height: 50px;
-   width: 50px;
-} */
-
+}  */
 
 
 #photo-preview {
@@ -74,9 +70,9 @@ input[type='file'] {
   color: transparent;
 }
 
-#search {
+input[type='search'] {
   width: 100px;
-  height: 13px;
+  height: 19px;
 }
 
  #nav-bar {
@@ -94,10 +90,12 @@ input[type='file'] {
 
 #flex {
   display: flex;
-  text-align: left;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  text-align: center;
 }
+/* #centered {
+  text-align: center;
+
+} */
 
 #left-container {
   float: left;
@@ -158,10 +156,12 @@ textarea {
 #left-margin {
   margin-left: 50px;
   margin-top: 50px;
+  text-align: center;
 }
 
 #margin-top {
   margin-top: 70px;
+  /* do I need this? */
 }
 
 #arrow {

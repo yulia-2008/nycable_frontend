@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Company from "../Components/Company"
+import Company from "../Components/Company";
+import CompanyReviews from "../Components/CompanyReviews";
+import ReviewContainer from "./ReviewContainer";
+import { Route, Switch} from 'react-router-dom';
 
 
 
 class CompaniesContainer extends Component {
     state ={
-        companiesArray:[]
+        companiesArray: []
     }
 
     componentDidMount(){
@@ -23,9 +26,35 @@ class CompaniesContainer extends Component {
     render() {
         // console.log(this.state.companiesArray)
         return (
+            
+
             <div id="left-container">
-                <h2> Companies</h2>
-                {this.renderCompanies()}
+                <Switch> 
+                    {this.state.companiesArray.length === 0 ? 
+                        <h1>LOADING</h1>
+                        :
+                        <Route  path = '/:company' render = {({match}) => {
+                            let name = match.params.company   // id from params is a string
+                            let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
+                            // return  < CompanyReviews company={foundCompany}                 
+                            //                         currentUser={this.props.currentUser}/>  
+                            return  < ReviewContainer company={foundCompany}                 
+                                                    currentUser={this.props.currentUser}/> 
+
+                        }}/>
+                    }
+
+                    <Route  path = '/' render = {() =>
+                        <>  
+                        <h2> Companies</h2>
+                        {this.renderCompanies()} 
+                        </>                                                    
+                    }/>
+
+      
+                     
+               
+                </Switch>
             </div>
         );
     }

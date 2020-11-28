@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Review from "../Components/Review";
 import Rating from 'material-ui-rating'
+import { Route, Switch} from 'react-router-dom';
 
 class ReviewContainer extends Component {
     state = {
          reviews: [],
         // review: null,
-        technicianReviews: [],
+        reviews: [],
         clicked: false, 
         ratingValue: 0,
         ratingSubmited: false
@@ -44,7 +45,7 @@ class ReviewContainer extends Component {
         .then(response => response.json())
         .then(response => { this.setState({
                                 clicked: !this.state.clicked, 
-                                technicianReviews: [...this.state.technicianReviews, response]
+                                reviews: [...this.state.reviews, response]
                             })
                           }
 
@@ -65,16 +66,23 @@ class ReviewContainer extends Component {
             fetch(`http://localhost:4000/reviews`)
             .then(response => response.json())
             .then(response => { 
-                if (this.props.user){                
+                if (this.props.user){  console.log("uSer")              
                     let filtered = response.filter(rev => this.props.user.id === rev.review_object.id)                 
                     this.setState({
-                        technicianReviews: filtered
+                        reviews: filtered
                     })
-                }                   
-                else {
+                }  
+                if (this.props.company){ console.log("cOmpany")
+                    let filtered = response.filter(rev => this.props.company.id === rev.review_object.id)                 
+                    this.setState({
+                        reviews: filtered
+                    })
+                } 
+
+                else { console.log("Else")
                     let filtered = response.filter(rev => this.props.currentUser.id === rev.review_object.id)                 
                     this.setState({
-                        technicianReviews: filtered
+                        reviews: filtered
                     })
                 }  
             })
@@ -85,18 +93,19 @@ class ReviewContainer extends Component {
     //     {return this.state.reviews.map(rev => <Review  review={rev}  clickHandler={this.props.clickHandler}/>)}
 
     // }
-    renderReviews = () => { 
-        // if (this.props.user.role === "technician")
-        // { 
-            if(this.state.technicianReviews !==[])  
-            { 
-                return this.state.technicianReviews.map(rev => <Review key={rev.id} review={rev}  
-                                                           clickHandler={this.props.clickHandler} 
-                                                           currentUser={this.props.currentUser}/>)}
-        // }
-        if (this.props.user.role === "company"){console.log("company")}
-        if (this.props.user.role === "customer"){console.log("customer")}
+    renderReviews = () => {  
+        return  this.state.reviews !==[] ?
+            this.state.reviews.map(rev => <Review key={rev.id} review={rev} 
+                                                  currentUser={this.props.currentUser}
+                                                   company={this.props.company? this.props.company: null}                    
+                                                  user={this.props.user? this.props.user: null} 
+                                                                        // clickHandler={this.props.clickHandler} 
+                                                                        />)
+            
+        :
+        null                                                                
     }
+
     
     ratingChangeHandler = val => {
         this.setState({ratingValue: val})
@@ -116,7 +125,7 @@ class ReviewContainer extends Component {
 
 
     render() {
-            // console.log("rev-cont",this.state.technicianReviews )
+            //    console.log("rev-cont",this.props.user )
         
     return (
         
@@ -133,8 +142,8 @@ class ReviewContainer extends Component {
                                 :                                                                   
                                 <div id="flex"> 
                                 <p id="rating-centered">Rate:</p>                                           
-                                <Rating value={this.state.ratingValue}  
-                                         size="large"
+                                <Rating value={this.state.ratingValue}                                 
+                                        size="large"
                                         onChange = { (value) => this.ratingChangeHandler(value)}/> 
                                 <button id="small-button" onClick={this.submitRating}>Submit</button>
                                 </div>                              
@@ -170,10 +179,14 @@ class ReviewContainer extends Component {
                     </>
                 }
                 <br/>
+                <h2>Reviews</h2>
                 {this.renderReviews()} 
                  </div>
     : 
-<>{this.renderReviews()}  </>        
+    <>
+    <h2>Reviews</h2>
+    {this.renderReviews()} 
+    </>        
            
         );
     }

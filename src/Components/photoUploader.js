@@ -41,8 +41,8 @@ photoUploader = event =>{
         // console.dir("uploader", this.props.currentUser)
         return (
             <div>            
-                <form onSubmit={this.photoUploader}>
-                   Add or change picture:      
+                <form  onSubmit={this.photoUploader}>
+                  Add or change picture:     
                 <input id="file" type="file"  
                        name="picture" 
                        accept="image/*" 

@@ -11,7 +11,8 @@ import Rating from 'material-ui-rating'
 class CurrentUserProfile extends Component {
     state={
         company: "",
-        clicked: false             
+        clicked: false ,
+        ratingArray: []            
     }
  
 
@@ -46,65 +47,98 @@ averageRating = () => {
     return average
     }
 
+    componentDidMount() {
+        fetch(`http://localhost:4000/technicians/${this.props.currentUser.id}/ratings`)
+        .then(response => response.json())
+        .then(response => { this.setState({ratingArray: response
+         })
+         })
+}
 
+    renderWhoRatedMe = () => {return  this.state.ratingArray.map(rating => 
+                            <li>{rating.user.first_name} {rating.user.last_name} - {rating.num} stars</li>
+                            )
+    }
+       
+     
+
+        // if  (this.props.currentUser.ratings.length > 0)  
+        //     {  
+           
+        //     }               
+
+        // if (r > 0)
+        // {
+        //     return r.map(rating => <h> {rating.num} </h>)
+        // }
+        // else
+        //     { return <p>You don't have any ratings yet!</p>}  
+            
+    
 
     render() { 
         //   console.log( "Profile", this.props.currentUser)  
         return (                     
             <div id="flex"> 
-              <div id="left-margin">
-                <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
-                {this.props.currentUser.photo ? 
+                <div id="left-margin">
+                    <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
 
-                <Image cloudName="dytr9lvlc" 
-                       publicId={this.props.currentUser.photo} 
-                       width="300" height= "300" 
-                       crop="pad"   radius="20" />
-                          // <img id="photo-profile" src={this.props.currentUser.picture}></img> 
-                    :
-                    <img id="photo-profile" src={Avatar}></img>                    
-                }
-                <PhotoUploader  currentUser={this.props.currentUser}
-                                submitPhoto={this.props.submitPhoto} />
-                <p>City: {this.props.currentUser.city}</p>
+                    {this.props.currentUser.photo ? 
+                            <Image  cloudName="dytr9lvlc" 
+                                    publicId={this.props.currentUser.photo} 
+                                    width="300" height= "300" 
+                                    crop="pad"   radius="20" />
+                                        // <img id="photo-profile" src={this.props.currentUser.picture}></img> 
+                            :
+                            <img id="photo-profile" src={Avatar}></img>                    
+                    }
+
+                    <PhotoUploader  currentUser={this.props.currentUser}
+                                    submitPhoto={this.props.submitPhoto} />
+                    <p>City: {this.props.currentUser.city}</p>
                    
 
-                {this.props.currentUser.role==="technician" ?
-                    <>                       
+                    {this.props.currentUser.role==="technician" ?
+                        <>                       
                         <div id="flex">  
                            <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
                            <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
                         </div>
                         <p>Company you work for: {this.props.currentUser.company_name}</p>
-                    </>
-                    :
+                        </>
+                        :
                         <p>Company you get a service from: {this.props.currentUser.company_name}</p>
-                }
+                    }
                                   
                     <form onSubmit={this.companySubmitHandler}>
-                      <select id="select-field" name="company" onChange={this.changeHandler}>
-                        <option value="">Change Company</option>
-                        <option value="Optimum">Optimum</option>
-                        <option value="Dish">Dish</option>
-                        <option value="Spectrum">Spectrum</option>
-                        <option value="Direct TV">Direct TV</option>
-                        <option value="Verizon">Verizon</option> 
-                      </select> 
+                        <select id="select-field" name="company" onChange={this.changeHandler}>
+                            <option value="">Change Company</option>
+                            <option value="Optimum">Optimum</option>
+                            <option value="Dish">Dish</option>
+                            <option value="Spectrum">Spectrum</option>
+                            <option value="Direct TV">Direct TV</option>
+                            <option value="Verizon">Verizon</option> 
+                        </select> 
                      
                                              
-                      <input type="submit" value="Submit"></input> &nbsp;
-                     {/* <input type="reset" ></input> */}
-                   </form>                                
-              </div> 
-              <div id="margin-top">
-                <ReviewContainer  currentUser={this.props.currentUser}
-                             user={this.props.user}
-                             clickHandler={this.props.clickHandler}
-                />
-              </div> 
+                        <input type="submit" value="Submit"></input> &nbsp;
+                        {/* <input type="reset" ></input> */}
+                    </form>                                
+                </div> 
 
+                <div id="left-margin">
+                    <ReviewContainer  currentUser={this.props.currentUser}
+                                      user={this.props.user}
+                                 //  clickHandler={this.props.clickHandler}
+                    />
+                </div> 
+
+                <div id="left-margin">
+                    <h2>Who rated me:</h2>
+                    <ul>{this.renderWhoRatedMe()  }</ul>
+                </div>
               
-        </div>
+            </div>
         );
     }
 }

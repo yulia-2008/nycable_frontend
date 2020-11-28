@@ -99,19 +99,16 @@ componentDidMount(){
                   <p>Works for: {this.props.user.company_name}</p>
                   <div id="flex">
                        <p id="rating-centered">{this.state.averageRating.toFixed(1)}</p>&nbsp; 
-                      <Rating name="half-rating" readOnly="true" value={this.state.averageRating}  precision={0.5}  size="small"/>    
+                      <Rating name="half-rating" readOnly value={this.state.averageRating}  precision={0.5}  size="small"/>    
                   </div>
             </div>
-            {/* {this.props.currentUser ? */}
+           
             <ReviewContainer user={this.props.user}
                              currentUser={this.props.currentUser}
                              submitReview={this.props.submitReview}
-                             clickHandler={this.props.clickHandler}
+                            //  clickHandler={this.props.clickHandler}
                              submitRating={this.submitRating} />
-             {/* : 
-             <ReviewContainer user={this.props.user}
-                              clickHandler={this.props.clickHandler} />  
-            }  */}
+            
 
         </div>
 
