@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from "../Avatar.jpg";
 import {Image} from 'cloudinary-react';
-import ReviewContainer from "../Containers/ReviewContainer";
+import TechnicianReviews from "../Containers/TechnicianReviews";
 import Rating from 'material-ui-rating';
 import {NavLink} from 'react-router-dom';
 import ArrowIcon from "../ArrowIcon.png";
@@ -103,7 +103,7 @@ componentDidMount(){
                   </div>
             </div>
            
-            <ReviewContainer user={this.props.user}
+            <TechnicianReviews user={this.props.user}
                              currentUser={this.props.currentUser}
                              submitReview={this.props.submitReview}
                             //  clickHandler={this.props.clickHandler}

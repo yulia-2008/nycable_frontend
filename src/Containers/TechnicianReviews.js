@@ -3,9 +3,9 @@ import Review from "../Components/Review";
 import Rating from 'material-ui-rating'
 import { Route, Switch} from 'react-router-dom';
 
-class ReviewContainer extends Component {
+class TechnicianReviews extends Component {
     state = {
-         reviews: [],
+         review: "",
         // review: null,
         reviews: [],
         clicked: false, 
@@ -66,39 +66,31 @@ class ReviewContainer extends Component {
             fetch(`http://localhost:4000/reviews`)
             .then(response => response.json())
             .then(response => { 
-                if (this.props.user){  console.log("uSer")              
+                if (this.props.user){  
+                         // find reviews for technician            
                     let filtered = response.filter(rev => this.props.user.id === rev.review_object.id)                 
                     this.setState({
                         reviews: filtered
                     })
                 }  
-                if (this.props.company){ console.log("cOmpany")
-                    let filtered = response.filter(rev => this.props.company.id === rev.review_object.id)                 
-                    this.setState({
-                        reviews: filtered
-                    })
-                } 
 
-                else { console.log("Else")
-                    let filtered = response.filter(rev => this.props.currentUser.id === rev.review_object.id)                 
+                else { 
+                           // find reviews for current user
+                    let filtered = response.filter(rev => rev.review_object.role && this.props.currentUser.id === rev.review_object.id )                 
                     this.setState({
                         reviews: filtered
                     })
+                    console.log("Else1", filtered)
                 }  
             })
     }
 
-    // renderReviews = () => { 
-    //     if(this.state.reviews !==[])  
-    //     {return this.state.reviews.map(rev => <Review  review={rev}  clickHandler={this.props.clickHandler}/>)}
-
-    // }
+    
     renderReviews = () => {  
         return  this.state.reviews !==[] ?
             this.state.reviews.map(rev => <Review key={rev.id} review={rev} 
-                                                  currentUser={this.props.currentUser}
-                                                   company={this.props.company? this.props.company: null}                    
-                                                  user={this.props.user? this.props.user: null} 
+                                                  currentUser={this.props.currentUser}                 
+                                                  user={this.props.user}                   // maybe need later for link
                                                                         // clickHandler={this.props.clickHandler} 
                                                                         />)
             
@@ -125,7 +117,7 @@ class ReviewContainer extends Component {
 
 
     render() {
-            //    console.log("rev-cont",this.props.user )
+                // console.log("rev-cont",this.props.currentUser.reviews )
         
     return (
         
@@ -182,7 +174,7 @@ class ReviewContainer extends Component {
                 <h2>Reviews</h2>
                 {this.renderReviews()} 
                  </div>
-    : 
+    :                      // current user on his profile page
     <>
     <h2>Reviews</h2>
     {this.renderReviews()} 
@@ -192,5 +184,5 @@ class ReviewContainer extends Component {
     }
 }
 
-export default ReviewContainer;
+export default TechnicianReviews;
  

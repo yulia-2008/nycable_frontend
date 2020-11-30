@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Company from "../Components/Company";
 import CompanyReviews from "../Components/CompanyReviews";
-import ReviewContainer from "./ReviewContainer";
 import { Route, Switch} from 'react-router-dom';
 
 
@@ -30,6 +29,13 @@ class CompaniesContainer extends Component {
 
             <div id="left-container">
                 <Switch> 
+                    <Route  path = '/user/:id' render = {() =>              
+                        <>  
+                        <h2> Companies</h2>
+                        {this.renderCompanies()} 
+                        </>                                                    
+                    }/>
+
                     {this.state.companiesArray.length === 0 ? 
                         <h1>LOADING</h1>
                         :
@@ -38,7 +44,7 @@ class CompaniesContainer extends Component {
                             let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
                             // return  < CompanyReviews company={foundCompany}                 
                             //                         currentUser={this.props.currentUser}/>  
-                            return  < ReviewContainer company={foundCompany}                 
+                            return  < CompanyReviews company={foundCompany}                 
                                                     currentUser={this.props.currentUser}/> 
 
                         }}/>

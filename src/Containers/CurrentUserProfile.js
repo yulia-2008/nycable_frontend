@@ -3,7 +3,7 @@ import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
 import {Image} from 'cloudinary-react';
-import ReviewContainer from "./ReviewContainer";
+import TechnicianReviews from "./TechnicianReviews";
 import Rating from 'material-ui-rating'
 
 
@@ -127,8 +127,8 @@ averageRating = () => {
                 </div> 
 
                 <div id="left-margin">
-                    <ReviewContainer  currentUser={this.props.currentUser}
-                                      user={this.props.user}
+                    <TechnicianReviews  currentUser={this.props.currentUser}
+                                    //   user={this.props.user}
                                  //  clickHandler={this.props.clickHandler}
                     />
                 </div> 
