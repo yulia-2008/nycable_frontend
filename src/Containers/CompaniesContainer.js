@@ -22,6 +22,29 @@ class CompaniesContainer extends Component {
      return this.state.companiesArray.map((company) =>  <Company key={company.id} company={company} currentUser={this.props.currentUser}/>)
     }
 
+    submitRating = (ratingNumber, company) => {
+        let options = { method: 'POST',
+                              headers: {
+                              'Content-Type': 'application/json',
+                               Accept: 'application/json'
+                              },
+                               body: JSON.stringify({
+                                 rating: { user_id: this.props.currentUser.id,
+                                           num: ratingNumber,
+                                           subject_id: company.id,
+                                           subject_type: "Company",                                    
+                                         }
+                               })
+                             }
+              fetch('http://localhost:4000/ratings', options)
+              .then(response => response.json())
+              .then(response => {
+                  let foundCompany = this.state.companiesArray.find(comp => comp.id === company.id)
+                  foundCompany.ratings=[...foundCompany.ratings, {num: response.num, subject_id: company.id}]
+              })
+      }
+
+
     render() {
         // console.log(this.state.companiesArray)
         return (
@@ -44,7 +67,8 @@ class CompaniesContainer extends Component {
                             let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
                             // return  < CompanyReviews company={foundCompany}                 
                             //                         currentUser={this.props.currentUser}/>  
-                            return  < CompanyReviews company={foundCompany}                 
+                            return  <CompanyReviews company={foundCompany} 
+                                                    submitRating={this.submitRating}                
                                                     currentUser={this.props.currentUser}/> 
 
                         }}/>

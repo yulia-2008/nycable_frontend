@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Rating from 'material-ui-rating';
 import Review from "../Components/Review";
+import {NavLink} from 'react-router-dom';
+import ArrowIcon from "../ArrowIcon.png";
 
 class CompanyReviews extends Component {
 
@@ -13,8 +15,8 @@ class CompanyReviews extends Component {
    }
     renderReviews = () => {
         if (this.state.newReview) {
-            let updatedReviews = Object.assign(this.props.company.reviews, this.state.newReview);
-            return updatedReviews.map(rev => <Review key={rev.id} review={rev} currentUser={this.props.currentUser} />)       
+            let updatedReviews = [...this.props.company.reviews, this.state.newReview];
+            return updatedReviews.map(rev => <Review key={rev.id} review={rev} currentUser={this.props.currentUser} />)                  
         }
         else {
             return this.props.company.reviews.map (rev => <Review key={rev.id} review={rev} currentUser={this.props.currentUser} />)
@@ -39,7 +41,7 @@ class CompanyReviews extends Component {
     }
 
 
-    submitHandler = () => { 
+    submitReview = () => { 
         let options = { method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -60,8 +62,12 @@ class CompanyReviews extends Component {
                                 newReview: response
                             })
                           }
-
         )        
+    }
+
+    submitRating = () => {
+        this.props.submitRating(this.state.ratingValue, this.props.company)
+        this.setState({ratingSubmited: true})
     }
 
 
@@ -69,9 +75,9 @@ class CompanyReviews extends Component {
         //  console.log("company reviews" )
         return (
             <div>
+                <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon}></img> Back to Companies</span> </NavLink>
+              
                 <h1>{this.props.company.name}</h1>
-                <p>Rate and review</p>
-
                 {this.props.currentUser?                  
                         <>
                         { this.alreadyRated() ?           // check if current user already rated this company 
@@ -96,7 +102,7 @@ class CompanyReviews extends Component {
                                           placeholder = "Enter your text"
                                           onChange={this.changeHandler}>                           
                                 </textarea>
-                                <button onClick={this.submitHandler}>Submit</button> 
+                                <button onClick={this.submitReview}>Submit</button> 
                                 </>
                                 :
                                 null
@@ -118,6 +124,7 @@ class CompanyReviews extends Component {
                         }                             
                     </>
                 }
+                <br></br>
                 {this.renderReviews()}
 
             </div>

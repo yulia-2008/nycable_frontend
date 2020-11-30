@@ -27,7 +27,7 @@ class TechnicianReviews extends Component {
     clickHandler = () => { this.setState({clicked: !this.state.clicked})
     }
 
-    submitHandler = () => { 
+    submitReview = () => { 
         let options = { method: 'POST',
                         headers: {
                         'Content-Type': 'application/json',
@@ -92,10 +92,9 @@ class TechnicianReviews extends Component {
                                                   currentUser={this.props.currentUser}                 
                                                   user={this.props.user}                   // maybe need later for link
                                                                         // clickHandler={this.props.clickHandler} 
-                                                                        />)
-            
-        :
-        null                                                                
+                                                                        />)           
+            :
+            null                                                                
     }
 
     
@@ -148,7 +147,7 @@ class TechnicianReviews extends Component {
                                           placeholder = "Enter your text"
                                           onChange={this.changeHandler}>                           
                                 </textarea>
-                                <button onClick={this.submitHandler}>Submit</button> 
+                                <button onClick={this.submitReview}>Submit</button> 
                                 </>
                                 :
                                 null
