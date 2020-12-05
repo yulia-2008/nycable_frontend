@@ -11,7 +11,8 @@ class CompanyReviews extends Component {
        newReview: null,
        clicked: false, 
        ratingValue: 0,
-       ratingSubmited: false
+       ratingSubmited: false,
+       alreadyRated: false
    }
     renderReviews = () => {
         if (this.state.newReview) {
@@ -23,12 +24,18 @@ class CompanyReviews extends Component {
         }       
     }
 
-    alreadyRated = () => {
-        let rated = null
-        let ratingObject =  this.props.company.ratings.find((ratingObj) => ratingObj.user.id === this.props.currentUser.id)
-        typeof ratingObject === 'object' ?   rated = ratingObject.num : rated =  false 
-        return rated
-    }
+    componentDidMount() {
+       // change this for component didi mount , line 36 - set state conditionaly, in rendering suse state instead of alreadyRated()
+        fetch(`http://localhost:4000/companies/${this.props.company.id}/ratings`)
+        .then(response => response.json())
+        .then(response => {
+     
+                let ratingObject =  response.find((ratingObj) => ratingObj.user.id === this.props.currentUser.id)
+                typeof ratingObject === 'object' ?  
+                     this.setState({alreadyRated: ratingObject.num}) 
+                     : this.setState({alreadyRated: false})         
+    })
+}
 
     ratingChangeHandler = val => {
         this.setState({ratingValue: val})
@@ -72,7 +79,8 @@ class CompanyReviews extends Component {
 
 
     render() {
-        //  console.log("company reviews" )
+           console.log("company reviews", this.props.company.ratings )
+        //    console.log("company reviews", this.props.currentUser.id )
         return (
             <div>
                 <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon}></img> Back to Companies</span> </NavLink>
@@ -80,8 +88,8 @@ class CompanyReviews extends Component {
                 <h1>{this.props.company.name}</h1>
                 {this.props.currentUser?                  
                         <>
-                        { this.alreadyRated() ?           // check if current user already rated this company 
-                            <p id ="no-margin">You have rated this company as  {this.alreadyRated()}</p>
+                        { this.state.alreadyRated ?           // check if current user already rated this company 
+                            <p id ="no-margin">You have rated this company as  {this.state.alreadyRated}</p>
                             :        
                             this.state.ratingSubmited ? 
                                 <p>Thank you for rating</p> 

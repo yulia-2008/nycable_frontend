@@ -79,10 +79,7 @@ loginHandler = userInfo =>{
     .then(resp =>{
         localStorage.setItem("token", resp.jwt) 
         this.setState({currentUser: resp.user},
-          this.state.user?                              
-          ()=> this.props.history.push(`/user/${this.state.user.id}`) //if current user came to login form from other user profile he will go back to it after loging in
-          :
-          ()=> this.props.history.push('/profile')
+          ()=> this.props.history.push('/')
         )
         })
 }

@@ -95,12 +95,12 @@ componentDidMount(){
                     <img id="photo-profile" src={Avatar}></img>                    
                 }
                 <br></br>
-
-                  <p>Works for: {this.props.user.company_name}</p>
-                  <div id="flex">
+                      <div id="flex">
                        <p id="rating-centered">{this.state.averageRating.toFixed(1)}</p>&nbsp; 
                       <Rating name="half-rating" readOnly value={this.state.averageRating}  precision={0.5}  size="small"/>    
                   </div>
+                  <p>Works for: {this.props.user.company_name}</p>
+                  
             </div>
            
             <TechnicianReviews user={this.props.user}
