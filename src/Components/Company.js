@@ -16,22 +16,35 @@ class Company extends Component {
         }
 
     render() {
-        // console.log("company", this.props)
+        //  console.log("company", this.props)
         return (
             <div id="company">
-                <h3> {this.props.company.name} </h3>
+                <div id="padding">     
+                    <img id="logo" src={this.props.company.logo}></img> 
 
-                <div id="flex">
-                    <p id="rating-centered">Rating {this.averageRating().toFixed(1)}</p>
-                    <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>
-                </div> 
+                    <div id="flex">
+                        <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
+                        <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>
+                     </div> 
 
 
-                 <NavLink to={`/${this.props.company.name}`}> 
+                    <NavLink to={`/${this.props.company.name}`}> 
                        {this.props.company.reviews.length} reviews
-                   </NavLink>&nbsp; &nbsp;
-            </div>
+                    </NavLink>&nbsp; &nbsp;
+                </div>
 
+                <div id="padding">
+                    <p>Cheapest Internet Plan : <b>{this.props.company.internet_plan} / mo</b></p>
+                    <p>Internet + TV Plan : <b>{this.props.company.internet_tv_plan} /mo </b></p>
+                    <p>Fastest speed : <b>{this.props.company.speed} mbps</b></p>
+                </div>
+
+                <div id="padding">
+                    <br></br>
+                    <NavLink to={this.props.company.plans_link}> More info </NavLink>
+                </div>     
+
+            </div>
         );
     }
 }
