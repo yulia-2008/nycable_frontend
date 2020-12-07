@@ -5,21 +5,12 @@ import { Route, Switch} from 'react-router-dom';
 
 class TechnicianReviews extends Component {
     state = {
-         review: "",
-        // review: null,
+        review: "",
         reviews: [],
         clicked: false, 
         ratingValue: 0,
         ratingSubmited: false
     }
-
-    // getReviews = () => {  
-    //     if(this.props.currentUser)  
-    //     {return this.props.currentUser.reviews.map(rev => <Review id={rev.id} review={rev} />)}
-
-    //     if(this.props.technician)  
-    //     {return this.props.technician.reviews.map(rev => <Review id={rev.id} review={rev} />)}
-    // }
 
     changeHandler = event => { this.setState({review: event.target.value})
     }
@@ -52,37 +43,18 @@ class TechnicianReviews extends Component {
         )        
     }
 
+    componentDidMount(){ 
+        // find id for technician or currentUser  
+        let id; 
+        if (this.props.user){id = this.props.user.id}
+        else {id = this.props.currentUser.id}
 
-    // componentDidMount(){ 
-    //     let id;
-    //     this.props.user?   id = this.props.user.id :  id=this.props.currentUser.id    
-    //         fetch(`http://localhost:4000/technicians/${id}/reviews`)
-    //         .then(response => response.json())
-    //         .then(response => this.setState({reviews: response
-    //                       })
-    //         )
-    // }
-    componentDidMount(){   
-            fetch(`http://localhost:4000/reviews`)
+
+            fetch(`http://localhost:4000/technicians/${id}/reviews`)
             .then(response => response.json())
-            .then(response => { 
-                if (this.props.user){  
-                         // find reviews for technician            
-                    let filtered = response.filter(rev => this.props.user.id === rev.review_object.id)                 
-                    this.setState({
-                        reviews: filtered
-                    })
-                }  
-
-                else { 
-                           // find reviews for current user
-                    let filtered = response.filter(rev => rev.review_object.role && this.props.currentUser.id === rev.review_object.id )                 
-                    this.setState({
-                        reviews: filtered
-                    })
-                    console.log("Else1", filtered)
-                }  
+            .then(response => this.setState({reviews: response
             })
+            )             
     }
 
     
@@ -96,8 +68,7 @@ class TechnicianReviews extends Component {
             :
             null                                                                
     }
-
-    
+   
     ratingChangeHandler = val => {
         this.setState({ratingValue: val})
     }
@@ -121,51 +92,47 @@ class TechnicianReviews extends Component {
     return (
         
     this.props.user ?  // current user is not on his profile page
-        this.props.user.role === "customer" ? null:
             <div id="review-container">             
                 {this.props.currentUser?                  
-                        <>
-                        { this.alreadyRated() ?           // check if current user already rated this technician 
-                            <p id ="no-margin">You have rated this technitian as  {this.alreadyRated()}</p>
-                            :        
-                            this.state.ratingSubmited ? 
-                                <p>Thank you for rating</p> 
-                                :                                                                   
-                                <div id="flex"> 
+                    <>
+                    { this.alreadyRated() ?           // check if current user already rated this technician 
+                        <p id ="no-margin">You have rated this technitian as  {this.alreadyRated()}</p>
+                        :        
+                        this.state.ratingSubmited ? 
+                            <p>Thank you for rating</p> 
+                            :                                                                   
+                            <div id="flex"> 
                                 <p id="rating-centered">Rate:</p>                                           
                                 <Rating value={this.state.ratingValue}                                 
-                                        size="large"
+                                         size="large"
                                         onChange = { (value) => this.ratingChangeHandler(value)}/> 
                                 <button id="small-button" onClick={this.submitRating}>Submit</button>
-                                </div>                              
-                        }
-                        <br/> 
-                        <button onClick={this.clickHandler}>Leave a review</button>  <br></br>                                                                                  
-                        {this.state.clicked ?
-                                <>
-                                <textarea type="text"  name="review" rows="4"
-                                          placeholder = "Enter your text"
-                                          onChange={this.changeHandler}>                           
-                                </textarea>
-                                <button onClick={this.submitReview}>Submit</button> 
-                                </>
-                                :
-                                null
-                        }
-                        </>                                                  
-                :          // you are not logged in
+                            </div>                              
+                    }
+                    <br/> 
+                    <button onClick={this.clickHandler}>Leave a review</button>  <br></br>                                                                                  
+                    {this.state.clicked ?
+                        <>
+                        <textarea type="text"  name="review" rows="4"
+                                    placeholder = "Enter your text"
+                                    onChange={this.changeHandler}>                           
+                        </textarea>
+                        <button onClick={this.submitReview}>Submit</button> 
+                        </>
+                        :
+                        null
+                    }
+                    </>                                                  
+                    :          // you are not logged in
                     <>
                     <button onClick={this.clickHandler}>Leave a review</button><br></br>
                         {this.state.clicked ?
-                                <>
-                                <textarea type="text"  rows="4"
-                                          placeholder = "Login to leave a review"
-                                          value = "Login to leave a review">                           
-                                </textarea>
-                                {/* <button>Submit</button>  */}
-                                 </> 
-                                 :
-                                 null
+                            <textarea type="text"  rows="4"
+                                        placeholder = "Login to leave a review"
+                                        value = "Login to leave a review">                           
+                            </textarea> 
+                            :
+                            null
                         }                             
                     </>
                 }

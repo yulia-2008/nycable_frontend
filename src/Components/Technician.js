@@ -21,7 +21,7 @@ class Technician extends Component {
     }
 
     render() {
-            // console.log("technician", this.props.technician)
+             console.log("technician", this.props.technician.ratings)
         return (
             <>
             <div id="flex">                
@@ -36,21 +36,35 @@ class Technician extends Component {
                        <img id="photo-preview" src={Avatar}></img> 
                     } &nbsp;
                 </span>
+
                 <div>
-                   <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
+                    <h3>{this.props.technician.first_name} {this.props.technician.last_name}
+                    
+                        {this.props.currentUser && this.props.currentUser.id === this.props.technician.id ?
+                            <span> (you)</span>
+                            : 
+                            null
+                        }
+                    </h3>
+                    {this.props.technician.city}<br/>
+                    {this.props.technician.company_name}&nbsp;
+                </div> 
+
+            </div>
+
+            <div id="flex">  
+                <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
+                <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
+            </div>
+
+            <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                       '/profile' :
                       `/user/${this.props.technician.id}` }> 
-                        {this.props.technician.first_name}&nbsp;{this.props.technician.last_name}
-                   </NavLink><br/>
+                        {this.props.technician.reviews.length} reviews
+            </NavLink><br/> 
 
-                   {this.props.technician.city}<br/>
-                   {this.props.technician.company_name}&nbsp;
-                </div>   
-            </div>
-            <div id="flex">  
-            <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
-            <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
-       </div> <br/><br/>
+
+            <br/><br/>
        </>
             
         );

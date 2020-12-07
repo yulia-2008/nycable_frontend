@@ -11,34 +11,6 @@ class Review extends Component {
                 {this.props.review.user.first_name} {this.props.review.user.last_name}              
                  &nbsp; &nbsp; 
                 {this.props.review.text} 
-               
-                {/* { this.props.currentUser?
-                    this.props.user && this.props.currentUser.id === this.props.user_id ?
-                        <>
-                            <NavLink to={`/profile/review/user/${this.props.review.user.id}`}>               
-                            {this.props.review.user.first_name} {this.props.review.user.last_name} 
-                            </NavLink>             
-                            &nbsp; &nbsp; 
-                            {this.props.review.text} 
-                        </>
-                        :                       
-                        <>
-                            {this.props.review.user.first_name} {this.props.review.user.last_name}              
-                             &nbsp; &nbsp; 
-                            {this.props.review.text} 
-                        </>
-
-                :
-                    this.props.company?
-                    <>
-                        {this.props.review.user.first_name} {this.props.review.user.last_name}              
-                        &nbsp; &nbsp; 
-                        {this.props.review.text} 
-                    </>
-                    :
-                    ""
-                
-                }    */}
             </div>
         );
     }

@@ -16,7 +16,7 @@ class Company extends Component {
         }
 
     render() {
-        //  console.log("company", this.props)
+        //   console.log("company", this.props)
         return (
             <div id="company">
                 <div id="padding">     

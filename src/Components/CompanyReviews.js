@@ -25,7 +25,7 @@ class CompanyReviews extends Component {
     }
 
     componentDidMount() {
-       // change this for component didi mount , line 36 - set state conditionaly, in rendering suse state instead of alreadyRated()
+        // find if currentUser is already rated this company
         fetch(`http://localhost:4000/companies/${this.props.company.id}/ratings`)
         .then(response => response.json())
         .then(response => {
@@ -79,7 +79,7 @@ class CompanyReviews extends Component {
 
 
     render() {
-           console.log("company reviews", this.props.company.ratings )
+        //    console.log("company reviews", this.props.company.ratings )
         //    console.log("company reviews", this.props.currentUser.id )
         return (
             <div>

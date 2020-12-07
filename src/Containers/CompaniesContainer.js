@@ -46,7 +46,7 @@ class CompaniesContainer extends Component {
 
 
     render() {
-        // console.log(this.state.companiesArray)
+        //  console.log(this.state.companiesArray)
         return (
             
 
