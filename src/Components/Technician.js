@@ -21,7 +21,7 @@ class Technician extends Component {
     }
 
     render() {
-             console.log("technician", this.props.technician.ratings)
+              console.log("technician", this.props.technician)
         return (
             <>
             <div id="flex">                
@@ -59,7 +59,7 @@ class Technician extends Component {
 
             <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                       '/profile' :
-                      `/user/${this.props.technician.id}` }> 
+                      `/technician/${this.props.technician.id}` }> 
                         {this.props.technician.reviews.length} reviews
             </NavLink><br/> 
 

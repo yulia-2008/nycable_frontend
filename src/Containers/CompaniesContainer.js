@@ -52,7 +52,7 @@ class CompaniesContainer extends Component {
 
             <div id="left-container">
                 <Switch> 
-                    <Route  path = '/user/:id' render = {() =>              
+                    <Route  path = '/technician/:id' render = {() =>              
                         <>  
                         <h2> Companies</h2>
                         {this.renderCompanies()} 

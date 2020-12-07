@@ -3,7 +3,7 @@ import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
 import {Image} from 'cloudinary-react';
-import TechnicianReviews from "./TechnicianReviews";
+import TechnicianReviews from "../Components/TechnicianReviews";
 import Rating from 'material-ui-rating'
 
 

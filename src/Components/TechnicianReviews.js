@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Review from "../Components/Review";
+import Review from "./Review";
 import Rating from 'material-ui-rating'
-import { Route, Switch} from 'react-router-dom';
+import Avatar from "../Avatar.jpg";
+import {Image} from 'cloudinary-react';
+import {NavLink} from 'react-router-dom';
+import ArrowIcon from "../ArrowIcon.png";
 
 class TechnicianReviews extends Component {
     state = {
@@ -37,7 +40,7 @@ class TechnicianReviews extends Component {
         .then(response => { this.setState({
                                 clicked: !this.state.clicked, 
                                 reviews: [...this.state.reviews, response]
-                            })
+                            }); this.props.submitReview(this.props.user, response)
                           }
 
         )        
@@ -92,7 +95,20 @@ class TechnicianReviews extends Component {
     return (
         
     this.props.user ?  // current user is not on his profile page
-            <div id="review-container">             
+            <div id="review-container"> 
+                <NavLink  to='/' ><span> <img id ="arrow" src={ArrowIcon}></img> Back to technicians</span> </NavLink> <br></br>  
+                <div id="user-card">               
+                    <h2 id ="no-margin">{this.props.user.first_name} {this.props.user.last_name}</h2>                  
+                        {this.props.user.photo ? 
+                            <Image cloudName="dytr9lvlc" 
+                                    publicId={this.props.user.photo} 
+                                    width="50" height= "50" 
+                                    crop="pad"   radius="20" />
+                            :
+                            <img id="photo-profile" src={Avatar}></img>                    
+                        }
+                    <br></br>                 
+                </div>          
                 {this.props.currentUser?                  
                     <>
                     { this.alreadyRated() ?           // check if current user already rated this technician 

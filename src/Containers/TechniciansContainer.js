@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Technician from '../Components/Technician';
 import { Redirect} from 'react-router-dom';
 import { Route, Switch} from 'react-router-dom';
-import Profile from '../Components/Profile';
+import TechnicianReviews from '../Components/TechnicianReviews';
 
 class TechniciansContainer extends Component {
 
@@ -10,8 +10,7 @@ class TechniciansContainer extends Component {
         technicians:[], 
         filtered:[], 
         city: "" , 
-        company: "",
-        // user: null
+        company: null,
     }
     componentDidMount(){  
         fetch(`http://localhost:4000/technicians`)
@@ -22,7 +21,7 @@ class TechniciansContainer extends Component {
         })
     }
 
-    submitRating = (ratingNumber, user) => {
+    submitRating = (ratingNumber, technician) => {
         let options = { method: 'POST',
                               headers: {
                               'Content-Type': 'application/json',
@@ -31,7 +30,7 @@ class TechniciansContainer extends Component {
                                body: JSON.stringify({
                                  rating: { user_id: this.props.currentUser.id,
                                            num: ratingNumber,
-                                           subject_id: user.id,
+                                           subject_id: technician.id,
                                            subject_type: "User",                                    
                                          }
                                })
@@ -39,11 +38,15 @@ class TechniciansContainer extends Component {
             fetch('http://localhost:4000/ratings', options)
             .then(response => response.json())
             .then(response => {
-                let foundTechnician = this.state.technicians.find(tech => tech.id === user.id)
-                foundTechnician.ratings=[...foundTechnician.ratings, {num: response.num, subject_id: user.id}]
-                console.log("found Technician", foundTechnician)
+                let foundTechnician = this.state.technicians.find(tech => tech.id === technician.id)
+                foundTechnician.ratings = [...foundTechnician.ratings, {num: response.num, subject_id: technician.id}]
             })
       }
+
+    submitReview = (technician, review) =>{
+        let foundTechnician = this.state.technicians.find(tech => tech.id ===technician.id)
+        foundTechnician.reviews = [...foundTechnician.reviews, {text: review}]
+    }
             
     getTechnicians = () => {    
         return this.state.filtered.map(tech => < Technician key={tech.id} technician={tech}
@@ -57,13 +60,14 @@ class TechniciansContainer extends Component {
 
     searchHandler = event => {event.preventDefault()
         let filtered = [...this.state.technicians]
+        this.setState({search: true})
 
         if (this.state.company === ""  && this.state.city === "") {
              this.setState({filtered: filtered})
         }
         if (this.state.company !== "" && this.state.city === "") {
            let filterByCompany = filtered.filter(tech => tech.company_name === this.state.company)
-           this.setState({filtered: filterByCompany})
+           this.setState({filtered: filterByCompany, selected: this.state.company})
         } 
         if (this.state.company === "" && this.state.city !== "") {
             let filterByCity = filtered.filter(tech => tech.city.toLowerCase() === this.state.city.toLowerCase())
@@ -84,13 +88,13 @@ class TechniciansContainer extends Component {
                 {this.state.technicians.length === 0 ? 
                     <h1>LOADING</h1>
                     :
-                    <Route  path = '/user/:id' render = {({match}) => {
+                    <Route  path = '/technician/:id' render = {({match}) => {
                         let id = parseInt(match.params.id)   // id from params is a string
                         let foundUser = this.state.technicians.find((user) => user.id === id )         
-                        return   <Profile user={foundUser}
-                                        submitRating={this.submitRating}
-                                    //  clickHandler={this.props.clickHandler}
-                                        currentUser={this.props.currentUser}/>  
+                        return   <TechnicianReviews user={foundUser}
+                                                    currentUser={this.props.currentUser}
+                                                    submitReview={this.submitReview}
+                                                    submitRating={this.submitRating} />  
                     }} />
                 }
 
@@ -100,14 +104,15 @@ class TechniciansContainer extends Component {
                         <form onSubmit = {event => this.searchHandler(event)}>
                         <select name="company" onChange={this.changeHandler}>
                             <option value=""> All Companies </option>
-                            <option value="Optimum">Optimum</option>
-                            <option value="Dish">Dish</option>
-                            <option value="Spectrum">Spectrum</option>
-                            <option value="Direct TV">Direct TV</option>
-                            <option value="Verizon">Verizon</option> 
+                                {/* attribute selected needed for: After going back from technician reviews to technicians so you can see your last search results */}
+                            <option value="Optimum" selected={"Optimum"===this.state.company} >Optimum</option> 
+                            <option value="Dish" selected={"Dish"===this.state.company}>Dish</option>
+                            <option value="Spectrum" selected={"Spectrum"===this.state.company}>Spectrum</option>
+                            <option value="Direct TV" selected={"Direct TV"===this.state.company}>Direct TV</option>
+                            <option value="Verizon" selected={"Verizon"===this.state.company}>Verizon</option> 
                         </select> 
                         &nbsp; &nbsp;
-                        <input  type="search" name="city" placeholder="City/Town" onChange={this.changeHandler}></input>
+                        <input  type="search" name="city" placeholder="City/Town"  value={this.state.city} onChange={this.changeHandler}></input>
                         &nbsp; &nbsp;
                         <input type="submit" value="Search"></input>
                         </form>
