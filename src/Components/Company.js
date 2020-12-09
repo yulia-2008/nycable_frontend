@@ -40,9 +40,18 @@ class Company extends Component {
                 </div>
 
                 <div id="padding">
+                <p>Areas of coverage:</p>
+                <p className="tooltip">Manhattan <span className="tooltiptext"><p id="no-margin">Bushwick</p><p id="no-margin">Bensonhurst</p> <p id="no-margin">Red Hook</p></span> </p>
+                <p className="tooltip">Brooklyn</p>
+                <p className="tooltip">Bronx</p>
+                <p className="tooltip">Queens</p>
+                <p className="tooltip">Staten Island</p>
+                </div>
+
+                <div id="padding">
                     <br></br>
-                    <NavLink to={this.props.company.plans_link}> More info </NavLink>
-                </div>     
+                    <a href={this.props.company.plans_link}> More info </a>
+                </div>
 
             </div>
         );

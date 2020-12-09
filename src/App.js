@@ -10,19 +10,10 @@ import { Route, Switch, withRouter} from 'react-router-dom';
 class App extends React.Component {
 
   state={
-    currentUser: null,
-    // user: null  
+    currentUser: null, 
   }
-  // componentDidMount(){
-  // fetch(`https://www.cabletv.com/ny/brooklyn?zip=11223#internet`)
-  // // .then(response => response.json())
-  // .then(response => console.log(response))
-  // }
-
-// clickHandler = customer =>{
-//   this.setState({user: customer})
-// }
   
+
 companySubmitHandler = company=>{
   let options = { method: 'PATCH',
                         headers: {

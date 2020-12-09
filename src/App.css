@@ -29,6 +29,11 @@ a {
   text-decoration: none;
 }
 
+#color {
+  color: #49c3fc;
+  cursor: pointer;
+}  
+
 #select-field{
   border: 2px, black;
   width: 165px;
@@ -128,6 +133,33 @@ textarea {
 #no-margin{
   margin: 0;
 }
+
+.tooltip {
+  margin: 0;
+  text-align: center;
+  position: relative; 
+  display: block;
+  border: 1px dotted black;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 15px;
+
+  /* Position the tooltip */
+  position: absolute; 
+  z-index: 1;
+}
+
 #padding{
   padding-left: 20px;
   padding-right: 20px;
@@ -143,6 +175,7 @@ textarea {
   border: 2px solid black;
   border-radius: 5px;
   margin: 20px;
+  padding: 15px;
   display: flex;
   
 }
