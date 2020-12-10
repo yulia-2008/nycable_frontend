@@ -88,22 +88,26 @@ input[type='search'] {
 }
 /* #centered {
   text-align: center;
-
 } */
 
+
+/* id left & right container for technician container and company container  */
 #left-container {
   float: left;
-  margin-left: 40px;
+  margin-left: 20px;
+  margin-right: 50px;
+  /* width: 80%; */
 }
 
 #right-container {
   float: right;
-  margin-right: 40px;
-  
+  margin-right: 50px;
+  margin-left: 20px;
+  /* width: 15% ; */
 }
 
 #review-container {
-  padding-top: 0px;
+  padding-top: 20px;
 }
 
 #user-card {
@@ -163,6 +167,13 @@ textarea {
 #padding{
   padding-left: 20px;
   padding-right: 20px;
+}
+
+#map {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 15%;
+  width: 15%;
 }
 
 #rating-centered{

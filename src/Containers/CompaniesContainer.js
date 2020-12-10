@@ -49,7 +49,6 @@ class CompaniesContainer extends Component {
         //  console.log(this.state.companiesArray)
         return (
             
-
             <div id="left-container">
                 <Switch> 
                     <Route  path = '/technician/:id' render = {() =>              

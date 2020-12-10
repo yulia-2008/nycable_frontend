@@ -129,26 +129,13 @@ componentDidMount(){
 
           } />
 
-
-              {/* <Route  path = '/profile' render = {({match}) => 
-                {let id = parseInt(match.params.id)   // id from params is a string
-                    let foundUser = this.state.allUsers.find((user) => user.id === id ) 
-                 return <CurrentUserProfile  currentUser={this.state.currentUser}
-                                      //  user={this.state.user}
-                                       clickHandler={this.clickHandler}
-                                       submitPhoto={this.submitPhoto}
-                                       companySubmitHandler={this.companySubmitHandler} />
-
-                 } } /> */}
-
-
           <Route  path = '/' render = {() => 
-                <> 
+                <div id="flex"> 
                     <CompaniesContainer currentUser={this.state.currentUser}/>
                     <TechniciansContainer currentUser={this.state.currentUser}
                                           clickHandler = {this.clickHandler}
                                           /> 
-                </>
+                </div>
            } /> 
        </Switch>      
     </div>

@@ -39,6 +39,8 @@ class Company extends Component {
                     <p>Fastest speed : <b>{this.props.company.speed} mbps</b></p>
                 </div>
 
+                <img id="map" src={this.props.company.coverage_map} alt="coverage map"></img>
+
                 <div id="padding">
                 <p>Areas of coverage:</p>
                 <p className="tooltip">Manhattan <span className="tooltiptext"><p id="no-margin">Bushwick</p><p id="no-margin">Bensonhurst</p> <p id="no-margin">Red Hook</p></span> </p>

@@ -42,7 +42,7 @@ photoUploader = event =>{
         return (
             <div>            
                 <form  onSubmit={this.photoUploader}>
-                  Add or change picture:    
+                  Add or change picture:   
                 <input id="file" type="file"  
                        name="picture" 
                        accept="image/*" 

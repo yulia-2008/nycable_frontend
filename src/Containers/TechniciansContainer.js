@@ -81,10 +81,11 @@ class TechniciansContainer extends Component {
     
 } 
     render() {
-            console.log("technicians container ", this.state.technicians)
+            // console.log("technicians container ", this.state.technicians)
         return (
-
+            <div id= "right-container">
             <Switch> 
+                
                 {this.state.technicians.length === 0 ? 
                     <h1>LOADING</h1>
                     :
@@ -99,7 +100,7 @@ class TechniciansContainer extends Component {
                 }
 
                 <Route path = '/' render ={() => 
-                    <div id="right-container">
+                    <div>
                         <h2>Technicians </h2>
                         <form onSubmit = {event => this.searchHandler(event)}>
                         <select name="company" onChange={this.changeHandler}>
@@ -120,7 +121,8 @@ class TechniciansContainer extends Component {
                         {this.getTechnicians()}
                         </div>       
                  }/>            
-            </Switch>           
+            </Switch>
+            </div>           
         );
     }
 }
