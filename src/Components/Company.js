@@ -20,7 +20,7 @@ class Company extends Component {
         return (
             <div id="company">
                 <div id="padding">     
-                    <img id="logo" src={this.props.company.logo}></img> 
+                    <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> 
 
                     <div id="flex">
                         <p id="rating-centered">{this.averageRating().toFixed(1)}</p>

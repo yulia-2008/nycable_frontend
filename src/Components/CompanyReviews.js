@@ -83,7 +83,7 @@ class CompanyReviews extends Component {
         //    console.log("company reviews", this.props.currentUser.id )
         return (
             <div>
-                <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon}></img> Back to Companies</span> </NavLink>
+                <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Companies</span> </NavLink>
               
                 <h1>{this.props.company.name}</h1>
                 {this.props.currentUser?                  

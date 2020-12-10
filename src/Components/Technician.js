@@ -33,7 +33,7 @@ class Technician extends Component {
                                crop="thumb" gravity="face" 
                                radius="max" />  
                         :                   
-                       <img id="photo-preview" src={Avatar}></img> 
+                       <img id="photo-preview" src={Avatar} alt="avatar"></img> 
                     } &nbsp;
                 </span>
 

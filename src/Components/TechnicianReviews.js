@@ -96,7 +96,7 @@ class TechnicianReviews extends Component {
         
     this.props.user ?  // current user is not on his profile page
             <div id="review-container"> 
-                <NavLink  to='/' ><span> <img id ="arrow" src={ArrowIcon}></img> Back to technicians</span> </NavLink> <br></br>  
+                <NavLink  to='/' ><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to technicians</span> </NavLink> <br></br>  
                 <div id="user-card">               
                     <h2 id ="no-margin">{this.props.user.first_name} {this.props.user.last_name}</h2>                  
                         {this.props.user.photo ? 

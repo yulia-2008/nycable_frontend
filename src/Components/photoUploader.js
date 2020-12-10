@@ -42,7 +42,7 @@ photoUploader = event =>{
         return (
             <div>            
                 <form  onSubmit={this.photoUploader}>
-                  Add or change picture:     
+                  Add or change picture:    
                 <input id="file" type="file"  
                        name="picture" 
                        accept="image/*" 
@@ -50,7 +50,7 @@ photoUploader = event =>{
                        onChange={this.changeHandler}></input>
                     <br/> 
                       {this.state.selectedFile ?     
-                     <><img id="photo-preview" src={this.filePreview()}></img><br/>
+                     <><img id="photo-preview" src={this.filePreview()} alt="userphoto"></img><br/>
                       <input type="submit" value="Upload" ></input></>
 
                      : null} 

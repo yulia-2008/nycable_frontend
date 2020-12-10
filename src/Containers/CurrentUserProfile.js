@@ -90,7 +90,7 @@ averageRating = () => {
                                     crop="pad"   radius="20" />
                                         // <img id="photo-profile" src={this.props.currentUser.picture}></img> 
                             :
-                            <img id="photo-profile" src={Avatar}></img>                    
+                            <img id="photo-profile" src={Avatar} alt="avatar"></img>                    
                     }
 
                     <PhotoUploader  currentUser={this.props.currentUser}
