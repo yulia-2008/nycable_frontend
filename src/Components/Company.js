@@ -16,7 +16,7 @@ class Company extends Component {
         }
 
     render() {
-        //   console.log("company", this.props)
+           console.log("company", this.props)
         return (
             <div id="company">
                 <div id="padding">     
@@ -40,15 +40,6 @@ class Company extends Component {
                 </div>
 
                 <img id="map" src={this.props.company.coverage_map} alt="coverage map"></img>
-
-                <div id="padding">
-                <p>Areas of coverage:</p>
-                <p className="tooltip">Manhattan <span className="tooltiptext"><p id="no-margin">Bushwick</p><p id="no-margin">Bensonhurst</p> <p id="no-margin">Red Hook</p></span> </p>
-                <p className="tooltip">Brooklyn</p>
-                <p className="tooltip">Bronx</p>
-                <p className="tooltip">Queens</p>
-                <p className="tooltip">Staten Island</p>
-                </div>
 
                 <div id="padding">
                     <br></br>
