@@ -96,7 +96,7 @@ input[type='search'] {
   /* float: left; */
   margin-left: 20px;
   margin-right: 50px;
-    width: auto;  
+   width: auto;  
 }
 
 #right-container {
@@ -205,9 +205,24 @@ textarea {
   margin-top: 70px;
   /* do I need this? */
 }
+#margin-left {
+  margin-left: 10px;
+}
 
 #arrow {
   width: 20px;
   height: 20px;
 }
 
+/* centered div elements  */
+#centered {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.grid-container { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));}
+  
+.grid-item {padding:25px}

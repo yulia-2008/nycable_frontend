@@ -52,7 +52,6 @@ class TechnicianReviews extends Component {
         if (this.props.user){id = this.props.user.id}
         else {id = this.props.currentUser.id}
 
-
             fetch(`http://localhost:4000/technicians/${id}/reviews`)
             .then(response => response.json())
             .then(response => this.setState({reviews: response
@@ -83,20 +82,20 @@ class TechnicianReviews extends Component {
 
     alreadyRated = () => {
         let rated = null
-        let ratingObject =  this.props.user.ratings.find((ratingObj) => ratingObj.user_id === this.props.currentUser.id)
+        let ratingObject =  this.props.user.ratings.find((ratingObj) => ratingObj.user_id === this.props.currentUser.id) // ratingObj.user_id - user who did rated
         typeof ratingObject === 'object' ?   rated = ratingObject.num : rated =  false 
         return rated
     }
 
 
     render() {
-                // console.log("rev-cont",this.props.currentUser.reviews )
+                 console.log("techn.rev",this.props.user )
         
     return (
         
     this.props.user ?  // current user is not on his profile page
             <div id="review-container"> 
-                <NavLink  to='/' ><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to technicians</span> </NavLink> <br></br>  
+                <NavLink  to='/technicians' ><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to technicians</span> </NavLink> <br></br>  
                 <div id="user-card">               
                     <h2 id ="no-margin">{this.props.user.first_name} {this.props.user.last_name}</h2>                  
                         {this.props.user.photo ? 

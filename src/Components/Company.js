@@ -16,7 +16,7 @@ class Company extends Component {
         }
 
     render() {
-           console.log("company", this.props)
+        //    console.log("company", this.props)
         return (
             <div id="company">
                 <div id="padding"> 
@@ -37,7 +37,7 @@ class Company extends Component {
                 <div id="padding">
                     <p>Cheapest Internet Plan &nbsp; <b>{this.props.company.internet_plan.toFixed(2)} /mo</b> , <b>{this.props.company.speed} mbps</b></p>
                     <p>Internet + TV &nbsp; <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo  ({this.props.company.number_of_channels}+ chanells)</b></p>
-                    <p>Special offer: {this.props.company.special_offer}</p>
+                    {this.props.company.special_offer? <p>Special offer: {this.props.company.special_offer}</p> :null}
                     <a href={this.props.company.plans_link}> More plans </a>
                     <p>Connect: {this.props.company.phone}</p>
                 </div>

@@ -30,7 +30,7 @@ class CompanyReviews extends Component {
         .then(response => response.json())
         .then(response => {
      
-                let ratingObject =  response.find((ratingObj) => ratingObj.user.id === this.props.currentUser.id)
+                let ratingObject =  response.find((ratingObj) => ratingObj.user.id === this.props.currentUser.id) // ratingObj.user && ratingObj.user_id -  user who did rated
                 typeof ratingObject === 'object' ?  
                      this.setState({alreadyRated: ratingObject.num}) 
                      : this.setState({alreadyRated: false})         

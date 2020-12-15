@@ -51,12 +51,6 @@ class CompaniesContainer extends Component {
             
             <div id="left-container">
                 <Switch> 
-                    <Route  path = '/technician/:id' render = {() =>              
-                        <>  
-                        <h2> Companies</h2>
-                        {this.renderCompanies()} 
-                        </>                                                    
-                    }/>
 
                     {this.state.companiesArray.length === 0 ? 
                         <h1>LOADING</h1>
@@ -64,8 +58,7 @@ class CompaniesContainer extends Component {
                         <Route  path = '/:company' render = {({match}) => {
                             let name = match.params.company   // id from params is a string
                             let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
-                            // return  < CompanyReviews company={foundCompany}                 
-                            //                         currentUser={this.props.currentUser}/>  
+                             
                             return  <CompanyReviews company={foundCompany} 
                                                     submitRating={this.submitRating}                
                                                     currentUser={this.props.currentUser}/> 
@@ -78,10 +71,7 @@ class CompaniesContainer extends Component {
                         {this.renderCompanies()} 
                         </>                                                    
                     }/>
-
-      
-                     
-               
+                    
                 </Switch>
             </div>
         );

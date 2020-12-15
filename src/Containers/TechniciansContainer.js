@@ -39,7 +39,7 @@ class TechniciansContainer extends Component {
             .then(response => response.json())
             .then(response => {
                 let foundTechnician = this.state.technicians.find(tech => tech.id === technician.id)
-                foundTechnician.ratings = [...foundTechnician.ratings, {num: response.num, subject_id: technician.id}]
+                foundTechnician.ratings = [...foundTechnician.ratings, {num: response.num, subject_id: technician.id, user_id: this.props.currentUser.id}]
             })
       }
 
@@ -81,7 +81,7 @@ class TechniciansContainer extends Component {
     
 } 
     render() {
-            // console.log("technicians container ", this.state.technicians)
+             console.log("technicians container ", this.state.technicians)
         return (
             <div id= "right-container">
             <Switch> 
@@ -89,7 +89,7 @@ class TechniciansContainer extends Component {
                 {this.state.technicians.length === 0 ? 
                     <h1>LOADING</h1>
                     :
-                    <Route  path = '/technician/:id' render = {({match}) => {
+                    <Route  path = '/technicians/:id' render = {({match}) => {
                         let id = parseInt(match.params.id)   // id from params is a string
                         let foundUser = this.state.technicians.find((user) => user.id === id )         
                         return   <TechnicianReviews user={foundUser}
@@ -99,27 +99,32 @@ class TechniciansContainer extends Component {
                     }} />
                 }
 
-                <Route path = '/' render ={() => 
-                    <div>
-                        <h2>Technicians </h2>
-                        <form onSubmit = {event => this.searchHandler(event)}>
-                        <select name="company" onChange={this.changeHandler}>
-                            <option value=""> All Companies </option>
-                                {/* attribute selected needed for: After going back from technician reviews to technicians so you can see your last search results */}
-                            <option value="Optimum" selected={"Optimum"===this.state.company} >Optimum</option> 
-                            <option value="Dish" selected={"Dish"===this.state.company}>Dish</option>
-                            <option value="Spectrum" selected={"Spectrum"===this.state.company}>Spectrum</option>
-                            <option value="Direct TV" selected={"Direct TV"===this.state.company}>Direct TV</option>
-                            <option value="Verizon" selected={"Verizon"===this.state.company}>Verizon</option> 
-                        </select> 
-                        &nbsp; &nbsp;
-                        <input  type="search" name="city" placeholder="City/Town"  value={this.state.city} onChange={this.changeHandler}></input>
-                        &nbsp; &nbsp;
-                        <input type="submit" value="Search"></input>
-                        </form>
+                <Route path = '/technicians' render ={() => 
+                    <div >
                         <br></br>
-                        {this.getTechnicians()}
-                        </div>       
+                        <div id="centered">
+                            <form onSubmit = {event => this.searchHandler(event)}>
+                            <select name="company" onChange={this.changeHandler}>
+                                <option value=""> All Companies </option>
+                                {/* attribute selected needed for: After going back from technician reviews to technicians so you can see your last search results */}
+                                 <option value="Optimum" selected={"Optimum"===this.state.company} >Optimum</option> 
+                                <option value="Dish" selected={"Dish"===this.state.company}>Dish</option>
+                                <option value="Spectrum" selected={"Spectrum"===this.state.company}>Spectrum</option>
+                                <option value="Direct TV" selected={"Direct TV"===this.state.company}>Direct TV</option>
+                                <option value="Verizon" selected={"Verizon"===this.state.company}>Verizon</option> 
+                            </select> 
+                            &nbsp; &nbsp;
+                            <input  type="search" name="city" placeholder="City/Town"  value={this.state.city} onChange={this.changeHandler}></input>
+                            &nbsp; &nbsp;
+                            <input type="submit" value="Search"></input>
+                            </form>
+                        </div>
+                        <br></br>
+
+                        <div className="grid-container">
+                            {this.getTechnicians()}
+                        </div>
+                    </div>       
                  }/>            
             </Switch>
             </div>           

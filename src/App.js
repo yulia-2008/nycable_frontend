@@ -129,14 +129,15 @@ componentDidMount(){
 
           } />
 
-          <Route  path = '/' render = {() => 
-                <div id="flex"> 
-                    <CompaniesContainer currentUser={this.state.currentUser}/>
-                    <TechniciansContainer currentUser={this.state.currentUser}
-                                          clickHandler = {this.clickHandler}
-                                          /> 
-                </div>
+          <Route path = '/technicians' render = {() => 
+                  <TechniciansContainer currentUser={this.state.currentUser}
+                                        clickHandler = {this.clickHandler} />
+           } />
+
+          <Route  path = '/' render = {() =>                  
+                  <CompaniesContainer currentUser={this.state.currentUser}/>                
            } /> 
+
        </Switch>      
     </div>
   );

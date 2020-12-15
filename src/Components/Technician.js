@@ -21,9 +21,9 @@ class Technician extends Component {
     }
 
     render() {
-              console.log("technician", this.props.technician)
+            //   console.log("technician", this.props.technician)
         return (
-            <>
+            <div className="grid-item">
             <div id="flex">                
                 <span >
                     {this.props.technician.photo ?
@@ -37,11 +37,10 @@ class Technician extends Component {
                     } &nbsp;
                 </span>
 
-                <div>
-                    <h3>{this.props.technician.first_name} {this.props.technician.last_name}
-                    
+                <div id="margin-left">
+                    <h3 id="no-margin">{this.props.technician.first_name} {this.props.technician.last_name}
                         {this.props.currentUser && this.props.currentUser.id === this.props.technician.id ?
-                            <span> (you)</span>
+                            <h6 id="no-margin"> (you)</h6>
                             : 
                             null
                         }
@@ -59,13 +58,13 @@ class Technician extends Component {
 
             <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                       '/profile' :
-                      `/technician/${this.props.technician.id}` }> 
+                      `/technicians/${this.props.technician.id}` }> 
                         {this.props.technician.reviews.length} reviews
             </NavLink><br/> 
 
 
             <br/><br/>
-       </>
+       </div>
             
         );
     }
