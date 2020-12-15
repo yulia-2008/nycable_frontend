@@ -75,7 +75,6 @@ class CompaniesContainer extends Component {
 
                     <Route  path = '/' render = {() =>
                         <>  
-                        <h2> Companies</h2>
                         {this.renderCompanies()} 
                         </>                                                    
                     }/>

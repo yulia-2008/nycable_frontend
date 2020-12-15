@@ -19,7 +19,8 @@ class Company extends Component {
            console.log("company", this.props)
         return (
             <div id="company">
-                <div id="padding">     
+                <div id="padding"> 
+                     
                     <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> 
 
                     <div id="flex">
@@ -34,17 +35,14 @@ class Company extends Component {
                 </div>
 
                 <div id="padding">
-                    <p>Cheapest Internet Plan : <b>{this.props.company.internet_plan} / mo</b></p>
-                    <p>Internet + TV Plan : <b>{this.props.company.internet_tv_plan} /mo </b></p>
-                    <p>Fastest speed : <b>{this.props.company.speed} mbps</b></p>
+                    <p>Cheapest Internet Plan &nbsp; <b>{this.props.company.internet_plan.toFixed(2)} /mo</b> , <b>{this.props.company.speed} mbps</b></p>
+                    <p>Internet + TV &nbsp; <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo  ({this.props.company.number_of_channels}+ chanells)</b></p>
+                    <p>Special offer: {this.props.company.special_offer}</p>
+                    <a href={this.props.company.plans_link}> More plans </a>
+                    <p>Connect: {this.props.company.phone}</p>
                 </div>
 
                 <img id="map" src={this.props.company.coverage_map} alt="coverage map"></img>
-
-                <div id="padding">
-                    <br></br>
-                    <a href={this.props.company.plans_link}> More info </a>
-                </div>
 
             </div>
         );
