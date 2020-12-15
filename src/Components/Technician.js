@@ -31,7 +31,7 @@ class Technician extends Component {
                                publicId={this.props.technician.photo} 
                                width="100" height= "100" 
                                crop="thumb" gravity="face" 
-                               radius="max" />  
+                               radius="20" />  
                         :                   
                        <img id="photo-preview" src={Avatar} alt="avatar"></img> 
                     } &nbsp;

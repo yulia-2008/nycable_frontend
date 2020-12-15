@@ -40,9 +40,9 @@ photoUploader = event =>{
     render() {
         // console.dir("uploader", this.props.currentUser)
         return (
-            <div>            
+            <div >            
                 <form  onSubmit={this.photoUploader}>
-                  Add or change picture:   
+                  Change picture:   
                 <input id="file" type="file"  
                        name="picture" 
                        accept="image/*" 

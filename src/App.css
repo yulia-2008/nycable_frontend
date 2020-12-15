@@ -56,8 +56,8 @@ a {
 }
 
 #photo-profile {
-  height: 50px;
-  width: 50px;
+  height: 10%;
+  width: 10%;
 }
 
 /* hide the name of the selected file */
@@ -79,7 +79,7 @@ input[type='search'] {
 } 
 
 #flex-container {
-  /* display: flex; */
+  display: flex; 
   padding: 40px;
   text-align: left;
 

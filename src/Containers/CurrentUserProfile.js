@@ -64,16 +64,17 @@ averageRating = () => {
     render() { 
         //   console.log( "Profile", this.props.currentUser)  
         return (                     
-            <div id="flex"> 
-                <div id="flex-box">
+            <> 
+                <div id="centered">
                     <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
 
                     {this.props.currentUser.photo ? 
                             <Image  cloudName="dytr9lvlc" 
                                     publicId={this.props.currentUser.photo} 
                                     width="300" height= "300" 
-                                    crop="pad"   radius="20" />
-                                        // <img id="photo-profile" src={this.props.currentUser.picture}></img> 
+                                    crop="fill"   radius="20" 
+                                    // crop="pad" - for keeping any pictures in original way by adding horizontalor vertical pads
+                                    gravity="auto"/>
                             :
                             <img id="photo-profile" src={Avatar} alt="avatar"></img>                    
                     }
@@ -111,19 +112,20 @@ averageRating = () => {
                     </form>                                
                 </div> 
 
-                <div id="flex-box">
-                    <TechnicianReviews  currentUser={this.props.currentUser}
+                <div id="flex-container">
+                    <div >
+                        <TechnicianReviews  currentUser={this.props.currentUser}
                                     //   user={this.props.user}
                                  //  clickHandler={this.props.clickHandler}
-                    />
-                </div> 
+                        />
+                    </div> 
 
-                <div id="flex-box">
-                    <h2>Who rated me:</h2>
-                    <ul>{this.renderWhoRatedMe()  }</ul>
+                     <div>
+                        <h2>Who rated me:</h2>
+                         <ul>{this.renderWhoRatedMe()  }</ul>
+                    </div>
                 </div>
-              
-            </div>
+            </>
         );
     }
 }
