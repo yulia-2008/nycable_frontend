@@ -49,7 +49,7 @@ class CompaniesContainer extends Component {
         //  console.log(this.state.companiesArray)
         return (
             
-            <div id="left-container">
+            <div id="centered">
                 <Switch> 
 
                     {this.state.companiesArray.length === 0 ? 
@@ -69,7 +69,7 @@ class CompaniesContainer extends Component {
                     <Route  path = '/' render = {() =>
                         <>  
                         {this.renderCompanies()} 
-                        </>                                                    
+                        </>                                                   
                     }/>
                     
                 </Switch>

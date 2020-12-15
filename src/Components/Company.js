@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Rating from 'material-ui-rating'
 import { NavLink } from 'react-router-dom';
+import phone from "../phone.png";
 
 class Company extends Component {
     averageRating = () => {
@@ -18,31 +19,40 @@ class Company extends Component {
     render() {
         //    console.log("company", this.props)
         return (
-            <div id="company">
-                <div id="padding"> 
-                     
+            <div id="flex-company">
+                <div id="flex-box">                      
                     <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> 
-
                     <div id="flex">
-                        <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
+                        <p >{this.averageRating().toFixed(1)} </p>
                         <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>
                      </div> 
-
 
                     <NavLink to={`/${this.props.company.name}`}> 
                        {this.props.company.reviews.length} reviews
                     </NavLink>&nbsp; &nbsp;
                 </div>
 
-                <div id="padding">
+                <div id="flex-box">
                     <p>Cheapest Internet Plan &nbsp; <b>{this.props.company.internet_plan.toFixed(2)} /mo</b> , <b>{this.props.company.speed} mbps</b></p>
                     <p>Internet + TV &nbsp; <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo  ({this.props.company.number_of_channels}+ chanells)</b></p>
-                    {this.props.company.special_offer? <p>Special offer: {this.props.company.special_offer}</p> :null}
-                    <a href={this.props.company.plans_link}> More plans </a>
-                    <p>Connect: {this.props.company.phone}</p>
+                    {this.props.company.special_offer? 
+                        <>
+                        Special offer 
+                        <p id="frame">
+                            &nbsp; {this.props.company.special_offer} &nbsp; 
+                        </p>
+                        </>
+
+                        :null
+                    }
+                    
+                    <a href={this.props.company.plans_link}> <h3 id="no-margin">More plans</h3> </a> <br></br>
+                    <span id="text-centered">
+                         <img id="phone-icon" src={phone} alt="phone icon"></img> {this.props.company.phone}
+                    </span>
                 </div>
 
-                <img id="map" src={this.props.company.coverage_map} alt="coverage map"></img>
+                <img id="flex-box" src={this.props.company.coverage_map} alt="coverage map"></img>
 
             </div>
         );

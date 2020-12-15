@@ -56,31 +56,16 @@ averageRating = () => {
 }
 
     renderWhoRatedMe = () => {return  this.state.ratingArray.map(rating => 
-                            <li>{rating.user.first_name} {rating.user.last_name} - {rating.num} stars</li>
+                            <p>{rating.user.first_name} {rating.user.last_name} - {rating.num} stars</p>
                             )
     }
-       
-     
-
-        // if  (this.props.currentUser.ratings.length > 0)  
-        //     {  
-           
-        //     }               
-
-        // if (r > 0)
-        // {
-        //     return r.map(rating => <h> {rating.num} </h>)
-        // }
-        // else
-        //     { return <p>You don't have any ratings yet!</p>}  
-            
-    
+        
 
     render() { 
         //   console.log( "Profile", this.props.currentUser)  
         return (                     
             <div id="flex"> 
-                <div id="left-margin">
+                <div id="flex-box">
                     <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
 
                     {this.props.currentUser.photo ? 
@@ -126,14 +111,14 @@ averageRating = () => {
                     </form>                                
                 </div> 
 
-                <div id="left-margin">
+                <div id="flex-box">
                     <TechnicianReviews  currentUser={this.props.currentUser}
                                     //   user={this.props.user}
                                  //  clickHandler={this.props.clickHandler}
                     />
                 </div> 
 
-                <div id="left-margin">
+                <div id="flex-box">
                     <h2>Who rated me:</h2>
                     <ul>{this.renderWhoRatedMe()  }</ul>
                 </div>

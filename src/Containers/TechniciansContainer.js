@@ -83,7 +83,7 @@ class TechniciansContainer extends Component {
     render() {
              console.log("technicians container ", this.state.technicians)
         return (
-            <div id= "right-container">
+            <div>
             <Switch> 
                 
                 {this.state.technicians.length === 0 ? 
@@ -92,10 +92,11 @@ class TechniciansContainer extends Component {
                     <Route  path = '/technicians/:id' render = {({match}) => {
                         let id = parseInt(match.params.id)   // id from params is a string
                         let foundUser = this.state.technicians.find((user) => user.id === id )         
-                        return   <TechnicianReviews user={foundUser}
+                        return  <div id="centered"> <TechnicianReviews user={foundUser}
                                                     currentUser={this.props.currentUser}
                                                     submitReview={this.submitReview}
-                                                    submitRating={this.submitRating} />  
+                                                    submitRating={this.submitRating} /> 
+                                </div> 
                     }} />
                 }
 

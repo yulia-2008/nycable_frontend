@@ -82,14 +82,14 @@ class CompanyReviews extends Component {
         //    console.log("company reviews", this.props.company.ratings )
         //    console.log("company reviews", this.props.currentUser.id )
         return (
-            <div>
-                <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Companies</span> </NavLink>
-              
-                <h1>{this.props.company.name}</h1>
+            <>
+            <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Providers</span> </NavLink>
+            <div id="reviews-container"> 
+                <h1 id="no-margin">{this.props.company.name}</h1>
                 {this.props.currentUser?                  
                         <>
                         { this.state.alreadyRated ?           // check if current user already rated this company 
-                            <p id ="no-margin">You have rated this company as  {this.state.alreadyRated}</p>
+                            <p id ="no-margin">You have already rated this company as  {this.state.alreadyRated}</p>
                             :        
                             this.state.ratingSubmited ? 
                                 <p>Thank you for rating</p> 
@@ -133,9 +133,11 @@ class CompanyReviews extends Component {
                     </>
                 }
                 <br></br>
-                {this.renderReviews()}
-
+                <div id="reviews-left-align">
+                    {this.renderReviews()}
+                </div>
             </div>
+            </>
         );
     }
 }

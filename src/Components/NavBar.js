@@ -7,8 +7,8 @@ import {NavLink} from 'react-router-dom';
 class NavBar extends Component {
     render() {
         return (            
-            <span>     
-                <NavLink  to='/' > Home  </NavLink>
+            <div id="nav-bar">     
+                <NavLink  to='/' > Providers  </NavLink>
                 &nbsp;  &nbsp;
 
                 <NavLink  to='/technicians'> Technicians </NavLink>
@@ -28,8 +28,8 @@ class NavBar extends Component {
                     :
                     <NavLink  to='/signup'> Signup/Login </NavLink>  
                 }
-
-             </span> 
+             <br></br> <br></br>
+             </div> 
         );
     }
 }

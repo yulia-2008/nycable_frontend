@@ -111,9 +111,9 @@ componentDidMount(){
         // console.log("app", this.state.user)
     return ( 
     <div>
-        <div id="nav-bar">
+      
        <NavBar currentUser={this.state.currentUser} logoutHandler={this.logoutHandler}/> 
-      </div>
+      
        <Switch>
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
                                                             loginHandler={this.loginHandler} />

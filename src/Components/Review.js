@@ -8,7 +8,7 @@ class Review extends Component {
         // navlik need to be finished.
         return (
             <div>
-                {this.props.review.user.first_name} {this.props.review.user.last_name}              
+                <b>{this.props.review.user.first_name} {this.props.review.user.last_name} </b>             
                  &nbsp; &nbsp; 
                 {this.props.review.text} 
             </div>

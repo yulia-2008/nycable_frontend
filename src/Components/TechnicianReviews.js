@@ -89,14 +89,16 @@ class TechnicianReviews extends Component {
 
 
     render() {
-                 console.log("techn.rev",this.props.user )
+                //  console.log("techn.rev",this.props.user )
         
     return (
         
     this.props.user ?  // current user is not on his profile page
-            <div id="review-container"> 
-                <NavLink  to='/technicians' ><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to technicians</span> </NavLink> <br></br>  
-                <div id="user-card">               
+        <> 
+        <NavLink  to='/technicians' ><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to technicians</span> </NavLink>  
+            <div id="reviews-container">            
+                
+                <div>               
                     <h2 id ="no-margin">{this.props.user.first_name} {this.props.user.last_name}</h2>                  
                         {this.props.user.photo ? 
                             <Image cloudName="dytr9lvlc" 
@@ -152,9 +154,11 @@ class TechnicianReviews extends Component {
                     </>
                 }
                 <br/>
-                <h2>Reviews</h2>
+                <div id="reviews-left-align">
                 {this.renderReviews()} 
-                 </div>
+                </div>
+            </div>
+        </>
     :                      // current user on his profile page
     <>
     <h2>Reviews</h2>
