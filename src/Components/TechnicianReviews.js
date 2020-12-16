@@ -64,9 +64,7 @@ class TechnicianReviews extends Component {
         return  this.state.reviews !==[] ?
             this.state.reviews.map(rev => <Review key={rev.id} review={rev} 
                                                   currentUser={this.props.currentUser}                 
-                                                  user={this.props.user}                   // maybe need later for link
-                                                                        // clickHandler={this.props.clickHandler} 
-                                                                        />)           
+                                                  user={this.props.user}/>)           
             :
             null                                                                
     }
@@ -89,8 +87,7 @@ class TechnicianReviews extends Component {
 
 
     render() {
-                //  console.log("techn.rev",this.props.user )
-        
+                //  console.log("techn.rev",this.props.user )        
     return (
         
     this.props.user ?  // current user is not on his profile page
@@ -103,7 +100,7 @@ class TechnicianReviews extends Component {
                         {this.props.user.photo ? 
                             <Image cloudName="dytr9lvlc" 
                                     publicId={this.props.user.photo} 
-                                    width="50" height= "50" 
+                                    width="200" height= "200" 
                                     crop="pad"   radius="20" />
                             :
                             <img id="photo-profile" src={Avatar}></img>                    
@@ -160,12 +157,10 @@ class TechnicianReviews extends Component {
             </div>
         </>
     :                      // current user on his profile page
-    <>
-    <h2>Reviews</h2>
-    {this.renderReviews()} 
-    </>        
-           
-        );
+    <div id= "reviews-left-align">
+        {this.renderReviews()} 
+    </div>                   
+    );
     }
 }
 

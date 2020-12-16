@@ -46,33 +46,26 @@ class CompaniesContainer extends Component {
 
 
     render() {
-        //  console.log(this.state.companiesArray)
+          console.log("companies container", this.state.companiesArray)
         return (
             
-            <div id="centered">
-                <Switch> 
-
+            <div id="centered">                                                                
                     {this.state.companiesArray.length === 0 ? 
                         <h1>LOADING</h1>
-                        :
-                        <Route  path = '/:company' render = {({match}) => {
-                            let name = match.params.company   // id from params is a string
-                            let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
-                             
-                            return  <CompanyReviews company={foundCompany} 
-                                                    submitRating={this.submitRating}                
-                                                    currentUser={this.props.currentUser}/> 
+                        : 
+                        <Switch>
+                             <Route  path = '/providers/:company' render = {({match}) => {
+                                    let name = match.params.company   // data from params is a string
+                                    let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
+                            
+                                    return  <CompanyReviews company={foundCompany} 
+                                                                submitRating={this.submitRating}                
+                                                        currentUser={this.props.currentUser}/> 
+                            }}/>
 
-                        }}/>
-                    }
-
-                    <Route  path = '/' render = {() =>
-                        <>  
-                        {this.renderCompanies()} 
-                        </>                                                   
-                    }/>
-                    
-                </Switch>
+                            <Route  path = '/providers' render = {() => {return this.renderCompanies()} }/>  
+                        </Switch>   
+                    }                                         
             </div>
         );
     }

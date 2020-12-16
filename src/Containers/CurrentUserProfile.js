@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
+import Star from "../Star.jpg";
 import {Image} from 'cloudinary-react';
 import TechnicianReviews from "../Components/TechnicianReviews";
 import Rating from 'material-ui-rating'
@@ -37,12 +38,12 @@ companySubmitHandler = event => {
 
 averageRating = () => {
     let average = 0.0
-    if (this.props.currentUser.ratings.length >=1) {
-    let ratingsQuantity = this.props.currentUser.ratings.length;   
-    let sum = 0;
-    for ( let i = 0; i < ratingsQuantity; i++)
-        { sum += this.props.currentUser.ratings[i].num }
-    average =  sum / ratingsQuantity 
+    if (this.props.currentUser.ratings.length > 0) {
+        let ratingsQuantity = this.props.currentUser.ratings.length;   
+        let sum = 0;
+        for ( let i = 0; i < ratingsQuantity; i++)
+            { sum += this.props.currentUser.ratings[i].num }
+        average =  sum / ratingsQuantity 
     }
     return average
     }
@@ -56,7 +57,9 @@ averageRating = () => {
 }
 
     renderWhoRatedMe = () => {return  this.state.ratingArray.map(rating => 
-                            <p>{rating.user.first_name} {rating.user.last_name} - {rating.num} stars</p>
+                            <p>{rating.user.first_name} {rating.user.last_name} - {rating.num} &nbsp;
+                            <img id="star-icon" src={Star} alt="star icon"></img>
+                            </p>
                             )
     }
         
@@ -64,9 +67,18 @@ averageRating = () => {
     render() { 
         //   console.log( "Profile", this.props.currentUser)  
         return (                     
-            <> 
-                <div id="centered">
-                    <h1>{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
+            <div id="centered"> 
+                <div >
+                    <h1 id="no-margin">{this.props.currentUser.first_name} &nbsp; {this.props.currentUser.last_name}</h1>
+
+                    {this.props.currentUser.role==="technician" ?
+                        <div id="flex">  
+                            {this.averageRating().toFixed(1)}
+                            <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
+                        </div>
+                        :
+                        null
+                    }
 
                     {this.props.currentUser.photo ? 
                             <Image  cloudName="dytr9lvlc" 
@@ -85,16 +97,11 @@ averageRating = () => {
                    
 
                     {this.props.currentUser.role==="technician" ?
-                        <>                       
-                        <div id="flex">  
-                           <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
-                           <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
-                        </div>
-                        <p>Company you work for: {this.props.currentUser.company_name}</p>
-                        </>
+                        <p id="no-margin">Company you work for: {this.props.currentUser.company_name}</p>                       
                         :
-                        <p>Company you get a service from: {this.props.currentUser.company_name}</p>
+                        <p id="no-margin">Company you get a service from: {this.props.currentUser.company_name}</p>
                     }
+                    <br/>
                                   
                     <form onSubmit={this.companySubmitHandler}>
                         <select id="select-field" name="company" onChange={this.changeHandler}>
@@ -109,23 +116,29 @@ averageRating = () => {
                                              
                         <input type="submit" value="Submit"></input> &nbsp;
                         {/* <input type="reset" ></input> */}
-                    </form>                                
+                    </form> 
+                    <br></br>                               
                 </div> 
 
-                <div id="flex-container">
-                    <div >
-                        <TechnicianReviews  currentUser={this.props.currentUser}
-                                    //   user={this.props.user}
-                                 //  clickHandler={this.props.clickHandler}
-                        />
-                    </div> 
 
-                     <div>
-                        <h2>Who rated me:</h2>
-                         <ul>{this.renderWhoRatedMe()  }</ul>
+                {this.props.currentUser.role==="technician" ?
+                <>
+                    <div id="flex-space-between">
+                        <div id="left-container">
+                            <h3 id="no-margin">Reviews</h3>
+                            <TechnicianReviews  currentUser={this.props.currentUser}/>
+                        </div> 
+
+                        <div id="right-container">
+                            <h3 id="no-margin">Ratings</h3>
+                            {this.renderWhoRatedMe()}
+                        </div>
                     </div>
-                </div>
-            </>
+                </>
+                :
+                null}
+
+            </div>
         );
     }
 }

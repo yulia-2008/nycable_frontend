@@ -104,9 +104,8 @@ componentDidMount(){
   //  else {
   //    this.props.history.push('/signup')
   //  }  
-
-
 }
+
   render(){
         // console.log("app", this.state.user)
     return ( 
@@ -134,9 +133,13 @@ componentDidMount(){
                                         clickHandler = {this.clickHandler} />
            } />
 
-          <Route  path = '/' render = {() =>                  
+          <Route  path = '/providers' render = {() =>                  
                   <CompaniesContainer currentUser={this.state.currentUser}/>                
            } /> 
+
+          <Route  path = '/' render = {() =>                  
+                  <h1>Home</h1>                
+           } />
 
        </Switch>      
     </div>

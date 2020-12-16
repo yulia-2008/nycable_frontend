@@ -79,17 +79,18 @@ class CompanyReviews extends Component {
 
 
     render() {
-        //    console.log("company reviews", this.props.company.ratings )
+            console.log("company reviews", this.props.company )
         //    console.log("company reviews", this.props.currentUser.id )
         return (
             <>
-            <NavLink  to='/'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Providers</span> </NavLink>
+            <NavLink  to='/providers'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Providers</span> </NavLink>
             <div id="reviews-container"> 
-                <h1 id="no-margin">{this.props.company.name}</h1>
+                {/* <h1 id="no-margin">{this.props.company.name}</h1> */}
+                <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> 
                 {this.props.currentUser?                  
                         <>
                         { this.state.alreadyRated ?           // check if current user already rated this company 
-                            <p id ="no-margin">You have already rated this company as  {this.state.alreadyRated}</p>
+                            <p id ="no-margin">You rated this company as  {this.state.alreadyRated}</p>
                             :        
                             this.state.ratingSubmited ? 
                                 <p>Thank you for rating</p> 

@@ -56,8 +56,8 @@ a {
 }
 
 #photo-profile {
-  height: 10%;
-  width: 10%;
+  height: 20%;
+  width: 20%;
 }
 
 /* hide the name of the selected file */
@@ -78,34 +78,28 @@ input[type='search'] {
   text-shadow: 1px 1px black;
 } 
 
-#flex-container {
+/* #flex-container {
   display: flex; 
-  padding: 40px;
+  
   text-align: left;
 
-  /* do I need this? */
-}
-
-
-/* #centered {
-  text-align: center;
+  
 } */
+
 
 
 
 /* #left-container {
   float: left; 
-  margin-left: 20px;
-  margin-right: 50px;
-   width: auto;  
-} */
+  padding-right: 15px;
+    
+} 
 
-/* #right-container {
+#right-container {
   float: right; 
-  margin-right: 50px;
-  margin-left: 20px;
-  width: 15% ; 
-} */
+  padding-left: 15px;
+   
+}  */
 
 /* #review-container {
   padding-top: 20px;
@@ -181,7 +175,7 @@ textarea {
 #flex-company {
   border: 2px solid rgb(214, 213, 213);
   border-radius: 5px;
-  box-shadow: 5px 10px #999999;
+  box-shadow: 5px 10px  #cac9c9;
   margin: 40px;
   padding: 15px;
   display: flex; 
@@ -190,10 +184,41 @@ textarea {
 
 #flex {
   display: flex;
-  /* text-align: right; */
+  /* centering item vertically in a flex container */
   align-items: center; 
-
+ /* centering item horizontally in a flex container */
+  justify-content: center;
 }
+
+
+
+#flex-space-between {
+  display: flex;
+  /* locates 2 items on left and right sides */
+  justify-content: space-between; 
+}
+
+#left-container{
+  border: 2px solid rgb(214, 213, 213);
+  border-radius: 5px;
+  box-shadow: 5px 10px  #cac9c9;
+  padding: 3%;
+  width: 60%
+}
+
+#right-container {
+  border: 2px solid rgb(214, 213, 213);
+  border-radius: 5px;
+  box-shadow: 5px 10px  #cac9c9;
+  padding: 3%;
+  width: 20%
+}
+
+#star-icon {
+  width: 10%;
+  height: 10%;
+}
+
 
 #frame {
   border-radius: 5px;
@@ -212,16 +237,21 @@ textarea {
   text-align: center;
 }
 
+#form-margin {
+  /* form has hidded file-name, so it is not centered with id flex */
+  margin-left: 15%;
+}
+
 #reviews-container {
   margin-top: 40px;
   padding: 20px;
   border: 2px solid rgb(214, 213, 213);
   border-radius: 5px;
-  box-shadow: 5px 10px #999999;
+  box-shadow: 5px 10px  #cac9c9;
 }
 
 #reviews-left-align {
-  padding-left: 40%;
+  padding-left: 5%;
   text-align: left;
 }
 
@@ -243,9 +273,15 @@ textarea {
 
 .grid-container { 
   display: grid; 
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));}
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));}
   
-.grid-item {padding:25px}
+.grid-item {
+  padding: 25px;
+  margin: 20px;
+  border: 2px solid rgb(230, 229, 229);
+  border-radius: 5px;
+  box-shadow: 5px 10px #cac9c9;
+}
 
 #phone-icon {
   height: 7%;

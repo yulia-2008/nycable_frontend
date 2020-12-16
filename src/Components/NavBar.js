@@ -7,8 +7,12 @@ import {NavLink} from 'react-router-dom';
 class NavBar extends Component {
     render() {
         return (            
-            <div id="nav-bar">     
-                <NavLink  to='/' > Providers  </NavLink>
+            <div id="nav-bar"> 
+
+                <NavLink  to='/'> Home </NavLink>
+                &nbsp;  &nbsp;
+
+                <NavLink  to='/providers' > Providers  </NavLink>
                 &nbsp;  &nbsp;
 
                 <NavLink  to='/technicians'> Technicians </NavLink>

@@ -34,11 +34,11 @@ class Technician extends Component {
                                radius="20" />  
                         :                   
                        <img id="photo-preview" src={Avatar} alt="avatar"></img> 
-                    } &nbsp;
+                    }
                 </span>
 
                 <div id="margin-left">
-                    <h3 id="no-margin">{this.props.technician.first_name} {this.props.technician.last_name}
+                    <h3 id="no-margin">{this.props.technician.first_name} <br></br>{this.props.technician.last_name}
                         {this.props.currentUser && this.props.currentUser.id === this.props.technician.id ?
                             <h6 id="no-margin"> (you)</h6>
                             : 
@@ -52,18 +52,17 @@ class Technician extends Component {
             </div>
 
             <div id="flex">  
-                <p id="rating-centered">{this.averageRating().toFixed(1)}</p>
-                <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>                     
+                {this.averageRating().toFixed(1)}
+                <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small" />                     
             </div>
 
-            <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
-                      '/profile' :
-                      `/technicians/${this.props.technician.id}` }> 
-                        {this.props.technician.reviews.length} reviews
-            </NavLink><br/> 
-
-
-            <br/><br/>
+            <div>
+                <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
+                         '/profile' :
+                         `/technicians/${this.props.technician.id}` }> 
+                         {this.props.technician.reviews.length} reviews
+                </NavLink><br/> 
+            </div>
        </div>
             
         );

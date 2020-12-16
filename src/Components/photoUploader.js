@@ -40,8 +40,8 @@ photoUploader = event =>{
     render() {
         // console.dir("uploader", this.props.currentUser)
         return (
-            <div >            
-                <form  onSubmit={this.photoUploader}>
+            < div id="flex">            
+                <form id="form-margin" onSubmit={this.photoUploader}>
                   Change picture:   
                 <input id="file" type="file"  
                        name="picture" 

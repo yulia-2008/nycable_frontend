@@ -17,7 +17,7 @@ class Company extends Component {
         }
 
     render() {
-        //    console.log("company", this.props)
+            // console.log("company", this.props)
         return (
             <div id="flex-company">
                 <div id="flex-box">                      
@@ -27,7 +27,7 @@ class Company extends Component {
                         <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>
                      </div> 
 
-                    <NavLink to={`/${this.props.company.name}`}> 
+                    <NavLink to={`providers/${this.props.company.name}`}> 
                        {this.props.company.reviews.length} reviews
                     </NavLink>&nbsp; &nbsp;
                 </div>

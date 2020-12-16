@@ -27,7 +27,7 @@ loginHandler = event => {
     render() {
         return (
               
-            <div>
+            <div id="centered">
               <h4>Login</h4>
               <form onSubmit = {event => this.loginHandler(event)}>
                 <label>User name:</label>
@@ -37,9 +37,10 @@ loginHandler = event => {
                 <label>Password:</label>
                 <br/>
                 <input type="password"  name="password" onChange = {event=> this.changeHandler(event)}></input>
-                <br/><br/>               
+                <br/>               
                 <input  type="submit" value="Submit"></input>              
               </form>
+              <br/>
 
 
                <h4>Signup</h4>
@@ -78,9 +79,7 @@ loginHandler = event => {
                   <input type="password"  name="password"
                          onChange = {event=> this.changeHandler(event)}>
                    </input>
-                  <br/>
-
-                  
+                  <br/>                 
                   <input  type="submit" value="Submit"></input>
                
               </form>  
