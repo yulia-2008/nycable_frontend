@@ -91,17 +91,14 @@ averageRating = () => {
                             <img id="photo-profile" src={Avatar} alt="avatar"></img>                    
                     }
 
-                    <PhotoUploader  currentUser={this.props.currentUser}
-                                    submitPhoto={this.props.submitPhoto} />
-                    <p>City: {this.props.currentUser.city}</p>
-                   
-
-                    {this.props.currentUser.role==="technician" ?
-                        <p id="no-margin">Company you work for: {this.props.currentUser.company_name}</p>                       
-                        :
-                        <p id="no-margin">Company you get a service from: {this.props.currentUser.company_name}</p>
-                    }
                     <br/>
+                    City <b>{this.props.currentUser.city}</b>
+                     <br/>                  
+                    Company <b>{this.props.currentUser.company_name}</b>                   
+                    <br/>
+
+                    <PhotoUploader  currentUser={this.props.currentUser}
+                                    submitPhoto={this.props.submitPhoto} />              
                                   
                     <form onSubmit={this.companySubmitHandler}>
                         <select id="select-field" name="company" onChange={this.changeHandler}>

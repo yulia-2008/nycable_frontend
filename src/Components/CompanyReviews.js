@@ -79,13 +79,13 @@ class CompanyReviews extends Component {
 
 
     render() {
-            console.log("company reviews", this.props.company )
+            // console.log("company reviews", this.props.company )
         //    console.log("company reviews", this.props.currentUser.id )
         return (
             <>
             <NavLink  to='/providers'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Providers</span> </NavLink>
             <div id="reviews-container"> 
-                {/* <h1 id="no-margin">{this.props.company.name}</h1> */}
+              
                 <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> 
                 {this.props.currentUser?                  
                         <>
@@ -96,7 +96,7 @@ class CompanyReviews extends Component {
                                 <p>Thank you for rating</p> 
                                 :                                                                   
                                 <div id="flex"> 
-                                <p id="rating-centered">Rate:</p>                                           
+                                <p>Rate:</p>                                           
                                 <Rating value={this.state.ratingValue}                                 
                                         size="large"
                                         onChange = { (value) => this.ratingChangeHandler(value)}/> 

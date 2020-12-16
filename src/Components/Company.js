@@ -33,8 +33,24 @@ class Company extends Component {
                 </div>
 
                 <div id="flex-box">
-                    <p>Cheapest Internet Plan &nbsp; <b>{this.props.company.internet_plan.toFixed(2)} /mo</b> , <b>{this.props.company.speed} mbps</b></p>
-                    <p>Internet + TV &nbsp; <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo  ({this.props.company.number_of_channels}+ chanells)</b></p>
+                    {this.props.company.internet_plan ? 
+                        <p>Cheapest Internet Plan &nbsp; <b>{this.props.company.internet_plan.toFixed(2)} /mo</b> , <b>{this.props.company.speed} mbps</b></p>
+                        :
+                        null
+                    }
+
+                    {this.props.company.tv_plan ?
+                        <p>Cheapest TV Plan &nbsp; <b>{this.props.company.tv_plan.toFixed(2)} /mo</b></p>
+                        :
+                        null
+                    }
+
+                    {this.props.company.internet_tv_plan ?
+                        <p>Internet + TV &nbsp; <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo  ({this.props.company.number_of_channels}+ chanells)</b></p>
+                        :
+                        null 
+                    }
+
                     {this.props.company.special_offer? 
                         <>
                         Special offer 

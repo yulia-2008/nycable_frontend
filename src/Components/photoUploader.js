@@ -42,7 +42,7 @@ photoUploader = event =>{
         return (
             < div id="flex">            
                 <form id="form-margin" onSubmit={this.photoUploader}>
-                  Change picture:   
+                  Change picture &nbsp;   
                 <input id="file" type="file"  
                        name="picture" 
                        accept="image/*" 
