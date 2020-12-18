@@ -5,12 +5,14 @@ import CompaniesContainer from './Containers/CompaniesContainer';
 import CurrentUserProfile from "./Containers/CurrentUserProfile";
 import NavBar from './Components/NavBar';
 import Signup from './Components/Signup';
+import Home from './Components/Home';
 import { Route, Switch, withRouter} from 'react-router-dom';
 
 class App extends React.Component {
 
   state={
     currentUser: null, 
+    failMessage: ""
   }
   
 
@@ -43,13 +45,18 @@ signUpHandler = userObj => {
                    }
         fetch('http://localhost:4000/users', options)
         .then(response => response.json())
-        .then(resp => {
-           localStorage.setItem("token", resp.jwt) 
-           this.setState({currentUser: resp.user}, ()=> this.props.history.push('/profile')
-           )
+        .then(resp => {console.log("sign", resp)
+          if (resp.user) {
+              localStorage.setItem("token", resp.jwt) 
+              this.setState({currentUser: resp.user, 
+                             failMessage: "" }, ()=> this.props.history.push('/profile')
+              )
+          }
+          else {this.setState({failMessage: {"error": "User with the same username already exists!" }
+          })
+          }
         })
         //collback function run after state is set
- 
 }
 
 loginHandler = userInfo =>{
@@ -68,11 +75,16 @@ loginHandler = userInfo =>{
     fetch('http://localhost:4000/login', options)  // got toket in response !
     .then(response => response.json())
     .then(resp =>{
-        localStorage.setItem("token", resp.jwt) 
-        this.setState({currentUser: resp.user},
-          ()=> this.props.history.push('/')
-        )
-        })
+        if (resp.user) {
+            localStorage.setItem("token", resp.jwt) 
+            this.setState({currentUser: resp.user,
+                          failMessage: ""
+                          }, ()=> this.props.history.push('/')
+                          )
+        }
+        else { this.setState({failMessage: resp})
+        }
+    })
 }
 
 logoutHandler=()=>{
@@ -115,7 +127,8 @@ componentDidMount(){
       
        <Switch>
           <Route  path = '/signup' render = {() => <Signup  signUpHandler={this.signUpHandler}
-                                                            loginHandler={this.loginHandler} />
+                                                            loginHandler={this.loginHandler} 
+                                                            message = {this.state.failMessage}/>
           } />
 
          
@@ -138,7 +151,7 @@ componentDidMount(){
            } /> 
 
           <Route  path = '/' render = {() =>                  
-                  <h1>Home</h1>                
+                  <Home/>                
            } />
 
        </Switch>      

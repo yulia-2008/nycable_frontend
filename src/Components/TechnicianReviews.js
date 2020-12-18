@@ -38,7 +38,7 @@ class TechnicianReviews extends Component {
         fetch('http://localhost:4000/reviews', options)
         .then(response => response.json())
         .then(response => { this.setState({
-                                clicked: !this.state.clicked, 
+                                review: "", 
                                 reviews: [...this.state.reviews, response]
                             }); this.props.submitReview(this.props.user, response)
                           }
@@ -68,6 +68,7 @@ class TechnicianReviews extends Component {
             :
             null                                                                
     }
+
    
     ratingChangeHandler = val => {
         this.setState({ratingValue: val})
@@ -109,46 +110,32 @@ class TechnicianReviews extends Component {
                 </div>          
                 {this.props.currentUser?                  
                     <>
-                    { this.alreadyRated() ?           // check if current user already rated this technician 
-                        <p id ="no-margin">You have rated this technitian as  {this.alreadyRated()}</p>
-                        :        
-                        this.state.ratingSubmited ? 
-                            <p>Thank you for rating</p> 
-                            :                                                                   
-                            <div id="flex"> 
-                                <p id="rating-centered">Rate:</p>                                           
-                                <Rating value={this.state.ratingValue}                                 
-                                         size="large"
-                                        onChange = { (value) => this.ratingChangeHandler(value)}/> 
-                                <button id="small-button" onClick={this.submitRating}>Submit</button>
-                            </div>                              
-                    }
-                    <br/> 
-                    <button onClick={this.clickHandler}>Leave a review</button>  <br></br>                                                                                  
-                    {this.state.clicked ?
-                        <>
+                        { this.alreadyRated() ?           // check if current user already rated this technician 
+                            <p id ="no-margin">You have rated this technitian as  {this.alreadyRated()}</p>
+                            :        
+                            this.state.ratingSubmited ? 
+                                <p>Thank you for rating</p> 
+                                :                                                                   
+                                <div id="flex"> 
+                                    <p id="rating-centered">Rate:</p>                                           
+                                    <Rating value={this.state.ratingValue}                                 
+                                             size="large"
+                                            onChange = { (value) => this.ratingChangeHandler(value)}/> 
+                                    <button id="small-button" onClick={this.submitRating}>Submit</button>
+                                </div>                              
+                        }
+                        <br/>                        
                         <textarea type="text"  name="review" rows="4"
-                                    placeholder = "Enter your text"
+                                    placeholder = "Leave a review"
+                                    value={this.state.review}
                                     onChange={this.changeHandler}>                           
-                        </textarea>
-                        <button onClick={this.submitReview}>Submit</button> 
-                        </>
-                        :
-                        null
-                    }
+                        </textarea> <br/>
+                        <button onClick={this.submitReview}>Submit</button>                         
                     </>                                                  
                     :          // you are not logged in
-                    <>
-                    <button onClick={this.clickHandler}>Leave a review</button><br></br>
-                        {this.state.clicked ?
-                            <textarea type="text"  rows="4"
-                                        placeholder = "Login to leave a review"
-                                        value = "Login to leave a review">                           
-                            </textarea> 
-                            :
-                            null
-                        }                             
-                    </>
+                    <p id="red"> Want to rate this technician <br/> or leave a review? 
+                    <NavLink  to='/signup'><span>  Signup</span> </NavLink>
+                    </p>
                 }
                 <br/>
                 <div id="reviews-left-align">
@@ -156,10 +143,10 @@ class TechnicianReviews extends Component {
                 </div>
             </div>
         </>
-    :                      // current user on his profile page
-    <div id= "reviews-left-align">
-        {this.renderReviews()} 
-    </div>                   
+        :                      // current user on his profile page
+        <div id= "reviews-left-align">
+            {this.renderReviews()} 
+        </div>                   
     );
     }
 }

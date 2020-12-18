@@ -29,11 +29,15 @@ class CompanyReviews extends Component {
         fetch(`http://localhost:4000/companies/${this.props.company.id}/ratings`)
         .then(response => response.json())
         .then(response => {
-     
-                let ratingObject =  response.find((ratingObj) => ratingObj.user.id === this.props.currentUser.id) // ratingObj.user && ratingObj.user_id -  user who did rated
-                typeof ratingObject === 'object' ?  
-                     this.setState({alreadyRated: ratingObject.num}) 
-                     : this.setState({alreadyRated: false})         
+                if (this.props.currentUser) {
+                    
+                    let ratingObject =  response.find((ratingObj) => ratingObj.user.id === this.props.currentUser.id) // ratingObj.user && ratingObj.user_id -  user who did rated
+                    typeof ratingObject === 'object' ?  
+                            this.setState({alreadyRated: ratingObject.num}) 
+                            : 
+                            this.setState({alreadyRated: false}) 
+                    
+                    }           
     })
 }
 
@@ -44,10 +48,7 @@ class CompanyReviews extends Component {
     changeHandler = event => { 
         this.setState({review: event.target.value})
     }
-    clickHandler = () => { this.setState({clicked: !this.state.clicked})
-    }
-
-
+    
     submitReview = () => { 
         let options = { method: 'POST',
                         headers: {
@@ -65,7 +66,7 @@ class CompanyReviews extends Component {
         fetch('http://localhost:4000/reviews', options)
         .then(response => response.json())
         .then(response => { this.setState({
-                                clicked: !this.state.clicked, 
+                                review: "",
                                 newReview: response
                             })
                           }
@@ -79,16 +80,17 @@ class CompanyReviews extends Component {
 
 
     render() {
-            // console.log("company reviews", this.props.company )
+             console.log("company reviews", this.state.review )
         //    console.log("company reviews", this.props.currentUser.id )
         return (
             <>
             <NavLink  to='/providers'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Providers</span> </NavLink>
             <div id="reviews-container"> 
               
-                <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> 
+                <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> <br/>
+                
                 {this.props.currentUser?                  
-                        <>
+                    <>
                         { this.state.alreadyRated ?           // check if current user already rated this company 
                             <p id ="no-margin">You rated this company as  {this.state.alreadyRated}</p>
                             :        
@@ -104,37 +106,20 @@ class CompanyReviews extends Component {
                                 </div>                              
                         }
                         <br/> 
-                        <button onClick={this.clickHandler}>Leave a review</button>  <br></br>                                                                                  
-                        {this.state.clicked ?
-                                <>
-                                <textarea type="text"  name="review" rows="4"
-                                          placeholder = "Enter your text"
-                                          onChange={this.changeHandler}>                           
-                                </textarea>
-                                <button onClick={this.submitReview}>Submit</button> 
-                                </>
-                                :
-                                null
-                        }
-                        </>                                                  
-                :          // you are not logged in
-                    <>
-                    <button onClick={this.clickHandler}>Leave a review</button><br></br>
-                        {this.state.clicked ?
-                                <>
-                                <textarea type="text"  rows="4"
-                                          placeholder = "Login to leave a review"
-                                          value = "Login to leave a review">                           
-                                </textarea>
-                                {/* <button>Submit</button>  */}
-                                 </> 
-                                 :
-                                 null
-                        }                             
-                    </>
+                        <textarea type="text"  name="review" rows="4"
+                                    placeholder = "Leave a review"
+                                    value={this.state.review}
+                                    onChange={this.changeHandler}>                           
+                        </textarea> <br/>
+                        <button onClick={this.submitReview}>Submit</button>                                 
+                    </>                                                  
+                    :          // you are not logged in
+                    <p id="red"> Want to rate this company <br/> or leave a review? 
+                        <NavLink  to='/signup'><span>  Signup</span> </NavLink>
+                    </p>
                 }
-                <br></br>
-                <div id="reviews-left-align">
+                
+                <div id="reviews-left-align">               
                     {this.renderReviews()}
                 </div>
             </div>

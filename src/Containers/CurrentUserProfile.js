@@ -56,7 +56,7 @@ averageRating = () => {
          })
 }
 
-    renderWhoRatedMe = () => {return  this.state.ratingArray.map(rating => 
+    whoRatedMe = () => {return  this.state.ratingArray.map(rating => 
                             <p>{rating.user.first_name} {rating.user.last_name} - {rating.num} &nbsp;
                             <img id="star-icon" src={Star} alt="star icon"></img>
                             </p>
@@ -94,11 +94,16 @@ averageRating = () => {
                     <br/>
                     City <b>{this.props.currentUser.city}</b>
                      <br/>                  
-                    Company <b>{this.props.currentUser.company_name}</b>                   
-                    <br/>
+                    Company <b>{this.props.currentUser.company_name ? 
+                                    this.props.currentUser.company_name 
+                                    :
+                                    "---"
+                                }
+                            </b>
+                    <br/> <br/>
 
                     <PhotoUploader  currentUser={this.props.currentUser}
-                                    submitPhoto={this.props.submitPhoto} />              
+                                    submitPhoto={this.props.submitPhoto} /> <br/>             
                                   
                     <form onSubmit={this.companySubmitHandler}>
                         <select id="select-field" name="company" onChange={this.changeHandler}>
@@ -113,22 +118,19 @@ averageRating = () => {
                                              
                         <input type="submit" value="Submit"></input> &nbsp;
                         {/* <input type="reset" ></input> */}
-                    </form> 
-                    <br></br>                               
+                    </form>                                
                 </div> 
-
 
                 {this.props.currentUser.role==="technician" ?
                 <>
+                    <h4>Reviews</h4>
                     <div id="flex-space-between">
                         <div id="left-container">
-                            <h3 id="no-margin">Reviews</h3>
                             <TechnicianReviews  currentUser={this.props.currentUser}/>
                         </div> 
 
                         <div id="right-container">
-                            <h3 id="no-margin">Ratings</h3>
-                            {this.renderWhoRatedMe()}
+                            {this.whoRatedMe()}
                         </div>
                     </div>
                 </>

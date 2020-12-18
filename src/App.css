@@ -1,6 +1,4 @@
-/* .App {
-  text-align: left;
-} */
+
 
 .App-logo {
   height: 40vmin;
@@ -120,6 +118,10 @@ textarea {
   height: 30px;
 }
 
+#red {
+  color: red;
+}
+
 #small-button{
   font-size: small;
   margin: 10px;
@@ -196,20 +198,18 @@ textarea {
   display: flex;
   /* locates 2 items on left and right sides */
   justify-content: space-between; 
-}
 
-#left-container{
   border: 2px solid rgb(214, 213, 213);
   border-radius: 5px;
   box-shadow: 5px 10px  #cac9c9;
+}
+
+#left-container{
   padding: 3%;
   width: 60%
 }
 
 #right-container {
-  border: 2px solid rgb(214, 213, 213);
-  border-radius: 5px;
-  box-shadow: 5px 10px  #cac9c9;
   padding: 3%;
   width: 20%
 }
@@ -291,4 +291,16 @@ textarea {
 
 #text-centered {
   align-items: center; 
+}
+
+#background {
+  font-weight: bold;
+  background-image: url("World.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+#bold {
+  font-weight: bold;
 }

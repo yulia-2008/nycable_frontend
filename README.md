@@ -1,2 +1,3 @@
 # nycable_frontend
-Info-portal about all internet & TV providers in NY, area of coverage, payment plans, and available technicians as well as reviews and rating for providers and technicians.
+client-side validation - in front end , in forms
+on the web server (server-side validation) - for name unickness
