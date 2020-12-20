@@ -17,13 +17,6 @@ class CurrentUserProfile extends Component {
     }
  
 
-// submitPhoto = user => {
-//         // optimistic rendering new user picture
-//          let photo = {photo: user.photo}
-//          let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
-//          this.setState({currentUser: updatedCurrentUser})
-//       }
-
 changeHandler = event => {this.setState({ [event.target.name]: event.target.value})
 }
 
@@ -135,7 +128,8 @@ averageRating = () => {
                     </div>
                 </>
                 :
-                null}
+                null
+                }
 
             </div>
         );

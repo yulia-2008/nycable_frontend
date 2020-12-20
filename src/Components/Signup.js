@@ -26,9 +26,67 @@ loginHandler = event => {
 
     render() {
         return (             
-              <div id="centered">
-                     <div id ="background">
-                     <br/>
+              <div id ="background-flex">
+                     {/* <div id="text-shadow">
+                            <h3>
+                            N <br/><br/>
+                            Y <br/><br/>
+                            C <br/><br/>
+                            A <br/><br/>
+                            B <br/><br/>
+                            L <br/><br/>
+                            E <br/>  <br/>     
+                            </h3>
+                     </div>  */}
+
+                     <div id="left-align">
+                            <h4>Signup</h4>
+                            <form onSubmit = {event => this.signUpHandler(event)}>
+
+                            <input type="radio" name="role" value = "technician"  
+                                   onChange = {event=> this.changeHandler(event)} required/> Technician
+                                   <br/>
+                            <input type="radio" name="role" value = "customer" 
+                                   onChange = {event=> this.changeHandler(event)} required/> Client
+                            <br/> <br/>    
+
+                            <label>User name:</label> <br/>               
+                            <input type="text"  name="username" required
+                                   onChange = {event=> this.changeHandler(event)}>
+                            </input>
+                            <br/>
+                            
+                            <label>First Name:</label><br/> 
+                            <input type="text"  name="first_name" required
+                                   onChange = {event=> this.changeHandler(event)}>
+                            </input>
+                            <br/> 
+
+                            <label>Last Name:</label><br/> 
+                            <input type="text"  name="last_name" required
+                                   onChange = {event=> this.changeHandler(event)}>
+                            </input>
+                            <br/> <br/> 
+
+                            <label>City:</label><br/> 
+                            <input type="text"  name="city" required
+                                   onChange = {event=> this.changeHandler(event)}>
+                            </input>
+                            <br/>         
+                            
+                            <label>Password:</label><br/> 
+                            <input type="password"  name="password" required
+                                   onChange = {event=> this.changeHandler(event)}>
+                            </input>
+                            <br/>                 
+                            <input id="bold" type="submit" value="Submit"></input>
+                            <p id="red">{this.props.message.error? this.props.message.error : null}</p>                
+                            </form> 
+                            <br/> <br/> <br/> <br/> <br/> <br/>  
+                     </div> 
+                    
+                     
+                     <div id="left-align">
                             <h4>Login</h4>
                             <form onSubmit = {event => this.loginHandler(event)}>
                                    <label>User name:</label>
@@ -42,53 +100,9 @@ loginHandler = event => {
                                    <input id="bold" type="submit" value="Submit"></input>  
                                    <p id="red">{this.props.message.message? this.props.message.message: null}</p>            
                             </form>
-                            <br/>
-
-
-                            <h4>Signup</h4>
-                            <form onSubmit = {event => this.signUpHandler(event)}>
-
-                            <input type="radio" name="role" value = "technician"  
-                                   onChange = {event=> this.changeHandler(event)} required/> Technician
-                            <input type="radio" name="role" value = "customer" 
-                                   onChange = {event=> this.changeHandler(event)} required/> Customer
-                            <br/>     
-
-                            <label>User name:</label> <br/>               
-                            <input type="text"  name="username" required
-                                   onChange = {event=> this.changeHandler(event)}>
-                            </input>
-                            <br/>
-                     
-                            <label>First Name:</label><br/> 
-                            <input type="text"  name="first_name" required
-                                   onChange = {event=> this.changeHandler(event)}>
-                            </input>
-                            <br/> 
-
-                            <label>Last Name:</label><br/> 
-                            <input type="text"  name="last_name" required
-                                   onChange = {event=> this.changeHandler(event)}>
-                            </input>
-                            <br/> 
-
-                            <label>City:</label><br/> 
-                            <input type="text"  name="city" required
-                                   onChange = {event=> this.changeHandler(event)}>
-                            </input>
-                            <br/>         
-                     
-                            <label>Password:</label><br/> 
-                            <input type="password"  name="password" required
-                                   onChange = {event=> this.changeHandler(event)}>
-                            </input>
-                            <br/>                 
-                            <input id="bold" type="submit" value="Submit"></input>
-                            <p id="red">{this.props.message.error? this.props.message.error : null}</p>                
-                            </form>  
-                            <br/> <br/>
+                     </div>
+                     <br/>                          
               </div>
-       </div>
         );
     }
 }

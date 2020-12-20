@@ -138,13 +138,13 @@ class TechnicianReviews extends Component {
                     </p>
                 }
                 <br/>
-                <div id="reviews-left-align">
+                <div id="left-align">
                 {this.renderReviews()} 
                 </div>
             </div>
         </>
         :                      // current user on his profile page
-        <div id= "reviews-left-align">
+        <div id= "left-align">
             {this.renderReviews()} 
         </div>                   
     );

@@ -80,7 +80,7 @@ class CompanyReviews extends Component {
 
 
     render() {
-             console.log("company reviews", this.state.review )
+            //  console.log("company reviews", this.state.review )
         //    console.log("company reviews", this.props.currentUser.id )
         return (
             <>
@@ -88,7 +88,7 @@ class CompanyReviews extends Component {
             <div id="reviews-container"> 
               
                 <img id="logo" src={this.props.company.logo} alt={this.props.company.name}></img> <br/>
-                
+
                 {this.props.currentUser?                  
                     <>
                         { this.state.alreadyRated ?           // check if current user already rated this company 
@@ -119,7 +119,7 @@ class CompanyReviews extends Component {
                     </p>
                 }
                 
-                <div id="reviews-left-align">               
+                <div id="left-align">               
                     {this.renderReviews()}
                 </div>
             </div>
