@@ -66,7 +66,7 @@ loginHandler = event => {
                             <input type="text"  name="last_name" required
                                    onChange = {event=> this.changeHandler(event)}>
                             </input>
-                            <br/> <br/> 
+                            <br/> 
 
                             <label>City:</label><br/> 
                             <input type="text"  name="city" required
