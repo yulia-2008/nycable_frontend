@@ -5,10 +5,7 @@
 <h3> About The Project</h3>
 <p> NYCABLE gathered all available Internet & TV services in 5 NYC boroughs and latest deals from providers.</p>
 <p>On www.nycable.net you can search for available plans in your area, share your experience, rate or write a review about your internet provider or technician that installed cable for you.</p>
-<p> NYCABLE is growing, planning to add: Chat With Technician, FAQ, Quick Trableshooting and more.
-
-
-
+<p> NYCABLE is growing! Coming up additions: Chat With Technician, FAQ, Quick Trablehooting and more. </p>
 <h3>Features </h3>
 
 - Creating an account (as a client or technician).
