@@ -1,8 +1,9 @@
 
 
-<h1> NY CABLE </h1>
+<h1> NY CABLE   </h1>
+<a href="https://www.nycable.net"></a>
 <h3> About The Project</h3>
-<p> NYCABLE gathered all available Internet & TV services in 5 NYC boroughs, latest deals from providers as well as technicians.</p>
+<p> NYCABLE gathered all available Internet & TV services in 5 NYC boroughs and latest deals from providers.</p>
 <p>On www.nycable.net you can search for available plans in your area, share your experience, rate or write a review about your internet provider or technician that installed cable for you.</p>
 <p> NYCABLE is growing, planning to add: Chat With Technician, FAQ, Quick Trableshooting and more.
 
