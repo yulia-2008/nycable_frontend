@@ -9,8 +9,6 @@
 
 
 
-Backend repo: https://github.com/yulia-2008/nycable_backend
-
 <h3>Features </h3>
 
 - Creating an account (as a client or technician).
@@ -31,13 +29,16 @@ Backend repo: https://github.com/yulia-2008/nycable_backend
 
 
 
-<b>Frontend </b> built with React.js 
+<h3>Frontend </h3>
+- Built with React.js 
 - Used Browser Local Storage for making easier user experience during login process.
 - Utilized React Router (Nested Routing) to establish a dynamic routing system through the web app.
 - Client-side form validation for implementation authentication process.
 - Integrated Rating Component from Material UI library. 
 
-<b>Backend </b> built with Ruby on Rails and PostgreSQL database.
+<h3>Backend </h3>
+- Backend repo: https://github.com/yulia-2008/nycable_backend
+- Built with Ruby on Rails and PostgreSQL database.
 - Integrating Active Storage and Cloudinary Storage for uploading and storing users profile pictures.
 - Server-side form validation for implementation authentication process.
 - Models Serializer for rendering necessary data.
