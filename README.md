@@ -1,10 +1,12 @@
 
 
-<h1> NY CABLE   </h1>
-<a href="https://www.nycable.net">www.nycable.net</a>
+<h1> NY CABLE 
+<a href="https://www.nycable.net">www.nycable.net</a> <br/>
+Info-portal about all internet & TV providers in NYC, areas of coverage, payment plans, latest deals and available technicians.
+</h1>
+
 <h3> About The Project</h3>
-<p> NYCABLE gathered all available Internet & TV services in 5 NYC boroughs and latest deals from providers.</p>
-<p>On www.nycable.net you can search for available plans in your area, share your experience, rate or write a review about your internet provider or technician that installed cable for you.</p>
+<p>On www.nycable.net you can search for available providers in 5 NYC boroughs, share your experience, rate or write a review about your internet provider. Also find the technician that installed cable for you, rate his work or just say few words.</p>
 <p> NYCABLE is growing! Coming up additions: Chat With Technician, FAQ, Quick Trablehooting and more. </p>
 
 <h3>Features </h3>
