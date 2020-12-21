@@ -12,7 +12,8 @@
 Backend repo: https://github.com/yulia-2008/nycable_backend
 
 <h3>Features </h3>
-- Creating an account.
+
+- Creating an account (as a client or technician).
 
 - Logging in/Logging out.
 
@@ -24,9 +25,9 @@ Backend repo: https://github.com/yulia-2008/nycable_backend
 
 - Filtered search of technicians (base on city and company).
 
-- Rating Internet Provider and Technician.
+- Rating Internet Provider or Technician.
 
-- Writing a review about Internet Provider and Technician.
+- Writing a review about Internet Provider or Technician.
 
 
 
