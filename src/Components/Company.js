@@ -33,33 +33,36 @@ class Company extends Component {
                 </div>
 
                 <div id="flex-box">
-                    {this.props.company.internet_plan ? 
-                        <p>Cheapest Internet Plan &nbsp; <b>{this.props.company.internet_plan.toFixed(2)} /mo</b> , <b>{this.props.company.speed} mbps</b></p>
+                    {this.props.company.internet_plan ?                 
+                        <p>Cheapest Internet Plan <br/>
+                        <b>{this.props.company.internet_plan.toFixed(2)} /mo, {this.props.company.speed} mbps</b>
+                        </p>
                         :
                         null
                     }
 
                     {this.props.company.tv_plan ?
-                        <p>Cheapest TV Plan &nbsp; <b>{this.props.company.tv_plan.toFixed(2)} /mo</b></p>
+                        <p>Cheapest TV Plan <br/>
+                        <b>{this.props.company.tv_plan.toFixed(2)}/mo,  ({this.props.company.number_of_channels}+ chanells) </b>
+                        </p>
                         :
                         null
                     }
 
                     {this.props.company.internet_tv_plan ?
-                        <p>Internet + TV &nbsp; <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo  ({this.props.company.number_of_channels}+ chanells)</b></p>
+                        <p>Internet + TV <br/>
+                        <b>{this.props.company.internet_tv_plan.toFixed(2)} /mo ({this.props.company.number_of_channels}+ chanells)</b>
+                        </p>
                         :
                         null 
                     }
 
-                    {this.props.company.special_offer? 
-                        <>
-                        Special offer 
+                    {this.props.company.special_offer?                         
                         <p id="frame">
                             &nbsp; {this.props.company.special_offer} &nbsp; 
                         </p>
-                        </>
-
-                        :null
+                        :
+                        null
                     }
                     
                     <a href={this.props.company.plans_link}> <h3 id="no-margin">More plans</h3> </a> <br></br>

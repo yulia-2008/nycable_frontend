@@ -14,7 +14,7 @@ class Home extends Component {
                     <b> Are you satisfied with your service?</b>
                     <p>Share your experience! <br/> Rate or write a review about your internet provider <br/> or technician that installed cable for you.</p>
                 
-                    <b>For technicians! </b>
+                    <b>For technicians: </b>
                     <p>Register as a technician <br/> and get reviews from your clients.</p>
                 
                     <b>Coming soon:</b> 
