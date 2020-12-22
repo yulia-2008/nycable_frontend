@@ -11,7 +11,7 @@ class CompaniesContainer extends Component {
     }
 
     componentDidMount(){
-        fetch(`http://nycable.net/companies`)
+        fetch(`https://nycable.herokuapp.com/companies`)
         .then(response => response.json())
         .then(response => this.setState({companiesArray: response
                           })
@@ -36,7 +36,7 @@ class CompaniesContainer extends Component {
                                          }
                                })
                              }
-              fetch('http://localhost:4000/ratings', options)
+              fetch('https://nycable.herokuapp.com/ratings', options)
               .then(response => response.json())
               .then(response => {
                   let foundCompany = this.state.companiesArray.find(comp => comp.id === company.id)
