@@ -11,7 +11,7 @@ class CompaniesContainer extends Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:4000/companies`)
+        fetch(`http://nycable.net/companies`)
         .then(response => response.json())
         .then(response => this.setState({companiesArray: response
                           })
@@ -65,7 +65,8 @@ class CompaniesContainer extends Component {
 
                             <Route  path = '/providers' render = {() => {return this.renderCompanies()} }/>  
                         </Switch>   
-                    }                                         
+                    } 
+                <p> *Prices does not include taxes, equipment rentals, instalation fee and other charges.</p>                                           
             </div>
         );
     }

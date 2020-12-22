@@ -53,7 +53,7 @@ Info-portal about all internet & TV providers in NYC, areas of coverage, payment
 
 - Models Serializer for rendering necessary data.
 
-- Models relationship set up using Polymorphyc Assosiation, that way one model can belong ONE OR ANOTHER model on a single relationship.
+- Models relationship set up using Polymorphyc Assosiation, that way one model can belong ONE OR ANOTHER model.
 
 - Created custom routes help to handles all incoming requests from the frontend of the app.
 

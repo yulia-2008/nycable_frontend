@@ -74,6 +74,7 @@ class Company extends Component {
                 <img id="flex-box" src={this.props.company.coverage_map} alt="coverage map"></img>
 
             </div>
+            
         );
     }
 }
