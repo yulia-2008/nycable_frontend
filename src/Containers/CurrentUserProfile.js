@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import PhotoUploader from '../Components/PhotoUploader';
+import PhotoUploader from "../Components/PhotoUploader";
 import Avatar from "../Avatar.jpg";
 import Star from "../Star.jpg";
-import {Image} from 'cloudinary-react';
+import {Image} from "cloudinary-react";
 import TechnicianReviews from "../Components/TechnicianReviews";
-import Rating from 'material-ui-rating'
+import Rating from "material-ui-rating"
 
 
 
