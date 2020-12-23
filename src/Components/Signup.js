@@ -27,17 +27,6 @@ loginHandler = event => {
     render() {
         return (             
               <div id ="background-flex">
-                     {/* <div id="text-shadow">
-                            <h3>
-                            N <br/><br/>
-                            Y <br/><br/>
-                            C <br/><br/>
-                            A <br/><br/>
-                            B <br/><br/>
-                            L <br/><br/>
-                            E <br/>  <br/>     
-                            </h3>
-                     </div>  */}
 
                      <div id="left-align">
                             <h4>Signup</h4>

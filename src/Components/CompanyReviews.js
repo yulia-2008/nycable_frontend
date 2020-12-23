@@ -26,7 +26,7 @@ class CompanyReviews extends Component {
 
     componentDidMount() {
         // find if currentUser is already rated this company
-        fetch(`http://localhost:4000/companies/${this.props.company.id}/ratings`)
+        fetch(`http://nycable.herokuapp.com/companies/${this.props.company.id}/ratings`)
         .then(response => response.json())
         .then(response => {
                 if (this.props.currentUser) {
@@ -63,7 +63,7 @@ class CompanyReviews extends Component {
                                    }
                          })
                        }
-        fetch('http://localhost:4000/reviews', options)
+        fetch('http://nycable.herokuapp.com/reviews', options)
         .then(response => response.json())
         .then(response => { this.setState({
                                 review: "",
@@ -81,7 +81,6 @@ class CompanyReviews extends Component {
 
     render() {
             //  console.log("company reviews", this.state.review )
-        //    console.log("company reviews", this.props.currentUser.id )
         return (
             <>
             <NavLink  to='/providers'><span> <img id ="arrow" src={ArrowIcon} alt="icon"></img> Back to Providers</span> </NavLink>

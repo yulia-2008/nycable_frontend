@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Technician from '../Components/Technician';
-import { Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom'; // might need later
 import { Route, Switch} from 'react-router-dom';
 import TechnicianReviews from '../Components/TechnicianReviews';
 
@@ -13,7 +13,7 @@ class TechniciansContainer extends Component {
         company: null,
     }
     componentDidMount(){  
-        fetch(`http://localhost:4000/technicians`)
+        fetch(`http://nycable.herokuapp.com/technicians`)
         .then(response => response.json())
         .then(response => {this.setState({ technicians: response, 
                                            filtered: response
@@ -35,7 +35,7 @@ class TechniciansContainer extends Component {
                                          }
                                })
         }
-            fetch('http://localhost:4000/ratings', options)
+            fetch('http://nycable.herokuapp.com/ratings', options)
             .then(response => response.json())
             .then(response => {
                 let foundTechnician = this.state.technicians.find(tech => tech.id === technician.id)

@@ -30,7 +30,7 @@ photoUploader = event =>{
                                },
                            body: formData
                         }
-           fetch(`http://localhost:4000/users/${this.props.currentUser.id}/upload_photo`, options)
+           fetch(`http://nycable.herokuapp.com/users/${this.props.currentUser.id}/upload_photo`, options)
            .then(response => response.json())
            .then(response => {this.props.submitPhoto(response); this.setState({selectedFile: null})}
             )         

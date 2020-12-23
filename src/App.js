@@ -26,7 +26,7 @@ companySubmitHandler = company=>{
                                company_name: company
                         })
                        }
-            fetch(`http://localhost:4000/users/${this.state.currentUser.id}`, options)
+            fetch(`http://nycable.herokuapp.com/users/${this.state.currentUser.id}`, options)
             .then(response => response.json())
             .then(response => this.setState({currentUser: response.user})
             )
@@ -43,7 +43,7 @@ signUpHandler = userObj => {
                            user: userObj
                     })
                    }
-        fetch('http://localhost:4000/users', options)
+        fetch('http://nycable.herokuapp.com/users', options)
         .then(response => response.json())
         .then(resp => {console.log("sign", resp)
           if (resp.user) {
@@ -65,14 +65,14 @@ loginHandler = userInfo =>{
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
-    },
+        },
     body: JSON.stringify({
         user: {username: userInfo.username,
               password: userInfo.password}
         })
     } 
     
-    fetch('http://localhost:4000/login', options)  // got toket in response !
+    fetch('http://nycable.herokuapp.com/login', options)  // got toket in response !
     .then(response => response.json())
     .then(resp =>{
         if (resp.user) {
@@ -104,7 +104,7 @@ submitPhoto = user => {
 componentDidMount(){ 
   const token = localStorage.getItem("token")  
   if (token) {
-       fetch(`http://localhost:4000/profile`, {
+       fetch(`http://nycable.herokuapp.com/profile`, {
            method: "GET", 
            headers: {Authorization: `Bearer ${token}`},
             })

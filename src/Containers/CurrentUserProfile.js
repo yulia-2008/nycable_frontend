@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect} from 'react-router-dom';
 import PhotoUploader from '../Components/PhotoUploader';
 import Avatar from "../Avatar.jpg";
 import Star from "../Star.jpg";
@@ -42,7 +41,7 @@ averageRating = () => {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:4000/technicians/${this.props.currentUser.id}/ratings`)
+        fetch(`http://nycable.herokuapp.com/technicians/${this.props.currentUser.id}/ratings`)
         .then(response => response.json())
         .then(response => { this.setState({ratingArray: response
          })

@@ -35,7 +35,7 @@ class TechnicianReviews extends Component {
                                    }
                          })
                        }
-        fetch('http://localhost:4000/reviews', options)
+        fetch('http://nycable.herokuapp.com/reviews', options)
         .then(response => response.json())
         .then(response => { this.setState({
                                 review: "", 
@@ -52,7 +52,7 @@ class TechnicianReviews extends Component {
         if (this.props.user){id = this.props.user.id}
         else {id = this.props.currentUser.id}
 
-            fetch(`http://localhost:4000/technicians/${id}/reviews`)
+            fetch(`http://nycable.herokuapp.com/technicians/${id}/reviews`)
             .then(response => response.json())
             .then(response => this.setState({reviews: response
             })
