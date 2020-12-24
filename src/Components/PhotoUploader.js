@@ -32,7 +32,7 @@ photoUploader = event =>{
                         }
            fetch(`https://nycable.herokuapp.com/users/${this.props.currentUser.id}/upload_photo`, options)
            .then(response => response.json())
-           .then(response => {this.props.submitPhoto(response); this.setState({selectedFile: null})}
+           .then(response => {console.log("k", response),this.props.submitPhoto(response); this.setState({selectedFile: null})}
             )         
         }   
    }
