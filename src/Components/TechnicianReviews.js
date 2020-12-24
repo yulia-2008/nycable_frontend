@@ -35,7 +35,7 @@ class TechnicianReviews extends Component {
                                    }
                          })
                        }
-        fetch('http://nycable.herokuapp.com/reviews', options)
+        fetch('https://nycable.herokuapp.com/reviews', options)
         .then(response => response.json())
         .then(response => { this.setState({
                                 review: "", 

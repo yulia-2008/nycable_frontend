@@ -41,7 +41,7 @@ averageRating = () => {
     }
 
     componentDidMount() {
-        fetch(`http://nycable.herokuapp.com/technicians/${this.props.currentUser.id}/ratings`)
+        fetch(`https://nycable.herokuapp.com/technicians/${this.props.currentUser.id}/ratings`)
         .then(response => response.json())
         .then(response => { this.setState({ratingArray: response
          })
