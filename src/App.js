@@ -95,6 +95,7 @@ logoutHandler=()=>{
 }
 
 submitPhoto = user => {
+  console.log("g", user)
   // optimistic rendering new user picture
    let photo = {photo: user.user.photo}
    let updatedCurrentUser=Object.assign(this.state.currentUser, photo)
@@ -119,7 +120,7 @@ componentDidMount(){
 }
 
   render(){
-        // console.log("app", this.state.user)
+         console.log("app", this.state.currentUser)
     return ( 
     <div>
       
