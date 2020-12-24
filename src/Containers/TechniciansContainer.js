@@ -13,7 +13,7 @@ class TechniciansContainer extends Component {
         company: null,
     }
     componentDidMount(){  
-        fetch(`http://nycable.herokuapp.com/technicians`)
+        fetch(`https://nycable.herokuapp.com/technicians`)
         .then(response => response.json())
         .then(response => {this.setState({ technicians: response, 
                                            filtered: response
@@ -35,7 +35,7 @@ class TechniciansContainer extends Component {
                                          }
                                })
         }
-            fetch('http://nycable.herokuapp.com/ratings', options)
+            fetch('https://nycable.herokuapp.com/ratings', options)
             .then(response => response.json())
             .then(response => {
                 let foundTechnician = this.state.technicians.find(tech => tech.id === technician.id)
