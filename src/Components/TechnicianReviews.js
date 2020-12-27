@@ -99,7 +99,7 @@ class TechnicianReviews extends Component {
                 <div>               
                     <h2 id ="no-margin">{this.props.user.first_name} {this.props.user.last_name}</h2>                  
                         {this.props.user.photo ? 
-                            <Image cloudName="dytr9lvlc" 
+                            <Image cloudName="hkkxkj5mz" 
                                     publicId={this.props.user.photo} 
                                     width="200" height= "200" 
                                     crop="pad"   radius="20" />

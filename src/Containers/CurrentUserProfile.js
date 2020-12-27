@@ -125,6 +125,7 @@ averageRating = () => {
                             {this.whoRatedMe()}
                         </div>
                     </div>
+                    <br></br> <br></br>
                 </>
                 :
                 null
