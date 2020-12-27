@@ -59,14 +59,18 @@ class CompaniesContainer extends Component {
                                     let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
                             
                                     return  <CompanyReviews company={foundCompany} 
-                                                                submitRating={this.submitRating}                
-                                                        currentUser={this.props.currentUser}/> 
+                                                            submitRating={this.submitRating}                
+                                                            currentUser={this.props.currentUser}/> 
                             }}/>
 
-                            <Route  path = '/providers' render = {() => {return this.renderCompanies()} }/>  
+                            <Route  path = '/providers' render = {() => {return  this.renderCompanies(), 
+                                <p> *Prices does not include taxes, equipment rentals, instalation fee and other charges.</p>
+                            
+                            }
+                            }/>  
                         </Switch>   
                     } 
-                <p> *Prices does not include taxes, equipment rentals, instalation fee and other charges.</p>                                           
+                                                           
             </div>
         );
     }
