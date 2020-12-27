@@ -28,7 +28,7 @@ companySubmitHandler = company=>{
                        }
             fetch(`https://nycable.herokuapp.com/users/${this.state.currentUser.id}`, options)
             .then(response => response.json())
-            .then(response => this.setState({currentUser: response.user})
+            .then(response => (console.log("company", response),this.setState({currentUser: response.user}) )
             )
 }
 
