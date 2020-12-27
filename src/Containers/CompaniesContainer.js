@@ -54,7 +54,7 @@ class CompaniesContainer extends Component {
                         <h1>LOADING</h1>
                         : 
                         <Switch>
-                             <Route  path = '/providers/:company' render = {({match}) => {
+                            <Route  path = '/providers/:company' render = {({match}) => {
                                     let name = match.params.company   // data from params is a string
                                     let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
                             
@@ -63,9 +63,10 @@ class CompaniesContainer extends Component {
                                                             currentUser={this.props.currentUser}/> 
                             }}/>
 
-                            <Route  path = '/providers' render = {() => {return  this.renderCompanies(), 
-                                <p> *Prices does not include taxes, equipment rentals, instalation fee and other charges.</p>
-                            
+                            <Route  path = '/providers' render = {() => {
+                                return <> {this.renderCompanies()} 
+                                        <p> *Prices does not include taxes, equipment rentals, instalation fee and other charges.</p>
+                                       </>                          
                             }
                             }/>  
                         </Switch>   
