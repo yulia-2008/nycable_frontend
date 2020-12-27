@@ -73,7 +73,7 @@ averageRating = () => {
                     }
 
                     {this.props.currentUser.photo ? 
-                            <Image  cloudName="dytr9lvlc" 
+                            <Image  cloudName="hkkxkj5mz" 
                                     publicId={this.props.currentUser.photo} 
                                     width="300" height= "300" 
                                     crop="fill"   radius="20" 

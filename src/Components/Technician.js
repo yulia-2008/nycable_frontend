@@ -27,7 +27,7 @@ class Technician extends Component {
             <div id="flex">                
                 <span >
                     {this.props.technician.photo ?
-                        <Image cloudName="dytr9lvlc"
+                        <Image cloudName="hkkxkj5mz"
                                publicId={this.props.technician.photo} 
                                width="100" height= "100" 
                                crop="thumb" gravity="face" 
