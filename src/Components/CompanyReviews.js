@@ -50,27 +50,17 @@ class CompanyReviews extends Component {
     }
     
     submitReview = () => { 
-        let options = { method: 'POST',
-                        headers: {
-                        'Content-Type': 'application/json',
-                         Accept: 'application/json'
-                        },
-                         body: JSON.stringify({
-                           review: { text: this.state.review,
-                                     object_id: this.props.company.id,
-                                     object_type: "Company",
-                                     user_id: this.props.currentUser.id
-                                   }
-                         })
-                       }
-        fetch('https://nycable.herokuapp.com/reviews', options)
-        .then(response => response.json())
-        .then(response => { this.setState({
-                                review: "",
-                                newReview: response
-                            })
-                          }
-        )        
+        // optimistic rendering
+        this.setState({
+            review: "",
+            newReview: {text: this.state.review,  
+                        object_id: this.props.company.id, 
+                        user: {
+                            first_name: this.props.currentUser.first_name,
+                            last_name: this.props.currentUser.last_name
+                         }}
+        })
+    this.props.submitReview(this.props.company.id, this.state.review)      
     }
 
     submitRating = () => {

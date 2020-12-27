@@ -14,8 +14,32 @@ class CompaniesContainer extends Component {
         fetch(`https://nycable.herokuapp.com/companies`)
         .then(response => response.json())
         .then(response => this.setState({companiesArray: response
-                          })
+                          }) 
         )
+    }
+
+
+
+    submitReview = (companyId, reviewText) => {
+       
+        let options = { method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+         Accept: 'application/json'
+        },
+         body: JSON.stringify({
+           review: { text: reviewText,
+                     object_id: companyId,
+                     object_type: "Company",
+                     user_id: this.props.currentUser.id
+                   }
+         })
+       }
+        fetch('https://nycable.herokuapp.com/reviews', options)
+        .then(response => response.json())
+        .then(response => { let foundCompany = this.state.companiesArray.find((com) => com.id === companyId)
+                            foundCompany.reviews=[...foundCompany.reviews, response]   
+        })
     }
 
     renderCompanies = () => {    
@@ -46,7 +70,7 @@ class CompaniesContainer extends Component {
 
 
     render() {
-        //   console.log("companies container", this.state.companiesArray)
+           console.log("companies container", this.state.companiesArray)
         return (
             
             <div id="centered">                                                                
@@ -59,7 +83,8 @@ class CompaniesContainer extends Component {
                                     let foundCompany = this.state.companiesArray.find((com) => com.name === name )         
                             
                                     return  <CompanyReviews company={foundCompany} 
-                                                            submitRating={this.submitRating}                
+                                                            submitRating={this.submitRating} 
+                                                            submitReview = {this.submitReview}               
                                                             currentUser={this.props.currentUser}/> 
                             }}/>
 
