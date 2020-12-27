@@ -52,7 +52,7 @@ class TechnicianReviews extends Component {
         if (this.props.user){id = this.props.user.id}
         else {id = this.props.currentUser.id}
 
-            fetch(`http://nycable.herokuapp.com/technicians/${id}/reviews`)
+            fetch(`https://nycable.herokuapp.com/technicians/${id}/reviews`)
             .then(response => response.json())
             .then(response => this.setState({reviews: response
             })
