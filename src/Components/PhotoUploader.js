@@ -40,23 +40,27 @@ photoUploader = event =>{
     render() {
         // console.dir("uploader", this.props.currentUser)
         return (
-            < div id="flex">            
-                <form id="margin" onSubmit={this.photoUploader}>
-                  Change picture &nbsp;   
-                <input id="file" type="file"  
-                       name="picture" 
-                       accept="image/*" 
-                       multiple= "false" 
-                       onChange={this.changeHandler}></input>
-                    <br/> 
-                      {this.state.selectedFile ?     
-                     <><img id="photo-preview" src={this.filePreview()} alt="userphoto"></img><br/>
-                      <input type="submit" value="Upload" ></input></>
-
-                     : null} 
-
+            <>            
+                <form id="container-for-input-file" onSubmit={this.photoUploader}>
+                    Change picture &nbsp;   
+                    <input type="file"  
+                            name="picture" 
+                            accept="image/*" 
+                            multiple= "false" 
+                            onChange={this.changeHandler}></input>                    
                 </form>
-            </div>
+               
+                {this.state.selectedFile ?     
+                    <>
+                    <br/>
+                    <img id="photo-preview" src={this.filePreview()} alt="userphoto"></img><br/>
+                    <input id="submit" type="submit" value="Upload"></input>
+                    <br/>
+                    </>
+                    : 
+                    null
+                }                
+            </>
         );
     }
 }

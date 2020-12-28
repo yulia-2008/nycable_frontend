@@ -117,7 +117,7 @@ class TechniciansContainer extends Component {
                                         &nbsp; &nbsp;
                                         <input  type="search" name="city" placeholder="City/Town"  value={this.state.city} onChange={this.changeHandler}></input>
                                         &nbsp; &nbsp;
-                                        <input type="submit" value="Search"></input>
+                                        <input id="submit" type="submit" value="Search"></input>
                                     </form>
                                 </div>
                                 <br></br>

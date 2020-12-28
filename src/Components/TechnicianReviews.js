@@ -111,17 +111,17 @@ class TechnicianReviews extends Component {
                 {this.props.currentUser?                  
                     <>
                         { this.alreadyRated() ?           // check if current user already rated this technician 
-                            <p id ="no-margin">You have rated this technitian as  {this.alreadyRated()}</p>
+                            null
                             :        
                             this.state.ratingSubmited ? 
                                 <p>Thank you for rating</p> 
                                 :                                                                   
                                 <div id="flex"> 
-                                    <p id="rating-centered">Rate:</p>                                           
+                                    <p id="rating-centered"></p>                                           
                                     <Rating value={this.state.ratingValue}                                 
                                              size="large"
                                             onChange = { (value) => this.ratingChangeHandler(value)}/> 
-                                    <button id="small-button" onClick={this.submitRating}>Submit</button>
+                                    <button id="submit" onClick={this.submitRating}>Submit</button>
                                 </div>                              
                         }
                         <br/>                        
@@ -130,7 +130,7 @@ class TechnicianReviews extends Component {
                                     value={this.state.review}
                                     onChange={this.changeHandler}>                           
                         </textarea> <br/>
-                        <button onClick={this.submitReview}>Submit</button>                         
+                        <button id="submit" onClick={this.submitReview}>Submit</button>                         
                     </>                                                  
                     :          // you are not logged in
                     <p id="red"> Want to rate this technician <br/> or leave a review? 
@@ -139,12 +139,12 @@ class TechnicianReviews extends Component {
                 }
                 <br/>
                 <div id="left-align">
-                {this.renderReviews()} 
+                    {this.renderReviews()}                   
                 </div>
             </div>
         </>
         :                      // current user on his profile page
-        <div id= "left-align">
+        <div id="left-align">
             {this.renderReviews()} 
         </div>                   
     );

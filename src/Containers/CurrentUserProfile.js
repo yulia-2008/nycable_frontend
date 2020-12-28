@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PhotoUploader from "../Components/PhotoUploader";
 import Avatar from "../Avatar.jpg";
-import Star from "../Star.jpg";
 import {Image} from "cloudinary-react";
 import TechnicianReviews from "../Components/TechnicianReviews";
 import Rating from "material-ui-rating"
@@ -38,23 +37,23 @@ averageRating = () => {
         average =  sum / ratingsQuantity 
     }
     return average
-    }
-
-    componentDidMount() {
-        fetch(`https://nycable.herokuapp.com/technicians/${this.props.currentUser.id}/ratings`)
-        .then(response => response.json())
-        .then(response => { this.setState({ratingArray: response
-         })
-         })
 }
 
-    whoRatedMe = () => {return  this.state.ratingArray.map(rating => 
-                            <p>{rating.user.first_name} {rating.user.last_name} - {rating.num} &nbsp;
-                            <img id="star-icon" src={Star} alt="star icon"></img>
-                            </p>
-                            )
-    }
-        
+componentDidMount() {
+    fetch(`https://nycable.herokuapp.com/technicians/${this.props.currentUser.id}/ratings`)
+    .then(response => response.json())
+    .then(response => { this.setState({ratingArray: response
+    })
+    })
+}
+
+whoRatedMe = () => {return  this.state.ratingArray.map(rating => 
+                <div id="flex-left"> 
+                    {rating.user.first_name} {rating.user.last_name} &nbsp;
+                    <Rating value={rating.num} readOnly="true"  size="small"/>
+                    <br></br>
+                </div>            
+)}      
 
     render() { 
         //   console.log( "Profile", this.props.currentUser)  
@@ -108,22 +107,24 @@ averageRating = () => {
                         </select> 
                      
                                              
-                        <input type="submit" value="Submit"></input> &nbsp;
-                        {/* <input type="reset" ></input> */}
+                        <input id="submit" type="submit" value="Submit"></input> &nbsp;
                     </form>                                
                 </div> 
 
                 {this.props.currentUser.role==="technician" ?
                 <>
                     <h4>Reviews</h4>
-                    <div id="flex-space-between">
-                        <div id="left-container">
-                            <TechnicianReviews  currentUser={this.props.currentUser}/>
-                        </div> 
-
-                        <div id="right-container">
+                    <div id="border-box">                        
+                        <TechnicianReviews  currentUser={this.props.currentUser}/>
+                        <br></br>
+                        {this.state.ratingArray===[] ? 
+                            null
+                            :
+                            <>
+                            <h4 id="left-align">Rated by:</h4>
                             {this.whoRatedMe()}
-                        </div>
+                            </>
+                        }                        
                     </div>
                     <br></br> <br></br>
                 </>

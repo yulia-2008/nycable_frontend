@@ -81,7 +81,7 @@ class CompanyReviews extends Component {
                 {this.props.currentUser?                  
                     <>
                         { this.state.alreadyRated ?           // check if current user already rated this company 
-                            <p id ="no-margin">You rated this company as  {this.state.alreadyRated}</p>
+                            null
                             :        
                             this.state.ratingSubmited ? 
                                 <p>Thank you for rating</p> 
@@ -91,7 +91,7 @@ class CompanyReviews extends Component {
                                 <Rating value={this.state.ratingValue}                                 
                                         size="large"
                                         onChange = { (value) => this.ratingChangeHandler(value)}/> 
-                                <button id="small-button" onClick={this.submitRating}>Submit</button>
+                                <button id="submit" onClick={this.submitRating}>Submit</button>
                                 </div>                              
                         }
                         <br/> 
@@ -100,7 +100,7 @@ class CompanyReviews extends Component {
                                     value={this.state.review}
                                     onChange={this.changeHandler}>                           
                         </textarea> <br/>
-                        <button onClick={this.submitReview}>Submit</button>                                 
+                        <button id="submit" onClick={this.submitReview}>Submit</button>                                 
                     </>                                                  
                     :          // you are not logged in
                     <p id="red"> Want to rate this company <br/> or leave a review? 

@@ -8,19 +8,19 @@ class NavBar extends Component {
     render() {
         return (            
             <div id="nav-bar"> 
-
+                <br></br>
                 <NavLink  to='/'> Home </NavLink>
-                &nbsp;  &nbsp;
+                &nbsp;  
 
                 <NavLink  to='/providers' > Providers  </NavLink>
-                &nbsp;  &nbsp;
+                &nbsp;  
 
                 <NavLink  to='/technicians'> Technicians </NavLink>
-                &nbsp;  &nbsp;
+                &nbsp;  
             
                 <NavLink  to='/profile' > 
                   {this.props.currentUser? 
-                     <span>Profile ({this.props.currentUser.first_name})&nbsp;  &nbsp; </span>   
+                     <span>Profile &nbsp;  </span>   
                      :
                      null
                   }  

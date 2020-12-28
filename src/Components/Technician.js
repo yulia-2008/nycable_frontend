@@ -40,7 +40,7 @@ class Technician extends Component {
                 <div id="margin-left">
                     <h3 id="no-margin">{this.props.technician.first_name} <br></br>{this.props.technician.last_name}
                         {this.props.currentUser && this.props.currentUser.id === this.props.technician.id ?
-                            <h6 id="no-margin"> (you)</h6>
+                            " (you)"
                             : 
                             null
                         }
