@@ -70,7 +70,7 @@ class CompaniesContainer extends Component {
 
 
     render() {
-           console.log("companies container", this.state.companiesArray)
+           
         return (
             
             <div id="centered">                                                                

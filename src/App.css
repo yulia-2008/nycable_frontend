@@ -1,10 +1,4 @@
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 
 a {
   color: #49c3fc;
@@ -60,10 +54,28 @@ input[type='search'] {
   text-shadow: 1px 1px black;
 } 
 
- #left {
+@media only screen and (max-width: 600px) {
+  #nav-bar {
+    margin: auto;
+    text-align: center;
+    font-size: 3vw;
+    /* 1 vw - 1% from browser window width */
+    text-shadow: 1px 1px black;
+  }
+}
+
+#left {
   width: 40%;
   margin-left: 20%;   
 } 
+
+@media only screen and (max-width: 1027px) {
+  #left {
+    width: 90%;
+    margin-left: 5%;   
+  } 
+}
+
 
 #right-container {
   float: right; 
@@ -128,16 +140,37 @@ textarea {
   margin: auto;
 }
 
+@media only screen and (max-width: 600px) {
+  #flex-box{
+    padding-left: 3%;
+    padding-right: 3%;
+    width: 100%;  
+  }
+}
+
 
 #flex-company {
   border: 2px solid rgb(214, 213, 213);
-  border-radius: 5px;
+  border-radius: 7px;
   box-shadow: 5px 10px  #cac9c9;
-  margin: 40px;
-  padding: 15px;
+  margin: 5%;
+  padding: 2%;
   display: flex; 
   align-items: center;
 }
+
+@media only screen and (max-width: 600px) {
+  #flex-company {
+    display: block;
+    border: 2px solid rgb(214, 213, 213);
+    border-radius: 7px;
+    box-shadow: 5px 10px  #cac9c9;
+    margin: 5%;
+    padding: 4%;
+    align-items: center;
+  }
+}
+
 
 #flex {
   display: flex;
@@ -168,9 +201,17 @@ textarea {
 }
 
 #star-icon {
-  width: 10%;
-  height: 10%;
+  width: 15%;
+  height: 15%;
 }
+
+@media only screen and (max-width: 600px) {
+  #star-icon {
+    width: 30%;
+    height: 30%;
+  }
+}
+
 
 #frame {
   border-radius: 5px;
@@ -203,9 +244,16 @@ textarea {
 }
 
 #left-align {
-  padding-left: 5%;
+  padding-left: 3%;
   text-align: left;
 }
+
+/* @media only screen and (max-width: 600px) {
+  #left-align {
+    padding-left: 3%;
+    text-align: left;
+  }
+} */
 
 #margin-left {
   margin-left: 10px;
@@ -221,6 +269,14 @@ textarea {
   width: 70%;
   margin: auto;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  #centered {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+  }
 }
 
 .grid-container { 
@@ -250,11 +306,24 @@ textarea {
   width: 70%;
   margin: auto;
   padding-top: 0;
-  padding-left: 20%; 
+  padding-left: 30%; 
   background-image: url("m9.jpg");
   background-position: center; 
   background-repeat: no-repeat; 
   background-size: contain; 
+}
+
+@media only screen and (max-width: 600px) {
+  #background-flex {
+  display: block;
+  width: 95%;
+  margin: auto;
+  padding-top: 0; 
+  background-image: url("m9.jpg");
+  background-position: top; 
+  background-repeat: repeat; 
+  background-size: contain; 
+  }
 }
 
 #bold {
@@ -268,5 +337,44 @@ textarea {
   background-position: center; 
   background-repeat: no-repeat; 
   background-size: contain; 
+}
+
+@media only screen and (max-width: 600px) {
+  #background {
+    padding-top: 0; 
+    width: 95%;
+    margin: auto;
+    background-image: url("m9.jpg");
+    background-position: top; 
+    background-repeat: repeat; 
+    background-size: contain; 
+  }
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .example {background: red;}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .example {background: green;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .example {background: blue;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .example {background: orange;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .example {background: pink;}
 }
 

@@ -71,7 +71,7 @@ loginHandler = event => {
                             <input id="bold" type="submit" value="Submit"></input>
                             <p id="red">{this.props.message.error? this.props.message.error : null}</p>                
                             </form> 
-                            <br/> <br/> <br/> <br/> <br/> <br/>  
+                             <br></br>
                      </div> 
                     
                      
