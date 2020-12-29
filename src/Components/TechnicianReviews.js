@@ -134,7 +134,7 @@ class TechnicianReviews extends Component {
                     </>                                                  
                     :          // you are not logged in
                     <p id="red"> Want to rate this technician <br/> or leave a review? 
-                    <NavLink  to='/signup'><span>  Signup</span> </NavLink>
+                    <NavLink  to='/signup'><span> Login </span> </NavLink>
                     </p>
                 }
                 <br/>

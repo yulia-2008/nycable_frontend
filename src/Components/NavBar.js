@@ -30,7 +30,7 @@ class NavBar extends Component {
                 {this.props.currentUser? 
                     <span id ="color" onClick={this.props.logoutHandler}>Logout</span>
                     :
-                    <NavLink  to='/signup'> Signup/Login </NavLink>  
+                    <NavLink  to='/signup'> Login </NavLink>  
                 }
              <br></br> <br></br>
              </div> 

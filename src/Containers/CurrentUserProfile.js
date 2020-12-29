@@ -97,7 +97,7 @@ whoRatedMe = () => {return  this.state.ratingArray.map(rating =>
                                     submitPhoto={this.props.submitPhoto} /> <br/>             
                                   
                     <form onSubmit={this.companySubmitHandler}>
-                        <select id="select-field" name="company" onChange={this.changeHandler}>
+                        <select  name="company" onChange={this.changeHandler}>
                             <option value="">Change Company</option>
                             <option value="Optimum">Optimum</option>
                             <option value="Dish">Dish</option>
