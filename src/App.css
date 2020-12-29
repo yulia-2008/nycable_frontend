@@ -25,9 +25,10 @@ a {
 @media only screen and (max-width: 600px) {
   #background-flex {
   display: flex;
+  justify-content: center;
   width: 90%;
   margin: auto;
-  padding-left: 0;
+  padding-left: 10%;
   padding-top: 0; 
   background-image: none;
   background-color: rgb(178, 226, 238); 
@@ -131,7 +132,6 @@ input[type='search'] {
 }  
 
 input[type='radio'] {
-  border: 1px solid grey;
   cursor: pointer;
 } 
 
@@ -164,7 +164,6 @@ input[type='password'] {
   padding-right: 20px;
   width: 30%;
   margin: auto;
-  /* do I need this? */
 }
 
 @media only screen and (max-width: 600px) {
@@ -232,7 +231,6 @@ input[type='password'] {
 }
 
 #left-align {
-  padding-left: 3%;
   text-align: left;
   margin-bottom: 0px;
 }

@@ -104,7 +104,7 @@ class CompanyReviews extends Component {
                     </>                                                  
                     :          // you are not logged in
                     <p id="red"> Want to rate this company <br/> or leave a review? 
-                        <NavLink  to='/signup'><span>  LOgin </span> </NavLink>
+                        <NavLink  to='/signup'><span>  Login </span> </NavLink>
                     </p>
                 }
                 

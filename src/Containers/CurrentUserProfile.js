@@ -56,7 +56,7 @@ whoRatedMe = () => {return  this.state.ratingArray.map(rating =>
 )}      
 
     render() { 
-        //   console.log( "Profile", this.props.currentUser)  
+        //    console.log( "Profile")  
         return (                     
             <div id="centered"> 
                 <div >
@@ -117,7 +117,7 @@ whoRatedMe = () => {return  this.state.ratingArray.map(rating =>
                     <div id="border-box">                        
                         <TechnicianReviews  currentUser={this.props.currentUser}/>
                         <br></br>
-                        {this.state.ratingArray===[] ? 
+                        {this.state.ratingArray.length === 0 ? 
                             null
                             :
                             <>
