@@ -1,12 +1,12 @@
 
 
 <h1> NY CABLE 
-<a href="https://www.nycable.net">www.nycable.net</a> <br/>
+<a href="http://www.nycable.net">www.nycable.net</a> <br/>
 Info-portal about all internet & TV providers in NYC, areas of coverage, payment plans, latest deals and available technicians.
 </h1>
 
 <h3> About The Project</h3>
-<p>On www.nycable.net you can search for available providers in 5 NYC boroughs, share your experience, rate or write a review about your internet provider. Also find the technician that installed cable for you, rate his work or just say few words.</p>
+<p>On <a href="http://www.nycable.net">www.nycable.net</a> you can search for available providers in 5 NYC boroughs, share your experience, rate or write a review about your internet provider. Also find the technician that installed cable for you, rate his work or just say few words.</p>
 <p> NYCABLE is growing! Coming up additions: Chat With Technician, FAQ, Quick Trablehooting and more. </p>
 
 <h3>Features </h3>
@@ -40,6 +40,10 @@ Info-portal about all internet & TV providers in NYC, areas of coverage, payment
 - Client-side form validation for implementation authentication process.
 
 - Integrated Rating Component from Material UI library. 
+
+- Styling with CSS. Responsive web design makes easy navigation on different devices.
+
+- Hosted on Heroku.
 
 <h3>Backend </h3>
 
