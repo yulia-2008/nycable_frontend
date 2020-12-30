@@ -60,7 +60,7 @@ class Technician extends Component {
                 <NavLink to={this.props.currentUser && this.props.currentUser.id === this.props.technician.id ? 
                          '/profile' :
                          `/technicians/${this.props.technician.id}` }> 
-                         {this.props.technician.reviews.length} reviews
+                        Leave a review <br></br> ({this.props.technician.reviews.length} reviews)
                 </NavLink><br/> 
             </div>
        </div>

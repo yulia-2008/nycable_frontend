@@ -25,11 +25,11 @@ class Company extends Component {
                     <div id="flex">
                         <p >{this.averageRating().toFixed(1)} </p>
                         <Rating name="half-rating" value={this.averageRating()} readOnly="true" precision={0.5}  size="small"/>
-                     </div> 
-
+                    </div> 
                     <NavLink to={`providers/${this.props.company.name}`}> 
-                       {this.props.company.reviews.length} reviews
+                      Leave a review <br></br>({this.props.company.reviews.length} reviews)
                     </NavLink>&nbsp; &nbsp;
+                
                 </div>
 
                 <div id="flex-box">
