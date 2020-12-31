@@ -32,7 +32,7 @@ photoUploader = event =>{
                         }
            fetch(`https://nycable.herokuapp.com/users/${this.props.currentUser.id}/upload_photo`, options)
            .then(response => response.json())
-           .then(response => {console.log("k", response); this.props.submitPhoto(response); this.setState({selectedFile: null})}
+           .then(response => {console.log("uploader", response); this.props.submitPhoto(response); this.setState({selectedFile: null})}
             )         
         }   
    }
@@ -47,19 +47,19 @@ photoUploader = event =>{
                             name="picture" 
                             accept="image/*" 
                             multiple= "false" 
-                            onChange={this.changeHandler}></input>                    
-                </form>
+                            onChange={this.changeHandler}></input>                                   
                
-                {this.state.selectedFile ?     
-                    <>
-                    <br/>
-                    <img id="photo-preview" src={this.filePreview()} alt="userphoto"></img><br/>
-                    <input id="submit" type="submit" value="Upload"></input>
-                    <br/>
-                    </>
-                    : 
-                    null
-                }                
+                    {this.state.selectedFile ?     
+                        <>
+                        <br/>
+                        <img id="photo-preview" src={this.filePreview()} alt="userphoto"></img><br/>
+                        <input id="submit" type="submit" value="Upload"></input>
+                        <br/>
+                        </>
+                        : 
+                        null
+                    }  
+                </form>              
             </>
         );
     }
