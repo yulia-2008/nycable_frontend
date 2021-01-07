@@ -75,7 +75,7 @@ class CompaniesContainer extends Component {
             
             <div id="centered">                                                                
                     {this.state.companiesArray.length === 0 ? 
-                        <h1>LOADING</h1>
+                        <h1>Please wait. Heroku app is loading...</h1>
                         : 
                         <Switch>
                             <Route  path = '/providers/:company' render = {({match}) => {
