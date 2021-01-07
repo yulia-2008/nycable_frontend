@@ -3,6 +3,7 @@ import Technician from '../Components/Technician';
 import { Redirect} from 'react-router-dom'; // might need later
 import { Route, Switch} from 'react-router-dom';
 import TechnicianReviews from '../Components/TechnicianReviews';
+import CircularProgress from "../Components/CircularProgress";
 
 class TechniciansContainer extends Component {
 
@@ -86,7 +87,10 @@ class TechniciansContainer extends Component {
             <div id="centered">
                             
                 {this.state.technicians.length === 0 ? 
+                    <>
+                    <CircularProgress props={100} /> 
                     <p>Please wait. Heroku app is loading...</p>
+                    </>
                     :
                     <Switch>
                         <Route  path = '/technicians/:id' render = {({match}) => {
