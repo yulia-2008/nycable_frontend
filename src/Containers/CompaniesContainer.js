@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Company from "../Components/Company";
 import CompanyReviews from "../Components/CompanyReviews";
 import { Route, Switch} from 'react-router-dom';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -75,7 +76,10 @@ class CompaniesContainer extends Component {
             
             <div id="centered">                                                                
                     {this.state.companiesArray.length === 0 ? 
-                        <h1>Please wait. Heroku app is loading...</h1>
+                        <>
+                        {/* <CircularProgress variant="determinate" /> */}
+                        <p>Please wait. Heroku app is loading...</p>
+                        </>
                         : 
                         <Switch>
                             <Route  path = '/providers/:company' render = {({match}) => {

@@ -86,7 +86,7 @@ class TechniciansContainer extends Component {
             <div id="centered">
                             
                 {this.state.technicians.length === 0 ? 
-                    <h1>Please wait. Heroku app is loading...</h1>
+                    <p>Please wait. Heroku app is loading...</p>
                     :
                     <Switch>
                         <Route  path = '/technicians/:id' render = {({match}) => {
