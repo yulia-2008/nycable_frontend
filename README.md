@@ -43,7 +43,7 @@ Info-portal about all internet & TV providers in NYC, areas of coverage, payment
 
 - Styling with CSS. Responsive web design makes easy navigation on different devices.
 
-- Hosted on Heroku.
+- Hosted on Heroku
 
 <h3>Backend </h3>
 
